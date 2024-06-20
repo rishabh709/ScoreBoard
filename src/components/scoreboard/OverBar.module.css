@@ -1,0 +1,47 @@
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+}
+
+
+.over{
+    width: 40vw;
+    height: 40px;
+    border-radius: 30px;
+    background-color: #F4F4F4;
+    /* background-color: #888888; */
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+.balls{
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    gap: 1%;
+    align-items: center;
+    padding-left: 3%;
+}
+
+.balls div{
+    width: 30px;
+    aspect-ratio: 1 / 1;
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* background-color: #222222; */
+    border-radius: 50%;
+}
+
+.bolwerName{
+    height: 100%;
+    padding: 0 4%;
+    border-radius: 30px;
+    background-color: #E8E8E8;
+    display: flex;
+    align-items: center;
+}

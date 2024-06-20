@@ -1,0 +1,38 @@
+.navigationBar{
+    background-color: var(--main-color);
+    height: 10vh;
+    width: 100%;
+}
+
+.navContainer {
+    height: 100%;
+    align-items: center;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 20vw auto 20vw;
+    align-items: center;
+    justify-content: center;
+    justify-items: flex-start;
+}
+
+.logo{
+    text-decoration: none;
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+}
+.searchBar{
+    width: 51vw;
+    aspect-ratio: 23 / 1;
+    border-radius: 30px;
+    background-color: #858AE3;
+    box-shadow: 0 3px 3px #00000040;
+    justify-self: center;
+}
+.profile{
+    height: 45px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: aliceblue;
+    justify-self: flex-end;
+}

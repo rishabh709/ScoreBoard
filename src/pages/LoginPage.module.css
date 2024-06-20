@@ -1,0 +1,31 @@
+.menu > form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+  width: 25vw;
+  margin:5% auto;
+  flex-direction:column;
+  background-color: rgb(247, 247, 247);
+  box-shadow: 15px 15px 15px rgb(165, 165, 165);
+  color: var(--main-font-color);
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+.inpt{
+  padding: 0 5%;
+  width: 80%;
+  margin-top:10px;
+  border: none;
+  background-color: rgb(236, 236, 236);
+  height: 5vh;
+}
+.sbmt{
+  width: 90%;
+  padding: 0 5%;
+  height: 15%;
+  margin-top: 10%;
+  border: none;
+  border-radius:10px;
+  background-color: #613DC1;
+}

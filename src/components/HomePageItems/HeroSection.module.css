@@ -1,0 +1,109 @@
+.heroSection{
+    height: 30vh;
+    background-color: var(--main-color);
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    padding: 0 5%;
+    box-sizing: border-box;
+
+}
+.logoImg{
+    /* hw */
+    width: 10vw;
+    /* width: 100px; */
+    /* margin-bottom: -42px; */
+}
+
+.heroSection > div{
+    display: flex;
+    width: 25vw;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.heroSection :nth-child(1), .heroSection :nth-child(3){
+    align-items: flex-end;
+}
+
+.leftBanner :nth-child(1){
+    width: 6vw;
+}
+.leftBanner :nth-child(2){
+    width: 6vw;
+    margin-bottom: 7%;
+}
+.leftBanner :nth-child(3){
+    width: 12vw;
+}
+.rightBanner :nth-child(3){
+    margin-bottom: 20%;
+    width: 5vw;
+}
+
+
+
+.container{
+    height: 22vh;
+    width: 21vw;
+}
+
+.holders{
+    width: 100%;
+    height: 4.5%;
+    justify-content: center;
+    display: flex;
+}
+.holders > div{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+}
+.holder{
+    height: 100%;
+    aspect-ratio: 2 / 1;
+    background-color: var(--main-accent-color);
+}
+
+.board{
+    height: 94%;
+    aspect-ratio: 2 / 1;
+    background-color: var(--main-accent-color);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.pane{
+    height: 85%;
+    width: 40%;
+    background-color: white;
+    font-size: 80px;
+    text-align: center;
+    font-weight: 600;
+    color: black;
+}
+
+.dots{
+    width: 7.5%;
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30%;
+}
+
+.dot{
+    width: 12px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: #6D6D6D;
+}

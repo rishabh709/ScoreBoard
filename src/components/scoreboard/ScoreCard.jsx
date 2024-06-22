@@ -31,14 +31,14 @@ function ScoreCard() {
               <div className={classes.name}>Batter1</div>
               <div className={classes.batterScore}>
                 <div className={classes.runs}>20</div>
-                <div className={classes.balls}></div>
+                <div className={classes.balls}>10</div>
               </div>
             </div>
             <div className={classes.batter}>
               <div className={classes.name}>Batter2</div>
               <div className={classes.batterScore}>
                 <div className={classes.runs}>20</div>
-                <div className={classes.balls}></div>
+                <div className={classes.balls}>10</div>
               </div>
             </div>
           </div>
@@ -46,11 +46,11 @@ function ScoreCard() {
           <div className={classes.bolwing}>
             <div className={classes.bolwer}>
               <div className={classes.name}>Bolwer</div>
-              {/* <div className={classes.summary}>
+              <div className={classes.summary}>
                 <div className={classes.wickets}>1</div>
                 <div className={classes.runsGiven}>-23</div>
                 <div className={classes.oversBolwed}>(19.3)</div>
-              </div> */}
+              </div>
             </div>
             <div className={classes.thisOver}>
               {currentOver.balls.map((ball, k)=>{

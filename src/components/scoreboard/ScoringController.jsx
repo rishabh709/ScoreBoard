@@ -5,7 +5,7 @@ import classes from "./ScoringController.module.css";
 function ScoringController() {
   const { currentBall, setCurrentBall, match, setMatch, currentOver, setCurrentOver } = useContext(Context);
 
-
+  
   // Function to add runs and update states accordingly
 
   function addRun(n) {
@@ -64,12 +64,13 @@ function ScoringController() {
     // console.log(currentOver);
   }, [currentBall]);
 
+
   return (
     <div className={classes.container}>
       <div className={classes.scoring}>
         <div className={classes.batters}>
-          <div className={classes.batter}>Batter-Name</div>
-          <div className={classes.batter}>Batter-Name</div>
+          <div className={classes.batter} onClick={()=>enterBatteName(1)}>Batter-name</div>
+          <div className={classes.batter} onClick={()=>enterBatteName(2)}>Batter-name</div>
         </div>
         <div className={classes.byesOrbat}>
           <button>Bat</button>

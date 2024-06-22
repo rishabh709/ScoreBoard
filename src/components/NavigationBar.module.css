@@ -8,29 +8,21 @@
     height: 100%;
     align-items: center;
     box-sizing: border-box;
-    display: grid;
-    grid-template-columns: 20vw auto 20vw;
+    display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     justify-items: flex-start;
+    padding: 0 3%;
 }
 
 .logo{
     text-decoration: none;
-    font-size: 36px;
+    font-size: 5vh;
     font-weight: bold;
     color: white;
 }
-.searchBar{
-    width: 51vw;
-    aspect-ratio: 23 / 1;
-    border-radius: 30px;
-    background-color: #858AE3;
-    box-shadow: 0 3px 3px #00000040;
-    justify-self: center;
-}
 .profile{
-    height: 45px;
+    height: 70%;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     background-color: aliceblue;

@@ -5,10 +5,16 @@ import classes from "./ScoringController.module.css";
 function ScoringController() {
   const { currentBall, setCurrentBall, match, setMatch, currentOver, setCurrentOver } = useContext(Context);
 
+
   // Function to add runs and update states accordingly
 
   function addRun(n) {
-    const updatedBall = { ...currentBall, run: n };
+    // let legal balls;
+    // currentOver.balls.map(b =>{
+    //   (b.type=="legal")? balls++:"";
+    // })
+
+    const updatedBall = { ...currentBall, run: n, type:"legal" };
     setCurrentBall(updatedBall);
     
     // Update match runs and current over together
@@ -29,12 +35,10 @@ function ScoringController() {
       ...over,
       balls: [...over.balls, updatedBall]
     }))
-
-    console.log(currentOver);
   }
   function addWicket(){
     if(match.wickets<10){
-      const updatedBall = {...currentBall, wicket:1, run:"W"}
+      const updatedBall = {...currentBall, wicket:1, run:"W", type:"legal"}
       setCurrentBall(updatedBall)
   
       setMatch(match =>({...match, wickets: match.wickets+1}))
@@ -44,8 +48,21 @@ function ScoringController() {
 
   useEffect(() => {
     // Logging currentOver to observe changes
+    console.log("currentOver");
+    let bcount =0;
+    currentOver.balls.map((b)=>{
+      if(b.type=="legal"){
+        bcount++;
+      }
+      console.log("this", bcount)
+      console.log(b)
+    })
+    if(bcount==6){
+      setMatch(match =>({...match, overs:[...match.overs, currentOver]}))
+      setCurrentOver(over=>({...over, overNumber:currentOver.overNumber+1, balls:[]}))
+    }
     // console.log(currentOver);
-  }, []);
+  }, [currentBall]);
 
   return (
     <div className={classes.container}>

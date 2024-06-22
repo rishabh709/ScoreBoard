@@ -10,7 +10,7 @@ function OverBar() {
   // console.log("currentOver.balls");
 
   useEffect(() => {
-    console.log("OverBar rendered:", currentOver);
+    console.log("OverBar rendered:", currentOver.balls);
   }, []);
 
  

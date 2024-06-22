@@ -22,16 +22,16 @@ export const ContextProvider = ({children})=>{
         team1: "",
         team2: "",
         maxOver: 20,
-        runs: 10,
+        runs: 0,
         wickets:0,
-        overs: []
+        overs: [],
     })
 
     return(
         <Context.Provider value={{
             match, setMatch,
             currentOver, setCurrentOver,
-            currentBall, setCurrentBall
+            currentBall, setCurrentBall,
             }}>
             {children}
         </Context.Provider>

@@ -1,4 +1,4 @@
-.container > form{
+.menu > form{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,11 +12,6 @@
   border-radius: 12px;
   box-sizing: border-box;
 }
-
-.container > form > label{
-  align-self: flex-start;
-}
-
 .inpt{
   padding: 0 5%;
   width: 80%;

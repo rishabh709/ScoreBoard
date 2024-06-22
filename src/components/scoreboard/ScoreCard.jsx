@@ -12,7 +12,7 @@ function ScoreCard() {
           <div className={classes.team1}>
             <img src="src\assets\team-icons\team1.png" alt="team1" />
             <div className={classes.score}>
-              <div className={classes.runs}>1/{match.runs}</div>
+              <div className={classes.runs}>{match.wickets}/{match.runs}</div>
               <div className={classes.overs}>(20)</div>
             </div>
           </div>

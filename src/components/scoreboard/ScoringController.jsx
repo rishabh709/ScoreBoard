@@ -19,26 +19,28 @@ function ScoringController() {
     }));
   }
   function addExtras(n, extraType){
-    if(extraType=="wide"){
+    const typeAlias = {"wide":"WD", "no-ball":"NB"}
 
-      const updatedBall = {...currentBall, run:("WD"+((n==1)? "":n)), legal:extraType};
-      setCurrentBall(updatedBall)
+    const updatedBall = {...currentBall, run:((typeAlias[extraType])+((n==1)? "":n)), type:extraType};
+    setCurrentBall(updatedBall)
 
-      setMatch(match =>({...match, runs: match.runs + n}));
-      setCurrentOver(over => ({
-        ...over,
-        balls: [...over.balls, updatedBall]
-      }))
-    }
+    setMatch(match =>({...match, runs: match.runs + n}));
+    setCurrentOver(over => ({
+      ...over,
+      balls: [...over.balls, updatedBall]
+    }))
+
     console.log(currentOver);
-
   }
-function addBall(n, extras="", wicket=0){
-  if(extras=="wide"){
-    addRun()
+  function addWicket(){
+    if(match.wickets<10){
+      const updatedBall = {...currentBall, wicket:1, run:"W"}
+      setCurrentBall(updatedBall)
+  
+      setMatch(match =>({...match, wickets: match.wickets+1}))
+      setCurrentOver(over => ({...over, balls:[...over.balls, updatedBall]}))
+    }
   }
-
-}
 
   useEffect(() => {
     // Logging currentOver to observe changes
@@ -69,9 +71,9 @@ function addBall(n, extras="", wicket=0){
           <button onClick={()=> addExtras(1,'no-ball')}>No-Ball</button>
         </div>
         <div className={classes.out}>
-          <button>Out</button>
-          <button>Run out</button>
-          <button>Catch out</button>
+          <button onClick={() => addWicket()}>Out</button>
+          <button onClick={() => addWicket()}>Run out</button>
+          <button onClick={() => addWicket()}>Catch out</button>
         </div>
       </div>
     </div>

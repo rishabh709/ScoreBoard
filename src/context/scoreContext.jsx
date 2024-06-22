@@ -4,10 +4,10 @@ export const Context = React.createContext();
 export const ContextProvider = ({children})=>{
     const[currentBall, setCurrentBall] = useState({
         ballId: '',
-        run: 0,
-        wickets: 0,
         overId: '',
-        legal: null,
+        run: 0,
+        wicket: 0,
+        type: null,
         legbyes: false
     });
     
@@ -23,6 +23,7 @@ export const ContextProvider = ({children})=>{
         team2: "",
         maxOver: 20,
         runs: 10,
+        wickets:0,
         overs: []
     })
 

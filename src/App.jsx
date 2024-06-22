@@ -4,6 +4,7 @@ import MainLayout from './layout/MainLayout'
 import HomePage from './pages/HomePage'
 import CricketPage from './pages/CricketPage'
 import LoginPage from './pages/LoginPage'
+import SignupPage from './pages/SignupPage'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -11,6 +12,7 @@ const router = createBrowserRouter(
       <Route index element={<HomePage/>}></Route>
       <Route path='/cricket-match' element={<CricketPage/>}></Route>
       <Route path='/login' element={<LoginPage/>}></Route>
+      <Route path='/signup' element={<SignupPage/>}></Route>
     </Route>
   )
 )

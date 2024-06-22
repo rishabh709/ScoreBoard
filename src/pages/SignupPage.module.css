@@ -1,9 +1,9 @@
-.menu > form{
+.container > form{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 40vh;
-  width: 25vw;
+  width: 30vw;
   margin:5% auto;
   flex-direction:column;
   background-color: rgb(247, 247, 247);
@@ -12,6 +12,23 @@
   border-radius: 12px;
   box-sizing: border-box;
 }
+
+
+
+.inpt, .sbmt{
+  display: flex;
+  flex-grow: 1;
+}
+
+.editText{
+  width: 100%;
+}
+
+.editText > label{
+  width: 20%;
+}
+
+
 .inpt{
   padding: 0 5%;
   width: 80%;

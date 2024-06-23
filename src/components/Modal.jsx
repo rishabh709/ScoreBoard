@@ -2,7 +2,6 @@ import classes from "./Modal.module.css"
 
 function Modal(props) {
 
-
   return (
     <div className={classes.modal}>
         <p>Are you sure?</p>

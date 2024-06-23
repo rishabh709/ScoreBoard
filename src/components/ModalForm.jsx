@@ -1,11 +1,11 @@
-import React from 'react'
-
 import classes from "./ModalForm.module.css"
+import { Link } from 'react-router-dom'
 
-function ModalForm() {
+function ModalForm(props) {
+
   return (
     <div className={classes.modal}>
-        <h1 className={classes.heading}>Cricket Match</h1>
+        <h1 className={classes.heading}>{props.title} Match</h1>
         <div className={classes.middle}>
             <input type="text" name="" id="" className={classes.inpts} placeholder='Team 1' />
             <input type="text" name="" id="" className={classes.inpts} placeholder='Team 2' />
@@ -19,8 +19,8 @@ function ModalForm() {
                 <div></div>
             </div>
             <div className={classes.formControl}>
-                <button className={classes.cancelBtn}>Cancel</button>
-                <button className={classes.nextBtn}>Next</button>
+                <button className={classes.cancelBtn} onClick={props.onCancle}>Cancel</button>
+                <Link className={classes.nextBtn} to={props.onNext}>Next</Link>
             </div>
         </div>
     </div>

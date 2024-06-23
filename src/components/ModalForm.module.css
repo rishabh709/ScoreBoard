@@ -1,38 +1,39 @@
 .modal{
     top: 17vh;
 
-    left: calc(50vw - 250px);
+    left: calc(50vw - 17.5vw);
     position: fixed;
     z-index: 10;
-    width: 500px;
+    width: 35vw;
     height: 60%;
+    /* gap: 2vh; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px 40px 20px 40px;
+    padding: 10px 2vw 20px 2vw;
     background-color: #ECECEC;
-    border: 0;
+    border: none;
 }
 .heading{
-    font-size: 32px;
+    font-size: 2vw;
     color: var(--main-color);
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 1vh;
 }
 .middle{
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1vh;
 }
 .middle > *{
     width: 100%;
-    height: 50px;
+    height: 20%;
     background-color: var(--secondary-light-color);
     color: var(--main-font-color);
+    font-size: 1.3vw;
     border: 0;
-    font-size: 24px;
-    padding: 20px;
+    /* padding: 1%; */
 }
 
 .progressBar{
@@ -43,14 +44,14 @@
     gap: 5px;
 }
 .progressBar > *{
-    width: 12px;
-    height: 12px;
+    height: 0.8vw;
+    aspect-ratio: 1/1;
     background-color: var(--main-accent-color);
     border-radius: 50%;
-    margin-bottom: 15px;
+    margin-bottom: 2%;
 }
 .progressBar :nth-child(1){
-    width: 50px;
+    width: 10%;
     background-color: var(--main-color);
     border-radius: 30px;
 }
@@ -61,9 +62,8 @@
     justify-content: space-between;
 }
 .cancelBtn, .nextBtn{
-    width: 100px;
-    height: 35px;
-    font-size: 20px;
+    width: 25%;
+    font-size: 1.5vw;
     background-color: transparent;
     border: none;
 }
@@ -81,4 +81,32 @@
 }
 .nextBtn:hover{
     background-color: var(--main-accent-color);
+}
+
+
+@media all and (orientation: portrait){
+    .modal{
+        height: auto;
+        width: 70vw;
+        left: calc(50vw - 35vw);
+        gap: 1.5vh;
+        padding-bottom: 1vh;
+    }
+    .heading{
+        margin-bottom: -0;
+        font-size: 2vh;
+    }
+    .middle > *{
+        font-size: 1.5vh;
+        padding: 3%;
+        height: 15%;
+    }
+    .progressBar > div{
+        height: 1vh;
+    }
+    .formControl > *{
+        height: 2.5vh;
+        font-size: 1.5vh;
+    }
+    
 }

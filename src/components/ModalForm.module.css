@@ -1,0 +1,84 @@
+.modal{
+    top: 17vh;
+
+    left: calc(50vw - 250px);
+    position: fixed;
+    z-index: 10;
+    width: 500px;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 40px 20px 40px;
+    background-color: #ECECEC;
+    border: 0;
+}
+.heading{
+    font-size: 32px;
+    color: var(--main-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+.middle{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.middle > *{
+    width: 100%;
+    height: 50px;
+    background-color: var(--secondary-light-color);
+    color: var(--main-font-color);
+    border: 0;
+    font-size: 24px;
+    padding: 20px;
+}
+
+.progressBar{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    gap: 5px;
+}
+.progressBar > *{
+    width: 12px;
+    height: 12px;
+    background-color: var(--main-accent-color);
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+.progressBar :nth-child(1){
+    width: 50px;
+    background-color: var(--main-color);
+    border-radius: 30px;
+}
+
+.formControl{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.cancelBtn, .nextBtn{
+    width: 100px;
+    height: 35px;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+}
+.cancelBtn{
+    border: 1px solid var(--main-accent-color);
+    color: var(--main-color);
+}
+.nextBtn{
+    background-color: var(--main-color);
+    /* background-color: var(--secordary-dark-color); */
+    color: white;
+}
+.cancelBtn:hover{
+    background-color: var(--main-accent-color);
+}
+.nextBtn:hover{
+    background-color: var(--main-accent-color);
+}

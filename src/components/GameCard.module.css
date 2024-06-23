@@ -17,7 +17,7 @@
 }
 
 .title{
-    font-size: 20px;
+    font-size: 3.5vh;
     color: black;
 }
 .btn{
@@ -29,4 +29,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media all and (orientation: portrait){
+    .card{
+        width: 30%;
+    }
+    .title{
+        font-size: 3vw;
+    }
 }

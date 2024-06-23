@@ -21,6 +21,8 @@
   --main-color: #613DC1;
   --main-accent-color: #858AE3;
   --main-font-color: #000;
+  --secondary-light-color: #D9D9D9;
+  --secordary-dark-color: #3E4347;
 }
 
 *{

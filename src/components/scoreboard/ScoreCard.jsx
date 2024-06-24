@@ -10,7 +10,10 @@ function ScoreCard() {
       <div className={classes.scoreCard}>
         <div className={classes.teamScores}>
           <div className={classes.team1}>
-            <img src="src\assets\team-icons\team1.png" alt="team1" />
+            <div className={classes.logoName}>
+              <img src="src\assets\team-icons\team1.png" alt="team1" />
+              <h3>{match.team1}</h3>
+            </div>
             <div className={classes.score}>
               <div className={classes.runs}>{match.wickets}/{match.runs}</div>
               <div className={classes.overs}>{match.currentOver}</div>
@@ -22,7 +25,10 @@ function ScoreCard() {
               <div className={classes.runs}>Yet to bat</div>
               <div className={classes.overs}>(0)</div>
             </div>
-            <img src="src\assets\team-icons\team2.png" alt="team2" />
+            <div className={classes.logoName}>
+              <img src="src\assets\team-icons\team2.png" alt="team2" />
+              <h3>{match.team2}</h3>
+            </div>
           </div>
         </div>
         <div className={classes.battingAndBolwing}>

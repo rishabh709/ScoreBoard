@@ -18,19 +18,11 @@
 .inpt, .sbmt{
   display: flex;
   flex-grow: 1;
+  color: black;
 }
-
-.editText{
-  width: 100%;
-}
-
-.editText > label{
-  width: 20%;
-}
-
 
 .inpt{
-  padding: 0 5%;
+  padding: 0 1%;
   width: 80%;
   margin-top:10px;
   border: none;

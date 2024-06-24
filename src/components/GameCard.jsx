@@ -41,7 +41,7 @@ function GameCard(props) {
       {/* <Link to={props.link} className={classes.btn}>Create</Link> */}
 
       <button className={classes.btn} onClick={()=>{showModalForm()}}>Create</button>
-      {modalFormIsOpen && <ModalForm title={props.text} onNext={props.link} onCancle={cancelHandler}/>}
+      {modalFormIsOpen && <ModalForm title={props.text} game={props.game} onNext={props.link} onCancle={cancelHandler}/>}
       {modalFormIsOpen && <Backdrop onClick={closeModalHandler}/>}
       
       {/* Modal */}

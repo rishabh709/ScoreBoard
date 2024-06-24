@@ -23,6 +23,7 @@
 .btn{
     text-decoration: none;
     background-color: #3a3a3a;
+    cursor: pointer;
     color: #ECECEC;
     height:30%;
     width: 100%;

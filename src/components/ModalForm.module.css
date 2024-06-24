@@ -33,6 +33,8 @@
     color: var(--main-font-color);
     font-size: 1.3vw;
     border: 0;
+    padding-left: 3%;
+    padding-right: 3%;
     /* padding: 1%; */
 }
 
@@ -66,12 +68,14 @@
     font-size: 1.5vw;
     background-color: transparent;
     border: none;
+    cursor: pointer;
 }
 .cancelBtn{
     border: 1px solid var(--main-accent-color);
     color: var(--main-color);
 }
 .nextBtn{
+    text-decoration: none;
     background-color: var(--main-color);
     /* background-color: var(--secordary-dark-color); */
     color: white;

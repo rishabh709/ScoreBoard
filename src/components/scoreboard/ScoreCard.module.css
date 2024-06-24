@@ -6,11 +6,15 @@
 
 .teamScores{
   width: 50vw;
-  height: 60px;
+  /* height: 60px; */
   display: flex;
   justify-content: space-between;
   box-sizing: border-box;
 }
+.logoName> h3{
+  text-align: center;
+}
+
 img{
   width: 60px;
 }

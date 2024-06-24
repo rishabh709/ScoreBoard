@@ -9,7 +9,7 @@ function HomeCards() {
 
   return (
     <div className={classes.homeCardsList}>
-        <GameCard text="Cricket" link="/cricket-match" img="src\assets\icons\cricket-icon.svg"/>
+        <GameCard text="Cricket" game="cricket" link="/cricket-match" img="src\assets\icons\cricket-icon.svg"/>
     </div>
   )
 }

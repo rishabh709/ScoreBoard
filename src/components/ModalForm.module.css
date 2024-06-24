@@ -51,8 +51,10 @@
     background-color: var(--main-accent-color);
     border-radius: 50%;
     margin-bottom: 2%;
+    cursor: pointer;
+    transition: all 3s ease-in-out;
 }
-.progressBar :nth-child(1){
+.progressBar > .currentBar{
     width: 10%;
     background-color: var(--main-color);
     border-radius: 30px;

@@ -18,7 +18,11 @@ function ModalForm(props) {
     const navigateTo = useNavigate();
     const submitHandler = (event)=>{
         event.preventDefault();
-        navigateTo(props.onNext)
+        if(formPage+1<games[props.game].length){
+            setFormPage(formPage+1);
+        } else{
+            navigateTo(props.onNext)
+        }
     }
 
     const games = {cricket:[
@@ -28,6 +32,11 @@ function ModalForm(props) {
         [
             {type:"number", place:"Max Overs"}]]}
 
+    const progressBarHandler = (event, i)=>{
+        console.log('clicked... the bar', i, event)
+        (formPage!=i && setFormPage(i));
+    }
+
 
   return (
     <form className={classes.modal} onSubmit={submitHandler}>
@@ -35,7 +44,7 @@ function ModalForm(props) {
         <div className={classes.middle}>
             {
                 games[props.game][formPage].map((e)=>{
-                    return <input type={e.type} name="" value={e.value} onChange={e.onChange} id="" className={classes.inpts} placeholder={e.place} />
+                    return <input type={e.type} name="" value={e.value} onChange={e.onChange} id="" className={classes.inpts} placeholder={e.place} required />
                 })
             }
             {/* <input type="text" name="" value={match.team1} onChange={handleName1Change} id="" className={classes.inpts} placeholder='Team 1' /> */}
@@ -43,7 +52,17 @@ function ModalForm(props) {
         </div>
         <div className={classes.bottom}>
             <div className={classes.progressBar}>
-                <div></div><div></div><div></div><div></div><div></div>
+                {
+                    games[props.game].map((e, i)=>{
+                        let cName=""
+                        console.log("Ran...")
+                        if(formPage==i){
+                            cName= classes.currentBar;
+                        }
+                        return <div key={i} className={cName} onClick={(event)=>progressBarHandler(event, i)}/>
+                    })
+                }
+
             </div>
             <div className={classes.formControl}>
                 <button type="button" className={classes.cancelBtn} onClick={props.onCancle}>Cancel</button>

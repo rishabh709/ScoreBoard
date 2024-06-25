@@ -30,7 +30,11 @@ function ModalForm(props) {
             {type:"text", value:match.team1, place:"Team 1", onChange:handleName1Change}, 
             {type:"text", value:match.team2, place:"Team 2", onChange:handleName2Change}], 
         [
-            {type:"number", place:"Max Overs"}]]}
+            {type:"number", place:"Max Overs"}]
+        [
+            {type:"button", place:"Toss"}
+        ]
+        ]}
 
     const progressBarHandler = (event, i)=>{
         console.log('clicked... the bar', i, event)

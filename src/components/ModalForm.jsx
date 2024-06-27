@@ -31,9 +31,6 @@ function ModalForm(props) {
             {type:"text", value:match.team2, place:"Team 2", onChange:handleName2Change}], 
         [
             {type:"number", place:"Max Overs"}]
-        [
-            {type:"button", place:"Toss"}
-        ]
         ]}
 
     const progressBarHandler = (event, i)=>{
@@ -59,7 +56,6 @@ function ModalForm(props) {
                 {
                     games[props.game].map((e, i)=>{
                         let cName=""
-                        console.log("Ran...")
                         if(formPage==i){
                             cName= classes.currentBar;
                         }

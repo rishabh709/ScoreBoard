@@ -32,6 +32,10 @@
     align-items: center;
 }
 
+.btn:hover{
+    background-color: #3a3a3ad7;
+}
+
 @media all and (orientation: portrait){
     .card{
         width: 30%;

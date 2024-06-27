@@ -13,7 +13,19 @@
     padding: 10px 2vw 20px 2vw;
     background-color: #ECECEC;
     border: none;
+    animation: scaleUp 0.5s ease-in-out;
 }
+
+@keyframes scaleUp {
+    0%{
+        scale: 70%;
+    }
+    100%{
+        scale: 100%;
+    }
+}
+
+
 .heading{
     font-size: 2vw;
     color: var(--main-color);
@@ -47,12 +59,12 @@
 }
 .progressBar > *{
     height: 0.8vw;
-    aspect-ratio: 1/1;
+    width: 0.8vw;
     background-color: var(--main-accent-color);
     border-radius: 50%;
     margin-bottom: 2%;
     cursor: pointer;
-    transition: all 3s ease-in-out;
+    transition: width 0.5s;
 }
 .progressBar > .currentBar{
     width: 10%;

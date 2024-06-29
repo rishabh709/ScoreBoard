@@ -1,12 +1,12 @@
 import React from 'react'
-import HeroSection from '../components/HomePageItems/HeroSection'
-import HomeCards from '../components/HomePageItems/HomeCards'
+import AllSportsCards from "../components/HomePageItems/AllSportsCards"
+import HeroSection from "../components/HomePageItems/HeroSection"
 
 function HomePage() {
   return (
     <div>
       <HeroSection />
-      <HomeCards />
+      <AllSportsCards />
     </div>
   )
 }

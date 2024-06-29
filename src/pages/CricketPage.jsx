@@ -1,7 +1,7 @@
 import React from 'react'
-import ScoreCard from '../components/scoreboard/ScoreCard'
-import OverBar from '../components/scoreboard/OverBar'
-import ScoringController from '../components/scoreboard/ScoringController'
+import ScoreCard from '../components/cricket/ScoreCard'
+import OverBar from '../components/cricket/OverBar'
+import ScoringController from '../components/cricket/ScoringController'
 
 function CricketPage() {
   return (

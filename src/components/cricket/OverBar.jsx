@@ -3,25 +3,23 @@ import React, { useContext, useEffect } from "react";
 import classes from "./OverBar.module.css";
 import { Context } from "../../context/scoreContext";
 
-function OverBar() {
-  
-  const {currentOver} = useContext(Context)
-  
-  // console.log("currentOver.balls");
+function OverBar(props) {
+  const { currentOver } = useContext(Context);
 
-  useEffect(() => {
-    console.log("OverBar rendered:", currentOver.balls);
-  }, []);
-
- 
-  let name = "bolwer sing";
   return (
     <div className={classes.container}>
       <div className={classes.over}>
         <div className={classes.balls}>
-          {currentOver.balls.map((ball, k)=>{
-            return <div key={k}>{ball.run}</div>
-          })}
+          {typeof props.over == 'undefined'
+            ? currentOver.balls.map((ball, k) => {
+                console.log("ran", typeof props.over)
+                return <div key={k}>{ball.run}</div>;
+              })
+            : props.over.balls.map((ball, k) => {
+                console.log("ran when", typeof props.over)
+                return <div key={k}>{ball.run}</div>;
+              })
+          }
         </div>
         <div className={classes.bolwerName}>{currentOver.bolwerName}</div>
       </div>

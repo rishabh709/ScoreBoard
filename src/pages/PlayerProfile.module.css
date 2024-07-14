@@ -1,0 +1,64 @@
+.container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+}
+
+.profileContainer{
+    height: 90%;
+    width: 90vw;
+    background-color: #ECECEC;
+    display: flex;
+    padding-top: 1%;
+    flex-direction: row;
+}
+
+.leftBox{
+    width: 30%;
+    height: 100%;
+}
+
+.profileImg{
+    padding-top: 5%;
+    text-align: center;
+}
+
+.profileImg > img{
+    width: 80%;
+    height: 80%;
+}
+
+.rightBox{
+    width: 100%;
+    padding: 0 5%;
+}
+.topTitle{
+    display: flex;
+    gap: 10%;
+
+    font-size: 4.3vh;
+    align-items: center;
+}
+.userName{
+  color: var(--main-color);
+}
+
+.invite{
+    border: none;
+    color: #1e1e1e;
+    font-size: 3vh;
+    background-color: #85F874;
+    padding: 0.5% 3%;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.gamesPlays{
+    width: 45%;
+    display: flex;
+    flex-direction: row;
+    color: #747474;
+    gap: 5%;
+}

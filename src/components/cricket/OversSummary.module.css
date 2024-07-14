@@ -2,8 +2,8 @@
     margin-top: 20px;
     display: flex;
     gap: 10px;
-    width: 100%;
-    justify-self: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .overContainer{

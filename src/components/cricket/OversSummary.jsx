@@ -8,7 +8,6 @@ function OversSummary() {
   const { match } = useContext(Context);
   return (
     <div className={classes.container}>
-
         {match.overs.map((over) => {
           {
             return <OverBox over={over} />

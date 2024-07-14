@@ -1,0 +1,131 @@
+form{
+    top: 17vh;
+
+    left: calc(50vw - 17.5vw);
+    position: fixed;
+    z-index: 10;
+    width: 35vw;
+    min-height: 60%;
+    /* height: 60%; */
+    /* gap: 2vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 2vw 20px 2vw;
+    background-color: #ECECEC;
+    border: none;
+    animation: scaleUp 0.5s ease-in-out;
+}
+
+@keyframes scaleUp {
+    0%{
+        scale: 70%;
+    }
+    100%{
+        scale: 100%;
+    }
+}
+
+
+form > h1{
+    font-size: 2vw;
+    color: var(--main-color);
+    text-align: center;
+    margin-bottom: 1vh;
+}
+.middle{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+.middle > *{
+    width: 100%;
+    height: 20%;
+    background-color: var(--secondary-light-color);
+    color: var(--main-font-color);
+    font-size: 1.3vw;
+    border: 0;
+    padding-left: 3%;
+    padding-right: 3%;
+    /* padding: 1%; */
+}
+
+.progressBar{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    gap: 5px;
+}
+.progressBar > *{
+    height: 0.8vw;
+    width: 0.8vw;
+    background-color: var(--main-accent-color);
+    border-radius: 50%;
+    margin-bottom: 2%;
+    cursor: pointer;
+    transition: width 0.5s;
+}
+.progressBar > .currentBar{
+    width: 10%;
+    background-color: var(--main-color);
+    border-radius: 30px;
+}
+
+.formControls{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.cancelBtn, .nextBtn{
+    width: 25%;
+    font-size: 1.5vw;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.cancelBtn{
+    border: 1px solid var(--main-accent-color);
+    color: var(--main-color);
+}
+.nextBtn{
+    text-decoration: none;
+    background-color: var(--main-color);
+    /* background-color: var(--secordary-dark-color); */
+    color: white;
+}
+.cancelBtn:hover{
+    background-color: var(--main-accent-color);
+}
+.nextBtn:hover{
+    background-color: var(--main-accent-color);
+}
+
+
+@media all and (orientation: portrait){
+    .modal{
+        height: auto;
+        width: 70vw;
+        left: calc(50vw - 35vw);
+        gap: 1.5vh;
+        padding-bottom: 1vh;
+    }
+    .heading{
+        margin-bottom: -0;
+        font-size: 2vh;
+    }
+    .middle > *{
+        font-size: 1.5vh;
+        padding: 3%;
+        height: 15%;
+    }
+    .progressBar > div{
+        height: 1vh;
+    }
+    .formControls > *{
+        height: 2.5vh;
+        font-size: 1.5vh;
+    }
+    
+}

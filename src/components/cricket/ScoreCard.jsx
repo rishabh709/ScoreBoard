@@ -31,7 +31,7 @@ function ScoreCard() {
             </div>
           </div>
         </div>
-        <div className={classes.battingAndBolwing}>
+        {/* <div className={classes.battingAndBolwing}>
           <div className={classes.batting}>
             <div className={classes.batter}>
               <div className={classes.name}>Batter1</div>
@@ -64,7 +64,7 @@ function ScoreCard() {
               })}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

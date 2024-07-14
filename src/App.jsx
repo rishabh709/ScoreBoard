@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage'
 import CricketPage from './pages/CricketPage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
+import PlayerProfile from './pages/PlayerProfile'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -13,6 +14,7 @@ const router = createBrowserRouter(
       <Route path='/cricket-match' element={<CricketPage/>}></Route>
       <Route path='/login' element={<LoginPage/>}></Route>
       <Route path='/signup' element={<SignupPage/>}></Route>
+      <Route path='/profile' element={<PlayerProfile />}></Route>
     </Route>
   )
 )

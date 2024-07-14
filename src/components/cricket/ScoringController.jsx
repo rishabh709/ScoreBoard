@@ -76,22 +76,29 @@ function ScoringController() {
           <button>Bat</button>
           <button>Leg Byes</button>
         </div>
-        <div className={classes.runs}>
-          <button className={classes.run} onClick={() => addRun(1)}>1</button>
-          <button className={classes.run} onClick={() => addRun(2)}>2</button>
-          <button className={classes.run} onClick={() => addRun(3)}>3</button>
-          <button className={classes.run} onClick={() => addRun(4)}>4</button>
-          <button className={classes.run} onClick={() => addRun(5)}>5</button>
-          <button className={classes.run} onClick={() => addRun(6)}>6</button>
-        </div>
-        <div className={classes.wides}>
-          <button onClick={()=> addExtras(1,'wide')}>Wide</button>
-          <button onClick={()=> addExtras(1,'no-ball')}>No-Ball</button>
-        </div>
-        <div className={classes.out}>
-          <button onClick={() => addWicket()}>Out</button>
-          <button onClick={() => addWicket()}>Run out</button>
-          <button onClick={() => addWicket()}>Catch out</button>
+
+        <div className={classes.mainPan}>
+          <div>
+            <div className={classes.runs}>
+              <button className={classes.run} onClick={() => addRun(0)}>0</button>
+              <button className={classes.run} onClick={() => addRun(1)}>1</button>
+              <button className={classes.run} onClick={() => addRun(2)}>2</button>
+              <button className={classes.run} onClick={() => addRun(3)}>3</button>
+              <button className={classes.run} onClick={() => addRun(4)}>4</button>
+              <button className={classes.run} onClick={() => addRun(5)}>5</button>
+              <button className={classes.run} onClick={() => addRun(6)}>6</button>
+            </div>
+            <div className={classes.wides}>
+              <button onClick={()=> addExtras(1,'wide')}>Wide</button>
+              <button onClick={()=> addExtras(1,'no-ball')}>No-Ball</button>
+            </div>
+            <div className={classes.out}>
+              <button onClick={() => addWicket()}>Out</button>
+              <button onClick={() => addWicket()}>Run out</button>
+              <button onClick={() => addWicket()}>Catch out</button>
+            </div>
+          </div>
+        <div className={classes.addMore}>+</div>
         </div>
       </div>
     </div>

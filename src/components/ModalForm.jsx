@@ -45,7 +45,7 @@ function ModalForm(props) {
         <div className={classes.middle}>
             {
                 games[props.game][formPage].map((e)=>{
-                    return <input type={e.type} name="" value={e.value} onChange={e.onChange} id="" className={classes.inpts} placeholder={e.place} required />
+                    return <input type={e.type} value={e.value} onChange={e.onChange} className={classes.inpts} placeholder={e.place} required autoFocus/>
                 })
             }
             {/* <input type="text" name="" value={match.team1} onChange={handleName1Change} id="" className={classes.inpts} placeholder='Team 1' /> */}

@@ -27,4 +27,10 @@
     border-radius: 50%;
     background-color: aliceblue;
     justify-self: flex-end;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.profile > *{
+    margin-top: 7.5vh;
 }

@@ -3,7 +3,7 @@ import classes from "./ScoreCard.module.css";
 import { Context } from "../../context/scoreContext";
 
 function ScoreCard() {
-  const{match, currentOver} = useContext(Context)
+  const{match, currentOver, currentBall} = useContext(Context)
   
   return (
     <div>
@@ -15,8 +15,8 @@ function ScoreCard() {
               <h3>{match.team1}</h3>
             </div>
             <div className={classes.score}>
-              <div className={classes.runs}>{match.wickets}/{match.runs}</div>
-              <div className={classes.overs}>{match.currentOver}</div>
+              <div className={classes.runs}>{match.wickets[match.currentInnings]}/{match.runs[match.currentInnings]}</div>
+              <div className={classes.overs}>{currentOver.overNumber}.{currentBall.ballNumber}</div>
             </div>
           </div>
 

@@ -1,0 +1,26 @@
+.container{
+  width: 190px;
+  height: auto;
+  display: flex;
+  z-index: 2;
+  position: absolute;
+  padding: 25px 30px 10px;
+  background-color: #FAFAFA;
+  box-shadow: #00000040 2px 4px 4px;
+  flex-direction: column;
+  /* visibility: hidden; */
+  border-radius: 10px;
+  row-gap: 15px;
+}
+
+.menu{
+  width: 100%;
+  font-size: 14px;
+  color: #000;
+}
+.logout{
+  color: var(--main-color);
+  font-size: 16px;
+  text-decoration: underline;
+  text-align: center;
+}

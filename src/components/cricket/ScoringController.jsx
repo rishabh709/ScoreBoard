@@ -1,29 +1,54 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import { Context } from "../../context/scoreContext.jsx";
 import classes from "./ScoringController.module.css";
+import { BallProvider, useBallContext } from "../../context/ballsReducer.jsx";
+import {useMatchContext } from "../../context/matchReducer.jsx";
+import { useOverContext } from "../../context/overReducer.jsx";
 
 function ScoringController() {
-  const { currentBall, setCurrentBall, match, setMatch, currentOver, setCurrentOver } = useContext(Context);
 
-  
-  // Function to add runs and update states accordingly
+  const { currentBall, setCurrentBall, match, setMatch, currentOver, setCurrentOver, overComplete, setOverComplete } = useContext(Context);
+
+  //Implimenting newly created useReducer
+  const { state: ballState, dispatch: ballDispatch } = useBallContext(); // Correct way to access ball context
+  const { state: matchState, dispatch: matchDispatch } = useMatchContext();
+  const { state: overState, dispatch: overDispatch } = useOverContext();
+// Function to add runs and update states accordingly
+  function ballRunHandler(run){
+    ballDispatch({type:'run', payload:run});
+    ballDispatch({type:'type', payload:'legal'});
+    ballDispatch({type:'ballIncrement'});
+  }
+  function matchRunHandler(run){
+    matchDispatch({type:'addRuns', payload:run});
+  }
+  function overBallHandler(){
+    if (ballState.ballNumber<=6){
+      overDispatch({type:'addBall', payload:ballState});
+    } else{
+      matchDispatch({type:'overs', payload:overState});
+      overDispatch({type:'overIncrement'});
+    }
+  }
+
+  // function addRun(run){
+  //   ballRunHandler(run);
+  //   matchRunHandler(run);
+  //   overBallHandler()
+  // }
 
   function addRun(n) {
-    // let legal balls;
-    // currentOver.balls.map(b =>{
-    //   (b.type=="legal")? balls++:"";
-    // })
-
-    const updatedBall = { ...currentBall, run: n, type:"legal" };
+    const updatedBall = { ...currentBall, run: n, type:"legal", ballNumber:currentBall.ballNumber+1};
     setCurrentBall(updatedBall);
     
     // Update match runs and current over together
-    setMatch(match => ({ ...match, runs: match.runs + n }));
+    setMatch(match => ({ ...match, runs:[...match.runs, match.runs[match.currentInnings]+=n ] }));
     setCurrentOver(over => ({
       ...over,
       balls: [...over.balls, updatedBall]
     }));
   }
+
   function addExtras(n, extraType){
     const typeAlias = {"wide":"WD", "no-ball":"NB"}
 
@@ -36,34 +61,31 @@ function ScoringController() {
       balls: [...over.balls, updatedBall]
     }))
   }
+
   function addWicket(){
-    if(match.wickets<10){
-      const updatedBall = {...currentBall, wicket:1, run:"W", type:"legal"}
+    if(match.wickets[match.currentInnings]<10){
+      const updatedBall = {...currentBall, wicket:1, run:"W", type:"legal", ballNumber:currentBall.ballNumber++}
       setCurrentBall(updatedBall)
-  
-      setMatch(match =>({...match, wickets: match.wickets+1}))
+
+      setMatch(match =>({...match, wickets:[...match.wickets, match.wickets[match.currentInnings]+=1]}))
+      console.log(match);
       setCurrentOver(over => ({...over, balls:[...over.balls, updatedBall]}))
     }
   }
 
   useEffect(() => {
     // Logging currentOver to observe changes
-    console.log("currentOver");
-    let bcount =0;
-    currentOver.balls.map((b)=>{
-      if(b.type=="legal"){
-        bcount++;
-      }
-      console.log("this", bcount)
-      console.log(b)
-    })
+    let bcount = currentBall.ballNumber;
     if(bcount==6){
       setMatch(match =>({...match, overs:[...match.overs, currentOver]}))
       setCurrentOver(over=>({...over, overNumber:currentOver.overNumber+1, balls:[]}))
-    }
-    // console.log(currentOver);
-  }, [currentBall]);
+      setCurrentBall(ball=>({...currentBall, ballNumber:0}))
 
+      if(currentOver.overNumber==match.maxOvers){
+        setMatch(match => ({...match, currentInnings:match.currentInnings+1}))
+      }
+    }
+  }, [currentBall]);
 
   return (
     <div className={classes.container}>

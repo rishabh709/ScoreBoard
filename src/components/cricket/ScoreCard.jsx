@@ -1,10 +1,23 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import classes from "./ScoreCard.module.css";
 import { Context } from "../../context/scoreContext";
+import { useMatchContext } from "../../context/matchReducer";
+import { useBallContext } from "../../context/ballsReducer";
+import { useOverContext } from "../../context/overReducer";
 
 function ScoreCard() {
   const{match, currentOver, currentBall} = useContext(Context)
+  const{ state: matchState } = useMatchContext();
+  const{ state: ballState } = useBallContext();
+  const{ state: overState } = useOverContext();
+ 
+  useEffect(() => {
+    console.log("HEre are the values:\n");
+    console.log(matchState);
+    console.log(ballState.run);
+  },[])
   
+
   return (
     <div>
       <div className={classes.scoreCard}>
@@ -12,22 +25,25 @@ function ScoreCard() {
           <div className={classes.team1}>
             <div className={classes.logoName}>
               <img src="src\assets\team-icons\team1.png" alt="team1" />
-              <h3>{match.team1}</h3>
+              <h3>{matchState.team1}</h3>
             </div>
             <div className={classes.score}>
-              <div className={classes.runs}>{match.wickets[match.currentInnings]}/{match.runs[match.currentInnings]}</div>
-              <div className={classes.overs}>{currentOver.overNumber}.{currentBall.ballNumber}</div>
+              {/* <div className={classes.runs}>{match.wickets[match.currentInnings]}/{match.runs[match.currentInnings]}</div> */}
+              <div className={classes.runs}>{matchState.wickets[0]}/{matchState.runs[0]}</div>
+              <div className={classes.overs}>{matchState.curOver[0]}.{matchState.curBall[0]}</div>
+              {/* <div className={classes.overs}>{overState.overNumber}.{ballState.ballNumber}</div> */}
             </div>
           </div>
 
           <div className={classes.team2}>
             <div className={classes.score}>
-              <div className={classes.runs}>Yet to bat</div>
-              <div className={classes.overs}>(0)</div>
+              <div className={classes.runs}>{matchState.wickets[1]}/{matchState.runs[1]}</div>
+              <div className={classes.overs}>{matchState.curOver[1]}.{matchState.curBall[1]}</div>
+              {/* <div className={classes.overs}>(0)</div> */}
             </div>
             <div className={classes.logoName}>
               <img src="src\assets\team-icons\team2.png" alt="team2" />
-              <h3>{match.team2}</h3>
+              <h3>{matchState.team2}</h3>
             </div>
           </div>
         </div>

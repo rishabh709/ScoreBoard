@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-import GameCard from '../GameCard';
-import ModalForm from '../ModalForm';
-import Backdrop from '../Backdrop';
+import GameCard from '../sports/GameCard';
 
 function HomeCards() {
 

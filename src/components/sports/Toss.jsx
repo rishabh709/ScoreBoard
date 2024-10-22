@@ -1,6 +1,6 @@
 import React from 'react'
 import Backdrop from './Backdrop'
-import ModalFormLayout from '../layout/componentLayout/ModalFormLayout'
+import ModalFormLayout from '../../layout/componentLayout/ModalFormLayout'
 
 function Toss() {
   return (

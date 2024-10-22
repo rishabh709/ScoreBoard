@@ -1,18 +1,26 @@
 import React, {useReducer, useContext, createContext} from "react"
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const MatchContext = createContext();
+
+const {getItem} = useLocalStorage('matchState');
+
 const initialMatchState = {
     matchId: "",
     team1: "Team A",
     team2: "Team B",
     currentInnings: 0,
-    maxOvers: 20,
+    maxOvers: 3,
+    curOver: [0, 0],
+    curBall: [0, 0],
     runs: [0, 0],
     wickets: [0, 0],
     overs: [],
+    result:'',
 }
 
 function matchReducer(state, action) {
+    // console.log("State of Match",state)
     switch(action.type){
         case 'team1':
             return{
@@ -24,10 +32,10 @@ function matchReducer(state, action) {
                 ...state,
                 team2: action.payload,
             }
-        case 'currentInnings':
+        case 'CHANGE_INNING':
             return{
                 ...state,
-                currentInnings: action.payload,
+                currentInnings: state.currentInnings+1,
             }
         case 'maxOvers':
             return{
@@ -35,25 +43,45 @@ function matchReducer(state, action) {
                 maxOvers: action.payload,
             }
         case 'addRuns':
-            const updatedRuns = state.runs;
-            console.log("runs::::", state.runs, updatedRuns, action.payload);
-            updatedRuns[state.currentInnings] += action.payload;
+            const update = [...state.runs];
+            update[state.currentInnings] += action.payload;  
             return{
                 ...state,
-                runs: updatedRuns,
+                runs: update ,
             }
-        case 'wickets':
-            updatedWickets = state.wickets;
-            updatedWickets[state.currentInnings] += action.payload;
+        case 'ADD_WICKET':
+            const updatedWickets = [...state.wickets];
+            updatedWickets[state.currentInnings] += 1;
             return{
                 ...state,
                 wickets: updatedWickets,
             }
-        case 'overs':
+        case 'INSERT_IN_OVERS':
             return{
                 ...state,
                 overs: [...state.overs, action.payload]
             }
+        case 'ballUpdate':
+            const updatedCurBall = [...state.curBall];
+            updatedCurBall[state.currentInnings] = action.payload;            
+            return{
+                ...state,
+                curBall: updatedCurBall,
+            }
+        case 'overIncrement':            
+            const updatedCurOver = [...state.curOver];
+            updatedCurOver[state.currentInnings] += 1;
+            return{
+                ...state,
+                curOver: updatedCurOver,
+            }
+        
+        case 'SET_MATCH_STATE':
+            return action.payload
+
+        case 'RESET_STATE':
+            return initialMatchState
+
         default:
             return state;
     }

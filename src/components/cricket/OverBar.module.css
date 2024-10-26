@@ -37,11 +37,12 @@
     border-radius: 50%;
 }
 
-.bolwerName{
+.bowlerName{
     height: 100%;
     padding: 0 4%;
     border-radius: 30px;
-    background-color: #E8E8E8;
+    /* background-color: #E8E8E8; */
+    background-color: #cecece;
     display: flex;
     align-items: center;
 }

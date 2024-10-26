@@ -1,6 +1,6 @@
 .navigationBar{
     background-color: var(--main-color);
-    height: 10vh;
+    height: 10dvh;
     width: 100%;
 }
 
@@ -17,7 +17,7 @@
 
 .logo{
     text-decoration: none;
-    font-size: 5vh;
+    font-size: 5dvh;
     font-weight: bold;
     color: white;
 }
@@ -32,5 +32,15 @@
 }
 
 .profile > *{
-    margin-top: 7.5vh;
+    margin-top: 7.5dvh;
+}
+
+/* for handheld devices */
+@media (orientation: portrait){
+    .navigationBar{
+        height: 7dvh;
+    }
+    .logo{
+        font-size: 3dvh;
+    }
 }

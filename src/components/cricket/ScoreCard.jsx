@@ -1,23 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React from "react";
 import classes from "./ScoreCard.module.css";
-import { Context } from "../../context/scoreContext";
 import { useMatchContext } from "../../context/matchReducer";
-import { useBallContext } from "../../context/ballsReducer";
-import { useOverContext } from "../../context/overReducer";
-
 function ScoreCard() {
-  const{match, currentOver, currentBall} = useContext(Context)
   const{ state: matchState } = useMatchContext();
-  const{ state: ballState } = useBallContext();
-  const{ state: overState } = useOverContext();
  
-  useEffect(() => {
-    console.log("HEre are the values:\n");
-    console.log(matchState);
-    console.log(ballState.run);
-  },[])
-  
-
   return (
     <div>
       <div className={classes.scoreCard}>
@@ -30,7 +16,7 @@ function ScoreCard() {
             <div className={classes.score}>
               {/* <div className={classes.runs}>{match.wickets[match.currentInnings]}/{match.runs[match.currentInnings]}</div> */}
               <div className={classes.runs}>{matchState.wickets[0]}/{matchState.runs[0]}</div>
-              <div className={classes.overs}>{matchState.curOver[0]}.{matchState.curBall[0]}</div>
+              <div className={classes.overs}>{matchState.overNum[0]}.{matchState.ballNum[0]}</div>
               {/* <div className={classes.overs}>{overState.overNumber}.{ballState.ballNumber}</div> */}
             </div>
           </div>
@@ -38,7 +24,7 @@ function ScoreCard() {
           <div className={classes.team2}>
             <div className={classes.score}>
               <div className={classes.runs}>{matchState.wickets[1]}/{matchState.runs[1]}</div>
-              <div className={classes.overs}>{matchState.curOver[1]}.{matchState.curBall[1]}</div>
+              <div className={classes.overs}>{matchState.overNum[1]}.{matchState.ballNum[1]}</div>
               {/* <div className={classes.overs}>(0)</div> */}
             </div>
             <div className={classes.logoName}>

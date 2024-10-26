@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import classes from "./OverBox.module.css"
-import { Context } from '../../context/scoreContext'
 
 function OverBox(props) {
     let extraRuns =0;

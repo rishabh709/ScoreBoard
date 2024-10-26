@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 import classes from "./OversSummary.module.css";
-import { Context } from "../../context/scoreContext";
-import OverBar from "./OverBar";
 import OverBox from "./OverBox";
 
 function OversSummary() {

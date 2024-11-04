@@ -1,18 +1,18 @@
 .container{
-  margin-top: 22vh;
-  margin-left: 80vw;
-  width: 190px;
   height: auto;
   display: flex;
   z-index: 2;
   position: absolute;
-  padding: 25px 30px 10px;
+  padding: 20px 30px 10px;
+  text-wrap: nowrap;
   background-color: #FAFAFA;
-  box-shadow: #00000040 2px 4px 4px;
+  box-shadow: #00000040 -7px 4px 4px;
   flex-direction: column;
   /* visibility: hidden; */
   border-radius: 10px;
   row-gap: 15px;
+  left: 98%;
+  transform: translate(-100%, 65%);
 }
 
 .menu{

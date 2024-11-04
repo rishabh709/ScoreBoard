@@ -1,12 +1,10 @@
 .modal{
     top: 17vh;
-
-    left: calc(50vw - 17.5vw);
     position: fixed;
     z-index: 10;
+    left: calc(50% - 17.5vw);
     width: 35vw;
     height: 60%;
-    /* gap: 2vh; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -50,16 +48,22 @@
     /* padding: 1%; */
 }
 
+.bottom{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
 .progressBar{
     display: flex;
     width: 100%;
+    height: 15%;
     justify-content: center;
     align-content: center;
     gap: 5px;
 }
 .progressBar > *{
-    height: 0.8vw;
-    width: 0.8vw;
+    height: 100%;
+    aspect-ratio: 1 / 1;
     background-color: var(--main-accent-color);
     border-radius: 50%;
     margin-bottom: 2%;
@@ -104,27 +108,30 @@
 
 @media all and (orientation: portrait){
     .modal{
-        height: auto;
         width: 70vw;
-        left: calc(50vw - 35vw);
+        height: auto;
+        aspect-ratio: 1 / 1;
         gap: 1.5vh;
+        left: calc( 50% - 35vw);
         padding-bottom: 1vh;
     }
     .heading{
         margin-bottom: -0;
-        font-size: 2vh;
+        font-size: 3vh;
     }
-    .middle > *{
-        font-size: 1.5vh;
-        padding: 3%;
+    .middle > input{
+        font-size: 100%;
+        padding: 7%;
         height: 15%;
     }
     .progressBar > div{
         height: 1vh;
     }
     .formControl > *{
-        height: 2.5vh;
-        font-size: 1.5vh;
+        /* height: auto; */
+        /* aspect-ratio: 3 / 1;     */
+        padding: 2%;
+        font-size: 100%;
     }
     
 }

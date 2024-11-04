@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./ScoringController.module.css";
 import { useMatchContext } from "../../context/matchReducer.jsx";
 
@@ -10,33 +10,36 @@ import { useState } from "react";
 function ScoringController() {
   const { state: matchState, dispatch: matchDispatch } = useMatchContext();
 
-  const [selectedByes, setSelectedByes] = useState('Bat');
+  const [selectedByes, setSelectedByes] = useState("Bat");
   const [selectedRun, setSelectedRun] = useState(null);
   const [selectedExtra, setSelectedExtra] = useState(null);
   const [selectedWicket, setSelectedWicket] = useState(null);
+
+
 
   const byes = (type) => {
     if (selectedByes == type) {
       return "";
     }
-    matchDispatch({ type: type });
     setSelectedByes(type);
   };
 
   const addRun = (run) => {
     console.log("Clicked...");
-    if (selectedRun == run) return "";
-    matchDispatch({ type: "ADD_RUNS", payload: run });
-    matchDispatch({ type: "BALL_TYPE", payload: "legal" });
+    if (selectedRun == run) {
+      setSelectedRun(null);
+      return "";
+    }
+
     setSelectedRun(run);
   };
+
   const addExtras = (run, extraType) => {
     if (selectedExtra == extraType) {
       setSelectedExtra(null);
       return "";
     }
-    matchDispatch({ type: "ADD_RUNS", payload: run });
-    matchDispatch({ type: "BALL_TYPE", payload: extrasValues[extraType] });
+
     setSelectedExtra(extraType);
   };
 
@@ -45,28 +48,59 @@ function ScoringController() {
       setSelectedWicket(null);
       return "";
     }
-    switch (type) {
-      case "out":
-        if (selectedExtra !== null) break;
-        else matchDispatch({ type: "BALL_TYPE", payload: "legal" });
-        break;
-      case "run-out":
-        if (selectedExtra !== null || selectedByes === "byes") break;
-        else matchDispatch({ type: "BALL_TYPE", payload: "legal" });
-      case "catch-out":
-        break;
-    }
-    matchDispatch({ type: "ADD_WICKET" });
     setSelectedWicket(type);
+  };
+
+  const nextBallHandler = () => {
+    selectedByes !== null ? matchDispatch({ type: selectedByes }) : "";
+    if (selectedRun !== null && selectedExtra == null) {
+      matchDispatch({ type: "ADD_RUNS", payload: selectedRun });
+      matchDispatch({ type: "BALL_TYPE", payload: "legal" });
+    }
+    if (selectedExtra !== null) {
+      matchDispatch({ type: "ADD_RUNS", payload: selectedRun });
+      matchDispatch({ type: "BALL_TYPE", payload: selectedExtra });
+    }
+    if (selectedWicket !== null) {
+      console.log("set selcted wicket", selectedWicket);
+      if(selectedExtra == null){
+        matchDispatch({ type: "BALL_TYPE", payload: "legal" });
+      }
+      matchDispatch({ type: "ADD_WICKET", payload: selectedWicket });
+    }
+    console.log("BEFORE PUSH:::: ", matchState.ball)
+    if(selectedExtra !==null || selectedRun !==null || selectedWicket !==null){
+      matchDispatch({ type: "ADD_IN_OVER" });
+    }
+    console.log("THE FLUSHED BEFORE: ", selectedWicket)
+    setSelectedRun(null);
+    setSelectedExtra(null);
+    setSelectedWicket(null);
+    console.log("THE FLUSHED WICKETS: ", selectedWicket)
   };
 
   const byesValues = ["Bat", "Byes"];
   const runValues = [0, 1, 2, 3, 4, 5, 6];
   const extrasValues = { Wide: "WD", "No-Ball": "NB" };
-  const outValues = ["Out", "Run-out", "Catch-out"];
+  const outValues = ["out", "run-out", "catch-out"];
 
+  const keyDownHandler = (event) => {
+    console.log('Not running');
+    console.log(event.code);
+  };
+
+
+//---------------------------------------->>>>>>>>>>>>>>>>>> PENDING 
+  useEffect(() => {
+    window.addEventListener('keydown', keyDownHandler);
+    
+    // Cleanup the event listener on unmount
+    return () => {
+      window.removeEventListener('keydown', keyDownHandler);
+    };
+  }, []);
   return (
-    <div className={classes.container}>
+    <div className={classes.container} onKeyDown={keyDownHandler}>
       <div className={classes.scoring}>
         <div className={classes.batters}>
           <div className={classes.batter} onClick={() => enterBatteName(1)}>
@@ -115,11 +149,11 @@ function ScoringController() {
                 <button
                   key={value}
                   className={
-                    selectedExtra !== null && selectedExtra !== extraType
+                    selectedExtra !== null && selectedExtra !== value
                       ? classes.unselected
                       : ""
                   }
-                  onClick={() => addExtras(1, extraType)}
+                  onClick={() => addExtras(1, value)}
                 >
                   {extraType}
                 </button>
@@ -136,7 +170,7 @@ function ScoringController() {
                   }
                   onClick={() => addWicket(outType)}
                 >
-                  {outType}
+                  {outType.charAt(0).toUpperCase() + outType.slice(1)}
                 </button>
               ))}
             </div>
@@ -145,7 +179,10 @@ function ScoringController() {
                 <GoArrowLeft />
               </div>
               <div>Current</div>
-              <div className={classes.rightArrow}>
+              <div
+                className={classes.rightArrow}
+                onClick={nextBallHandler}
+              >
                 <GoArrowRight />
               </div>
             </div>

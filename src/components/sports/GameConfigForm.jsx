@@ -6,7 +6,7 @@ import { useMatchContext } from "../../context/matchReducer";
 import { GiConsoleController } from "react-icons/gi";
 import useLocalStorage from "../../hooks/useLocalStorage";
 
-function GameConfigForm({ game, onNext, onCancel, title }) {
+function GameConfigForm({ game, onNext, onCancle, title }) {
   const { state: matchState, dispatch: matchDispatch } = useMatchContext();
   const { setItem } = useLocalStorage("matchState");
   const [formPage, setFormPage] = useState(0);
@@ -18,7 +18,7 @@ function GameConfigForm({ game, onNext, onCancel, title }) {
   const handleTeam2Change = (event) =>
     matchDispatch({ type: "team2", payload: event.target.value });
   const handleMaxOverChange = (event) =>
-    matchDispatch({ type: "maxOvers", payload: event.target.value });
+    matchDispatch({ type: "MAX_OVERS", payload: event.target.value });
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -57,10 +57,11 @@ function GameConfigForm({ game, onNext, onCancel, title }) {
   };
 
   // Form Navigator
-  const progressBarHandler = (i) => formPage != i && setFormPage(i);
+  const progressBarHandler = (event, i) => formPage != i && setFormPage(i);
 
   // Form Inputs
   const inputs = gameForms[game][formPage].map((inputField, index) => {
+    console.log("INDX:>>>>>>>", index, index===0);
     return (
       <input
         key={index}
@@ -70,6 +71,7 @@ function GameConfigForm({ game, onNext, onCancel, title }) {
         className={classes.inpts}
         placeholder={inputField.place}
         required
+        onFocus={(e)=>{e.target.select(); e.target.autofocus=false}}
         autoFocus={index === 0} // Auto focus on the first input field
       />
     );
@@ -80,7 +82,7 @@ function GameConfigForm({ game, onNext, onCancel, title }) {
     <div
       key={index}
       className={formPage === index ? classes.currentBar : ""}
-      onClick={(event) => progressBarHandler(event, i)}
+      onClick={(event) => progressBarHandler(event, index)}
     />
   ));
 
@@ -94,7 +96,7 @@ function GameConfigForm({ game, onNext, onCancel, title }) {
           <button
             type="button"
             className={classes.cancelBtn}
-            onClick={onCancel}
+            onClick={onCancle}
           >
             Cancel
           </button>

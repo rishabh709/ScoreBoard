@@ -1,4 +1,4 @@
-import React, { useReducer, useContext, createContext } from "react";
+import React, { useReducer, useContext, createContext, useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const MatchContext = createContext();
@@ -17,13 +17,13 @@ const initialMatchState = {
     overId: "",
     type: "",
     run: 0,
-    wicket: 0,
+    wicket: null,
     byes: false,
   },
   over: {
     overId: "",
     bowlerName: "Jin Yan",
-    balls: []
+    balls: [],
   },
   overNum: [0, 0],
   ballNum: [0, 0],
@@ -51,6 +51,9 @@ function matchReducer(state, action) {
         ...state,
         maxOvers: action.payload,
       };
+    case "ADD_IN_OVER":
+      return addBallIntoOver(state);
+
     case "INSERT_IN_OVERS":
       return {
         ...state,
@@ -77,7 +80,7 @@ function matchReducer(state, action) {
       return handleBallType(state, action.payload);
 
     case "ADD_WICKET":
-      return addWickets(state);
+      return addWickets(state, action.payload);
 
     case "BYES":
       const updatedBallByes = [...state.ball];
@@ -104,17 +107,18 @@ function addRuns(state, runs) {
   };
 }
 
-function addWickets(state) {
-  const updatedBallWicket = { ...state.ball, wicket: 1 };
+function addWickets(state, wicketType) {
+  const updatedBallWicket = { ...state.ball, wicket: wicketType };
 
   const updatedWickets = [...state.wickets];
   updatedWickets[state.currentInnings] += 1;
 
-  console.log(updatedWickets)
+  console.log(updatedWickets);
   if (updatedWickets[state.currentInnings] >= 10) {
-    return changeInnings({...state,
-        ball: updatedBallWicket,
-        wickets: updatedWickets,    
+    return changeInnings({
+      ...state,
+      ball: updatedBallWicket,
+      wickets: updatedWickets,
     });
   }
 
@@ -127,42 +131,73 @@ function addWickets(state) {
 
 function handleBallType(state, ballType) {
   const updatedBallType = { ...state.ball, type: ballType };
-  const insertIntoOver = {...state.over}
+  const insertIntoOver = { ...state.over };
   const updatedBallNum = [...state.ballNum];
   const updatedOverNum = [...state.overNum];
+  // when ballType is extra
+  const updatedRun = [...state.runs];
 
-  console.log(ballType)
+  console.log(ballType, ballType == "legal");
   if (ballType == "legal") {
     const curBallNum = state.ballNum[state.currentInnings];
     const curOverNum = state.overNum[state.currentInnings];
-
+    console.log("CUR BALL NUM: ", curBallNum);
     if (curBallNum < 5) {
       updatedBallNum[state.currentInnings] += 1;
-
     } else if (curBallNum == 5) {
-        // last ball of the over so increase over by 1 and reseting ball num
+      // last ball of the over so increase over by 1 and reseting ball num
       updatedOverNum[state.currentInnings] += 1;
       updatedBallNum[state.currentInnings] = 0;
-      
+
       // pushing over to overs array
 
       if (updatedOverNum[state.currentInnings] >= state.maxOvers) {
         return changeInnings({
-            ...state,
-            ball: updatedBallType,
-            ballNum: updatedBallNum,
-            overNum: updatedOverNum,
+          ...state,
+          ball: updatedBallType,
+          ballNum: updatedBallNum,
+          overNum: updatedOverNum,
         });
       }
     }
+  } else {
+    updatedRun[state.currentInnings] += 1;
   }
+  // else when ball is not a legal delivery
   return {
     ...state,
+    runs: updatedRun,
     ball: updatedBallType,
     ballNum: updatedBallNum,
     overNum: updatedOverNum,
   };
 }
+
+function addBallIntoOver(state) {
+  const updatedBalls = [...state.over.balls, state.ball];
+  const updatedOver = {...state.over, balls: updatedBalls};
+
+  // TO DO manage the over change and push of over into overs;
+  if(state.ballNum[state.currentInnings] == 0 &&
+    state.overNum[state.currentInnings] > 0
+  ){
+  const updatedOvers = [...state.overs, updatedOver];
+    return{
+      ...state,
+      ball: { ...initialMatchState.ball, overId: state.ball.overId },
+      over: {...state.over, balls:[]},
+      overs: updatedOvers
+    }
+  }
+
+  console.log(updatedBalls);
+  return {
+    ...state,
+    ball: { ...initialMatchState.ball, overId: state.ball.overId },
+    over: updatedOver,
+  };
+}
+
 function changeInnings(state) {
   return {
     ...state,

@@ -1,5 +1,5 @@
 .heroSection{
-    min-height: 20vh;
+    /* min-height: 20vh; */
     background-color: var(--main-color);
     /* display: flex; */
     /* align-items: center; */
@@ -7,10 +7,13 @@
     /* display: grid; */
     /* grid-template-columns: auto auto auto; */
     display: flex;
-    flex-wrap: nowrap;
+    height: 30vh;
+
     justify-content: center;
     padding: 0 5%;
     box-sizing: border-box;
+    /* Herosection may look too huge  */
+    /* margin-top: -20px; */
 
 }
 .logoImg{
@@ -19,6 +22,21 @@
     /* width: 100px; */
     /* margin-bottom: -42px; */
 }
+
+.leftBanner :nth-child(3){
+    width: 13vw;
+}
+.leftBanner :nth-child(2){
+    width: 8vw;
+}
+.leftBanner :nth-child(1){
+    width: 7vw;
+}
+
+.rightBanner :nth-child(3){
+    width: 7vw;
+}
+
 
 .heroSection > div{
     display: flex;
@@ -40,21 +58,41 @@
     /* Content for tall screens (height > width) */
     /* Add your styles here */
     .heroSection{
-        flex-direction: column;
+        height: fit-content;
+        flex-direction: row;
     }
     .leftBanner, .rightBanner {
         /* flex-direction: column; */
         display: flex;
         /* flex-wrap: wrap; */
+        height: 20vh;
         /* border: 1px solid white; */
-        align-content: center;
+        /* align-content: center; */
+        justify-items: left;
+
+
     }
-    .leftBanner > img, .rightBanner > img{
-        width: 20%;
-        justify-self: center;
+    .leftBanner :nth-child(3), .rightBanner :nth-child(1){
+        flex-grow: 1;
+        flex-shrink: 1;
         /* border: 1px solid red; */
+        /* max-width: 100%; */
+        height: 100%;
     }
-    
+    .midBanner{
+        margin-bottom: 5%;
+    }
+    .midBanner > div {
+        width: 40vw;
+    }
+    .leftBanner :nth-child(1),
+    .leftBanner :nth-child(2),
+    .rightBanner :nth-child(2),
+    .rightBanner :nth-child(3)
+    {
+        width: 0;
+        display: none;
+    }
 
   }
 
@@ -119,7 +157,8 @@
     align-content: center;
     flex-wrap: wrap;
     background-color: white;
-    font-size: 5vw;
+    font-size: 3.7em;
+    /* font-size: 5vw; */
     font-weight: 600;
     color: black;
 }

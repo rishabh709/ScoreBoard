@@ -182,7 +182,7 @@ graying the dot ball run
         width: 100vw;
         padding: 5px;
         /* TO DO dynamically set the height for more responsiveness */
-        height: calc(100dvh - 35dvh );
+        /* height: calc(100dvh - 35dvh ); */
         
         justify-content: flex-end;
         row-gap: 15px;

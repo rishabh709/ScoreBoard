@@ -1,12 +1,13 @@
 .container{
   position: fixed;
   z-index: 10;
-  left: calc( 50vw - 10vw);
   top: 20vh;
-  width: 20vw;
+
   background-color: #fcfcfc;
   border-radius: 6px;
   padding: 2px 10px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .top{

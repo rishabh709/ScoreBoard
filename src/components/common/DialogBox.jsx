@@ -11,6 +11,7 @@ function DialogBox(props) {
 
   return (
     <div
+      className={classes.backdrop}
       style={{
         position: "fixed",
         width: "100vw",

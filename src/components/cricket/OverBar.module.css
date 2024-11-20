@@ -8,7 +8,10 @@
 .over{
     width: 40vw;
     border-radius: 30px;
-    background-color: #F4F4F4;
+    background-color: #0000000e;
+    
+    /* background-color: #F4F4F4; */
+
     /* background-color: #888888; */
     display: flex;
     box-sizing: border-box;

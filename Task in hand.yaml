@@ -19,6 +19,9 @@ TO DO:
 
     4. Scoring Controller: 
         - current box should display the selected options
+    
+    Problems:
+        - convert the team players data into good json format
 
 Add on Features:
     1. Speparete views:
@@ -29,7 +32,7 @@ Add on Features:
         - to change the current game configuration (overs, players, wickets )
     
     3. Team up:
-        - list all players
+        + list all players
         - provide random distribution option
         - option to take players one by one
     

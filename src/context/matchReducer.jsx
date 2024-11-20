@@ -1,4 +1,10 @@
-import React, { useReducer, useContext, createContext, useState } from "react";
+import React, {
+  useReducer,
+  useContext,
+  createContext,
+  useState,
+  startTransition,
+} from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const MatchContext = createContext();
@@ -28,6 +34,10 @@ const initialMatchState = {
   overNum: [0, 0],
   ballNum: [0, 0],
   overs: [],
+  players: {
+    team1: ["Sikhar Dhawan", "Rohit Sharma", "Virat Kohli"],
+    team2: ["Brandon Macullam", "Krish Gayle", "AB Devilliars"],
+  },
   result: "",
 };
 
@@ -89,9 +99,35 @@ function matchReducer(state, action) {
         ...state,
         ball: updatedBallByes,
       };
+    case "INSERT_PLAYER_INTO":
+      return insertPlayerIntoTeam(state, action.playerName, action.team, action.index);
+    case "REMOVE_PLAYER_AT":
+      return removePlayerAt(state, action.id, action.teamName);
     default:
       return state;
   }
+}
+function insertPlayerIntoTeam(state, playerName, teamName, index = undefined) {
+  const updatedTeam = [...state.players[teamName]];
+
+  index
+    ? updatedTeam.splice(index, 0, playerName) // if index is provided (start index, delete index, element to insert)
+    : updatedTeam.push(playerName);
+
+  return {
+    ...state,
+    players: { ...state.players, [teamName]: updatedTeam },
+  };
+}
+
+function removePlayerAt(state, id, teamName) {
+  const updatedTeam = [...state.players[teamName]];
+  updatedTeam.splice(id, 1);
+  console.log(updatedTeam);
+  return {
+    ...state,
+    players: { ...state.players, [teamName]: updatedTeam },
+  };
 }
 
 function addRuns(state, runs) {
@@ -175,19 +211,21 @@ function handleBallType(state, ballType) {
 
 function addBallIntoOver(state) {
   const updatedBalls = [...state.over.balls, state.ball];
-  const updatedOver = {...state.over, balls: updatedBalls};
+  const updatedOver = { ...state.over, balls: updatedBalls };
 
   // TO DO manage the over change and push of over into overs;
-  if(state.ballNum[state.currentInnings] == 0 &&
-    state.overNum[state.currentInnings] > 0
-  ){
-  const updatedOvers = [...state.overs, updatedOver];
-    return{
+  if (
+    (state.ballNum[state.currentInnings] == 0 &&
+      state.overNum[state.currentInnings] > 0) ||
+    state.overNum == state.maxOvers
+  ) {
+    const updatedOvers = [...state.overs, updatedOver];
+    return {
       ...state,
       ball: { ...initialMatchState.ball, overId: state.ball.overId },
-      over: {...state.over, balls:[]},
-      overs: updatedOvers
-    }
+      over: { ...state.over, balls: [] },
+      overs: updatedOvers,
+    };
   }
 
   console.log(updatedBalls);

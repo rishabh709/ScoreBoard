@@ -1,0 +1,35 @@
+.container table{
+  border: 1px solid #dfdfdf;
+  border-spacing: none;
+}
+
+table td{
+  padding: 1%;
+  text-align: center;
+  text-wrap: nowrap;
+}
+
+.nameInput{
+  border-style: none;
+  /* border: 1px solid #353535; */
+  height: 100%;
+  width: 100%;
+  background-color: #f0f0f0;
+  padding: 0 20px;
+  color: black;
+}
+.inputBox > form{
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+.inputBox{
+  padding: 0;
+  height: 30px;
+}
+
+tbody > tr {
+  display: flex;
+  height: 30px;
+  justify-content: center;
+}

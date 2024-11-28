@@ -110,7 +110,9 @@ function matchReducer(state, action) {
 function insertPlayerIntoTeam(state, playerName, teamName, index = undefined) {
   const updatedTeam = [...state.players[teamName]];
 
-  index
+  console.log('inside the matchReducer', playerName, index)
+
+  index>=0
     ? updatedTeam.splice(index, 0, playerName) // if index is provided (start index, delete index, element to insert)
     : updatedTeam.push(playerName);
 

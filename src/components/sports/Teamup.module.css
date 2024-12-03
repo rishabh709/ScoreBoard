@@ -3,7 +3,7 @@
   border-spacing: none;
 }
 
-table td{
+.table td{
   padding: 1%;
   text-align: center;
   text-wrap: nowrap;
@@ -14,7 +14,8 @@ table td{
   /* border: 1px solid #353535; */
   height: 100%;
   width: 100%;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
+  background-color: #00000015;
   padding: 0 20px;
   color: black;
 }
@@ -28,7 +29,7 @@ table td{
   height: 30px;
 }
 
-tbody > tr {
+.table > tbody > tr {
   display: flex;
   height: 30px;
   justify-content: center;

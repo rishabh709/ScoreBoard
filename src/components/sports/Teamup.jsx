@@ -90,11 +90,11 @@ function Teamup() {
     <div style={{ display: "flex" }}>
       <Sno />
       <DragDropContext onDragEnd={onDragEnd}>
-        <table>
+        <table className={classes.table}>
           <thead>
             <tr>
               <th>
-                <h3>Team1</h3>
+                <h3>{matchState.team1}</h3>
               </th>
             </tr>
           </thead>
@@ -129,23 +129,25 @@ function Teamup() {
           <tfoot>
             <tr>
               <td className={classes.inputBox}>
-                <input
-                  type="text"
-                  className={classes.nameInput}
-                  value={inputValue1}
-                  onChange={handleInputChange1}
-                  onKeyDown={handleOnKeyDown1}
-                  placeholder="Enter Player name"
-                />
+                <form action="">
+                  <input
+                    type="text"
+                    className={classes.nameInput}
+                    value={inputValue1}
+                    onChange={handleInputChange1}
+                    onKeyDown={handleOnKeyDown1}
+                    placeholder="Enter Player name"
+                  />
+                </form>
               </td>
             </tr>
           </tfoot>
         </table>
-        <table>
+        <table className={classes.table}>
           <thead>
             <tr>
               <th>
-                <h3>Team2</h3>
+                <h3>{matchState.team2}</h3>
               </th>
             </tr>
           </thead>

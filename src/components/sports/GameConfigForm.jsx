@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useMatchContext } from "../../context/matchReducer";
 import { GiConsoleController } from "react-icons/gi";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import Teamup from "./TeamUp";
 
 function GameConfigForm({ game, onNext, onCancle, title }) {
   const { state: matchState, dispatch: matchDispatch } = useMatchContext();
@@ -53,6 +54,12 @@ function GameConfigForm({ game, onNext, onCancle, title }) {
           onChange: handleMaxOverChange,
         },
       ],
+      [
+        {
+          isModule: true,
+          module: Teamup(),
+        }
+      ]
     ],
   };
 
@@ -61,7 +68,9 @@ function GameConfigForm({ game, onNext, onCancle, title }) {
 
   // Form Inputs
   const inputs = gameForms[game][formPage].map((inputField, index) => {
-    console.log("INDX:>>>>>>>", index, index===0);
+    if (inputField.isModule!==undefined && inputField.isModule){
+      return inputField.module
+    }
     return (
       <input
         key={index}

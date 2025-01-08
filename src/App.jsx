@@ -10,6 +10,9 @@ import SignupPage from './pages/SignupPage'
 import PlayerProfile from './pages/PlayerProfile'
 import { AppProviders } from './context/Providers'
 import Teamup from './components/sports/TeamUp'
+import Toss from './components/sports/toss/Toss'
+import PickPlayer from './components/common/PickPlayer'
+import TossDecision from './components/sports/toss/TossDecision'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +23,9 @@ const router = createBrowserRouter(
       <Route path='/signup' element={<SignupPage/>}></Route>
       <Route path='/profile' element={<PlayerProfile />}></Route>
       <Route path='/teamup' element={<Teamup />}></Route>
+      <Route path='/toss' element={<Toss />} ></Route>
+      <Route path='/player' element={<PickPlayer />} ></Route>
+      <Route path='/pick' element={<TossDecision />} ></Route>
     </Route>
   )
 )

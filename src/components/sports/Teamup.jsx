@@ -76,15 +76,131 @@ function Teamup() {
           </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className={classes.team}>
         {matchState.players[maxTeam].map(({}, index) => (
-          <tr key={index}>
+          <tr key={index} className={classes.tableRow}>
             <td>{index + 1}</td>
           </tr>
         ))}
       </tbody>
     </table>
   );
+
+  const Sno1 = () => (
+    <div className={classes.sno}>
+    <h3>Sno.</h3>
+    <div className={classes.numbers}>
+      {matchState.players[maxTeam].map(({}, index) => (
+        <div key={index} className={classes.tableRow}>
+          {index + 1}
+        </div>
+      ))}
+    </div>
+    </div>
+  );
+
+  const content = (
+    <div style={{ display: "flex" }}>
+      <Sno1 />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className={classes.table}>
+          <h3>{matchState.team1}</h3>
+          <Droppable droppableId={"team1"}>
+            {(provided) => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                className={classes.team}
+              >
+                {matchState.players["team1"].map((playerName, id) => (
+                  <Draggable
+                    key={`${"team1"}-${id}`}
+                    draggableId={`${"team1"}-${id}`}
+                    index={id}
+                  >
+                    {(provided) => (
+                      <div
+                        ref={provided.innerRef}
+                        className={classes.tableRow}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        {playerName}
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+          <div>
+            <div className={classes.inputBox}>
+              <form action="">
+                <input
+                  type="text"
+                  className={classes.nameInput}
+                  value={inputValue1}
+                  onChange={handleInputChange1}
+                  onKeyDown={handleOnKeyDown1}
+                  placeholder="Enter Player name"
+                />
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div className={classes.table}>
+          <div>
+            <h3>{matchState.team2}</h3>
+          </div>
+          <Droppable droppableId={"team2"}>
+            {(provided) => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                className={classes.team}
+              >
+                {matchState.players["team2"].map((playerName, id) => (
+                  <Draggable
+                    key={`${"team2"}-${id}`}
+                    draggableId={`${"team2"}-${id}`}
+                    index={id}
+                  >
+                    {(provided) => (
+                      <div
+                        ref={provided.innerRef}
+                        className={classes.tableRow}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        {playerName}
+                      </div>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+          <div>
+            <div className={classes.inputBox}>
+              <input
+                type="text"
+                className={classes.nameInput}
+                value={inputValue2}
+                onChange={handleInputChange2}
+                onKeyDown={handleOnKeyDown2}
+                placeholder="Enter Player name"
+              />
+            </div>
+          </div>
+        </div>
+      </DragDropContext>
+    </div>
+  );
+
+  return content;
 
   return (
     <div style={{ display: "flex" }}>
@@ -114,6 +230,7 @@ function Teamup() {
                     {(provided) => (
                       <tr
                         ref={provided.innerRef}
+                        className={classes.tableRow}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >
@@ -167,6 +284,7 @@ function Teamup() {
                     {(provided) => (
                       <tr
                         ref={provided.innerRef}
+                        className={classes.tableRow}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                       >

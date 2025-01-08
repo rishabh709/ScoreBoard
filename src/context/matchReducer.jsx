@@ -17,6 +17,10 @@ const initialMatchState = {
   team2: "Team B",
   maxOvers: 3,
   currentInnings: 0,
+  tossCaller:'',
+  tossWinner:null,
+  battingTeam: '',
+  bolwingTeam: '',
   runs: [0, 0],
   wickets: [0, 0],
   ball: {
@@ -35,7 +39,7 @@ const initialMatchState = {
   ballNum: [0, 0],
   overs: [],
   players: {
-    team1: ["Sikhar Dhawan", "Rohit Sharma", "Virat Kohli"],
+    team1: ["Rohit Sharma", "Virat Kohli", "KL Rahul", "Shubman Gill", "Hardik Pandya", "Jasprit Bumrah", "Ravichandran Ashwin", "Ravindra Jadeja", "Mohammad Shami", "Suryakumar Yadav", "Rishabh Pant"],
     team2: ["Brandon Macullam", "Krish Gayle", "AB Devilliars"],
   },
   result: "",
@@ -103,6 +107,26 @@ function matchReducer(state, action) {
       return insertPlayerIntoTeam(state, action.playerName, action.team, action.index);
     case "REMOVE_PLAYER_AT":
       return removePlayerAt(state, action.id, action.teamName);
+    case "SET_BOLWER_NAME":
+      return{
+        ...state,
+        over: {...state.over, bowlerName:action.payload}
+      }
+    case "SET_TOSS_WINNER":
+      return{
+        ...state,
+        tossWinner: action.payload
+      }
+    case "SET_BATTING_TEAM":
+      return{
+        ...state,
+        battingTeam: action.payload
+      }
+    case "SET_BOLWING_TEAM":
+      return{
+        ...state,
+        bolwingTeam: action.payload
+      }
     default:
       return state;
   }

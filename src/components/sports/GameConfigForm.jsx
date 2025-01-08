@@ -5,7 +5,9 @@ import { useState } from "react";
 import { useMatchContext } from "../../context/matchReducer";
 import { GiConsoleController } from "react-icons/gi";
 import useLocalStorage from "../../hooks/useLocalStorage";
-import Teamup from "./TeamUp";
+import Teamup from "./Teamup.jsx";
+import Toss from "./toss/Toss";
+import TossDecision from "./toss/TossDecision.jsx";
 
 function GameConfigForm({ game, onNext, onCancle, title }) {
   const { state: matchState, dispatch: matchDispatch } = useMatchContext();
@@ -58,6 +60,18 @@ function GameConfigForm({ game, onNext, onCancle, title }) {
         {
           isModule: true,
           module: Teamup(),
+        }
+      ],
+      [
+        {
+          isModule: true,
+          module: Toss(),
+        }        
+      ],
+      [
+        {
+          isModule: true,
+          module: TossDecision(),
         }
       ]
     ],

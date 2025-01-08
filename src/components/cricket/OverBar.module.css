@@ -53,12 +53,16 @@
 
 .bowlerName{
     height: 100%;
-    padding: 0 4%;
+    min-width: 20%;
+    max-width: max-content;
     border-radius: 30px;
+    padding: 0 2%;
+    gap: 10px;
     /* background-color: #E8E8E8; */
     background-color: #cecece;
-    display: flex;
+    display: inline-flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 @media all and (orientation: portrait){

@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
 import classes from "./OverBar.module.css";
 import { useMatchContext } from "../../context/matchReducer";
+import DropDownList from "../common/DropDownList";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 function OverBar(props) {
   const { state: matchState } = useMatchContext();
+
+  const [openDropDown, isOpenDropDown] = useState(false);
+
+  const handleBolwerSelection = () =>{
+    isOpenDropDown(!openDropDown);
+  }
 
   console.log(matchState.over.balls)
   console.log(matchState.overs)
@@ -44,7 +52,11 @@ function OverBar(props) {
                 return <div key={k}>{ball.run}</div>;
               })}
         </div>
-        <div className={classes.bowlerName}>{matchState.over.bowlerName}</div>
+        <div className={classes.bowlerName} onClick={handleBolwerSelection}>
+          {matchState.over.bowlerName}
+          {openDropDown? <FaChevronDown /> :< FaChevronUp /> }
+          {openDropDown && <DropDownList />}
+        </div>
       </div>
     </div>
   );

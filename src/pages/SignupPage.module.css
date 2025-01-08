@@ -22,19 +22,28 @@
 }
 
 .inpt{
-  padding: 0 1%;
+  padding: 0px 10px;
   width: 80%;
-  margin-top:10px;
+  margin: 10px 0px;
   border: none;
   background-color: rgb(236, 236, 236);
-  height: 5vh;
 }
 .sbmt{
   width: 90%;
-  padding: 0 5%;
-  height: 15%;
-  margin-top: 10%;
+  /* padding: 0 5%; */
+  height: 10px;
+  margin-top: 30px;
   border: none;
   border-radius:10px;
   background-color: #613DC1;
+}
+
+@media all and (orientation: portrait) {
+  .container > form{
+    width: 80dvw;
+    border: 1px solid #d3d3d3;
+  }
+  .inpt{
+    height: 1px;
+  }
 }

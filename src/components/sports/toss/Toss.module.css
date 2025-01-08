@@ -1,0 +1,89 @@
+.tossContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.coin {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ffeb3b, #ff9800);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  transition: transform 1s, scale 1s;
+}
+
+.coinTossing {
+  transform: rotateY(720deg); /* Coin spinning animation */
+  transform-origin: center;
+  scale: 50%;
+}
+
+.result {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.side {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.tossSetter{
+  margin-bottom: 10px;
+}
+
+.team{
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 5px;
+}
+
+.tossPick{
+  gap: 10px;
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+.tossBtn{
+  width: 75px;
+  text-align: center;
+  padding: 0% 5px;
+  /* box-shadow: 2px 2px 3px #c9c9c9; */
+  border-radius: 3px;
+  border-width: 1.5px;
+  border-style: solid;
+  color: #1d1d1d;
+  background-color: transparent;
+}
+.tossPick :nth-child(1){
+  border-color: #6cbff7;
+}
+.tossPick :nth-child(2){
+  border-color: rgb(255, 100, 100);
+}
+
+.headsSelected{
+  background-color: #6cbff7;
+  color: white;
+}
+.tailsSelected{
+  color: white;
+  background-color: rgb(255, 100, 100); 
+}
+.teamName{
+  width: 30%;
+  text-align: center;
+}

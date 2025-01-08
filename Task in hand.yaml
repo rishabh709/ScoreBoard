@@ -2,10 +2,10 @@ TO DO:
     1. OverBar: 
         - make reset on each over
         - on no space make it scrollable
-            + added the warp option but top padding may cover the sapce if a lot required
-            
-        - green on boundaries and red on wicket
-        - dropdown list on bolwer
+        
+        + added the warp option but top padding may cover the sapce if a lot required    
+        + green on boundaries and red on wicket
+        + dropdown list on bolwer
     
     2. matchReducer:
         - keep track of traget and declare result
@@ -35,8 +35,7 @@ Add on Features:
         + list all players
         - provide random distribution option
         - option to take players one by one
-    
     4. /:
-        - add login page to home address
+        - add login page to home address    
 
         

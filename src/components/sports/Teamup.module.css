@@ -1,13 +1,13 @@
-.container table{
+/* .container table{
   border: 1px solid #dfdfdf;
   border-spacing: none;
-}
+} */
 
-.table td{
+/* .table td{
   padding: 1%;
   text-align: center;
   text-wrap: nowrap;
-}
+} */
 
 .nameInput{
   border-style: none;
@@ -29,8 +29,35 @@
   height: 30px;
 }
 
-.table > tbody > tr {
+.sno{
   display: flex;
-  height: 30px;
-  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+.table h3{
+  text-align: center;
+}
+
+.tableRow {
+  text-align: center;
+  word-wrap: nowrap;
+  white-space: nowrap;
+  text-overflow: normal;
+  box-sizing: content-box;
+  width: 100%;
+}
+
+.team{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: space-between;
+  flex-wrap: wrap;
+}
+
+.team td{
+  background-color: red;
+  display: inline-flex;
+  flex-grow: 1;
+  word-wrap: normal;
 }

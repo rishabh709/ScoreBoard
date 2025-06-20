@@ -15,14 +15,15 @@ const initialMatchState = {
   matchId: "",
   team1: "Team A",
   team2: "Team B",
-  maxOvers: 3,
+  maxOvers: 1,
   currentInnings: 0,
   tossCaller:'',
   tossWinner:null,
-  battingTeam: '',
-  bolwingTeam: '',
-  runs: [0, 0],
-  wickets: [0, 0],
+  battingTeam: 'team2',
+  bowlingTeam: 'team1',
+  runs: {team1: 0, team2: 0},
+  current_batsman: {team1: [], team2: []},
+  wickets: {team1: 0, team2: 0},
   ball: {
     overId: "",
     type: "",
@@ -35,8 +36,8 @@ const initialMatchState = {
     bowlerName: "Jin Yan",
     balls: [],
   },
-  overNum: [0, 0],
-  ballNum: [0, 0],
+  overNum: {team1: 0, team2: 0},
+  ballNum: {team1: 0, team2: 0},
   overs: [],
   players: {
     team1: ["Rohit Sharma", "Virat Kohli", "KL Rahul", "Shubman Gill", "Hardik Pandya", "Jasprit Bumrah", "Ravichandran Ashwin", "Ravindra Jadeja", "Mohammad Shami", "Suryakumar Yadav", "Rishabh Pant"],
@@ -73,13 +74,6 @@ function matchReducer(state, action) {
         ...state,
         overs: [...state.overs, action.payload],
       };
-    case "overIncrement":
-      const updatedCurOver = [...state.curOver];
-      updatedCurOver[state.currentInnings] += 1;
-      return {
-        ...state,
-        curOver: updatedCurOver,
-      };
 
     case "SET_MATCH_STATE":
       return action.payload;
@@ -112,6 +106,11 @@ function matchReducer(state, action) {
         ...state,
         over: {...state.over, bowlerName:action.payload}
       }
+    case "SET_BATSMAN_NAME":
+      return{
+        ...state,
+        current_batsman: {...state.current_batsman, [state.battingTeam]: action.payload}
+      }
     case "SET_TOSS_WINNER":
       return{
         ...state,
@@ -125,7 +124,7 @@ function matchReducer(state, action) {
     case "SET_BOLWING_TEAM":
       return{
         ...state,
-        bolwingTeam: action.payload
+        bowlingTeam: action.payload 
       }
     default:
       return state;
@@ -159,8 +158,8 @@ function removePlayerAt(state, id, teamName) {
 function addRuns(state, runs) {
   const updatedBallRun = { ...state.ball, run: runs };
 
-  const updatedRun = [...state.runs];
-  updatedRun[state.currentInnings] += runs;
+  const updatedRun = {...state.runs};
+  updatedRun[state.battingTeam] += runs;
 
   return {
     ...state,
@@ -172,11 +171,11 @@ function addRuns(state, runs) {
 function addWickets(state, wicketType) {
   const updatedBallWicket = { ...state.ball, wicket: wicketType };
 
-  const updatedWickets = [...state.wickets];
-  updatedWickets[state.currentInnings] += 1;
+  const updatedWickets = {...state.wickets};
+  updatedWickets[state.battingTeam] += 1;
 
   console.log(updatedWickets);
-  if (updatedWickets[state.currentInnings] >= 10) {
+  if (updatedWickets[state.battingTeam] >= 10) {
     return changeInnings({
       ...state,
       ball: updatedBallWicket,
@@ -194,38 +193,31 @@ function addWickets(state, wicketType) {
 function handleBallType(state, ballType) {
   const updatedBallType = { ...state.ball, type: ballType };
   const insertIntoOver = { ...state.over };
-  const updatedBallNum = [...state.ballNum];
-  const updatedOverNum = [...state.overNum];
+  const updatedBallNum = {...state.ballNum};
+  const updatedOverNum = {...state.overNum};
   // when ballType is extra
-  const updatedRun = [...state.runs];
+  const updatedRun = {...state.runs};
 
   console.log(ballType, ballType == "legal");
   if (ballType == "legal") {
-    const curBallNum = state.ballNum[state.currentInnings];
-    const curOverNum = state.overNum[state.currentInnings];
+    const curBallNum = state.ballNum[state.battingTeam];
+    const curOverNum = state.overNum[state.battingTeam];
     console.log("CUR BALL NUM: ", curBallNum);
     if (curBallNum < 5) {
-      updatedBallNum[state.currentInnings] += 1;
+      updatedBallNum[state.battingTeam] += 1;
     } else if (curBallNum == 5) {
       // last ball of the over so increase over by 1 and reseting ball num
-      updatedOverNum[state.currentInnings] += 1;
-      updatedBallNum[state.currentInnings] = 0;
+      updatedOverNum[state.battingTeam] += 1;
+      updatedBallNum[state.battingTeam] = 0;
 
       // pushing over to overs array
 
-      if (updatedOverNum[state.currentInnings] >= state.maxOvers) {
-        return changeInnings({
-          ...state,
-          ball: updatedBallType,
-          ballNum: updatedBallNum,
-          overNum: updatedOverNum,
-        });
-      }
+      
     }
   } else {
-    updatedRun[state.currentInnings] += 1;
+    // else when ball is not a legal delivery
+    updatedRun[state.battingTeam] += 1;
   }
-  // else when ball is not a legal delivery
   return {
     ...state,
     runs: updatedRun,
@@ -239,19 +231,29 @@ function addBallIntoOver(state) {
   const updatedBalls = [...state.over.balls, state.ball];
   const updatedOver = { ...state.over, balls: updatedBalls };
 
+
+  // if (updatedOverNum[state.battingTeam] >= state.maxOvers) {
+  //   return changeInnings({
+  //     ...state,
+  //     ball: updatedBallType,
+  //     ballNum: updatedBallNum,
+  //     overNum: updatedOverNum,
+  //   });
+  // }
   // TO DO manage the over change and push of over into overs;
+  // checking if the inning is completed
   if (
-    (state.ballNum[state.currentInnings] == 0 &&
-      state.overNum[state.currentInnings] > 0) ||
+    (state.ballNum[state.battingTeam] == 0 &&
+      state.overNum[state.battingTeam] > 0) ||
     state.overNum == state.maxOvers
   ) {
     const updatedOvers = [...state.overs, updatedOver];
-    return {
+    return changeInnings({
       ...state,
       ball: { ...initialMatchState.ball, overId: state.ball.overId },
       over: { ...state.over, balls: [] },
       overs: updatedOvers,
-    };
+    });
   }
 
   console.log(updatedBalls);
@@ -263,8 +265,14 @@ function addBallIntoOver(state) {
 }
 
 function changeInnings(state) {
+    
+  const [updatedBattingTeam, updatedBolwingTeam] = state.battingTeam=='team1'? 
+  ['team2', 'team1']:['team1', 'team2'];
+
   return {
     ...state,
+    battingTeam: updatedBattingTeam,
+    bowlingTeam: updatedBolwingTeam,
     currentInnings: state.currentInnings + 1,
   };
 }

@@ -15,16 +15,16 @@ function ScoreCard() {
             </div>
             <div className={classes.score}>
               {/* <div className={classes.runs}>{match.wickets[match.currentInnings]}/{match.runs[match.currentInnings]}</div> */}
-              <div className={classes.runs}>{matchState.wickets[0]}/{matchState.runs[0]}</div>
-              <div className={classes.overs}>{matchState.overNum[0]}.{matchState.ballNum[0]}</div>
+              <div className={classes.runs}>{matchState.wickets['team1']}/{matchState.runs['team1']}</div>
+              <div className={classes.overs}>{matchState.overNum['team1']}.{matchState.ballNum['team1']}</div>
               {/* <div className={classes.overs}>{overState.overNumber}.{ballState.ballNumber}</div> */}
             </div>
           </div>
 
           <div className={classes.team2}>
             <div className={classes.score}>
-              <div className={classes.runs}>{matchState.wickets[1]}/{matchState.runs[1]}</div>
-              <div className={classes.overs}>{matchState.overNum[1]}.{matchState.ballNum[1]}</div>
+              <div className={classes.runs}>{matchState.wickets['team2']}/{matchState.runs['team2']}</div>
+              <div className={classes.overs}>{matchState.overNum['team2']}.{matchState.ballNum['team2']}</div>
               {/* <div className={classes.overs}>(0)</div> */}
             </div>
             <div className={classes.logoName}>
@@ -51,8 +51,8 @@ function ScoreCard() {
             </div>
           </div>
 
-          <div className={classes.bolwing}>
-            <div className={classes.bolwer}>
+          <div className={classes.bowling}>
+            <div className={classes.bowler}>
               <div className={classes.name}>Bolwer</div>
               <div className={classes.summary}>
                 <div className={classes.wickets}>1</div>

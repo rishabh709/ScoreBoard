@@ -8,6 +8,7 @@ import useLocalStorage from "../../hooks/useLocalStorage";
 import Teamup from "./Teamup.jsx";
 import Toss from "./toss/Toss";
 import TossDecision from "./toss/TossDecision.jsx";
+import SelectPlayer from "../common/SelectPlayer.jsx";
 
 function GameConfigForm({ game, onNext, onCancle, title }) {
   const { state: matchState, dispatch: matchDispatch } = useMatchContext();
@@ -16,12 +17,10 @@ function GameConfigForm({ game, onNext, onCancle, title }) {
   const navigateTo = useNavigate();
 
   // Event Handlers
-  const handleTeam1Change = (event) =>
-    matchDispatch({ type: "team1", payload: event.target.value });
-  const handleTeam2Change = (event) =>
-    matchDispatch({ type: "team2", payload: event.target.value });
-  const handleMaxOverChange = (event) =>
-    matchDispatch({ type: "MAX_OVERS", payload: event.target.value });
+
+  const handelInputChnage = (field, value) => {
+    matchDispatch({ type: field, payload: value });
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -35,66 +34,39 @@ function GameConfigForm({ game, onNext, onCancle, title }) {
   const gameForms = {
     cricket: [
       [
-        {
-          type: "text",
-          value: matchState.team1,
-          place: "Team 1",
-          onChange: handleTeam1Change,
-        },
-        {
-          type: "text",
-          value: matchState.team2,
-          place: "Team 2",
-          onChange: handleTeam2Change,
-        },
+        { type: "text", field: "team1", place: "Team 1" },
+        { type: "text", field: "team2", place: "Team 2" },
       ],
-      [
-        {
-          type: "number",
-          value: matchState.maxOvers,
-          place: "Max Overs",
-          onChange: handleMaxOverChange,
-        },
-      ],
-      [
-        {
-          isModule: true,
-          module: Teamup(),
-        }
-      ],
-      [
-        {
-          isModule: true,
-          module: Toss(),
-        }        
-      ],
-      [
-        {
-          isModule: true,
-          module: TossDecision(),
-        }
-      ]
+
+      [{ type: "number", field: "maxOvers", place: "Max Overs" }],
+
+      [{ isModule: true, module: <Teamup /> }],
+      [{ isModule: true, module: <Toss /> }],
+      [{ isModule: true, module: <TossDecision /> }],
+      // [{ isModule: true, module: <SelectPlayer />}]
     ],
   };
 
   // Form Navigator
-  const progressBarHandler = (event, i) => formPage != i && setFormPage(i);
+  const progressBarHandler = (i) => {
+    if (formPage != i) setFormPage(i);
+  };
 
   // Form Inputs
   const inputs = gameForms[game][formPage].map((inputField, index) => {
-    if (inputField.isModule!==undefined && inputField.isModule){
-      return inputField.module
+    if (inputField.isModule !== undefined && inputField.isModule) {
+      return inputField.module;
     }
     return (
       <input
         key={index}
         type={inputField.type}
-        value={inputField.value}
-        onChange={inputField.onChange}
-        className={classes.inpts}
+        value={matchState[inputField.field]}
+        onChange={(e) => handelInputChnage(inputField.field, e.target.value)}
         placeholder={inputField.place}
         required
-        onFocus={(e)=>{e.target.select(); e.target.autofocus=false}}
+        className={classes.inpts}
+        onFocus={(e) => e.target.select()}
         autoFocus={index === 0} // Auto focus on the first input field
       />
     );
@@ -105,7 +77,7 @@ function GameConfigForm({ game, onNext, onCancle, title }) {
     <div
       key={index}
       className={formPage === index ? classes.currentBar : ""}
-      onClick={(event) => progressBarHandler(event, index)}
+      onClick={() => progressBarHandler(index)}
     />
   ));
 

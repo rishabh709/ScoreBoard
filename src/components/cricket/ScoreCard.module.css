@@ -62,7 +62,7 @@ img{
   margin-top: 1%;
 }
 
-.batting, .bolwing{
+.batting, .bowling{
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -83,7 +83,7 @@ img{
 }
 
 
-.bolwer{
+.bowler{
   display: flex;
   gap: 10%;
 }

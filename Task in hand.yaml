@@ -1,11 +1,12 @@
 TO DO: 
     1. OverBar: 
-        - make reset on each over
         - on no space make it scrollable
+        - select bowler after each over
         
+        + make reset on each over
         + added the warp option but top padding may cover the sapce if a lot required    
         + green on boundaries and red on wicket
-        + dropdown list on bolwer
+        + dropdown list on bowler
     
     2. matchReducer:
         - keep track of traget and declare result
@@ -19,6 +20,16 @@ TO DO:
 
     4. Scoring Controller: 
         - current box should display the selected options
+        - ADD select player pannel
+    
+    5. Game config Form:
+        - use next btn for changing the match-reducer value
+    
+    6. Batter & Bolwer Progress:
+        - store individual player score
+        - work with auto strike change
+        - 
+
     
     Problems:
         - convert the team players data into good json format
@@ -39,3 +50,26 @@ Add on Features:
         - add login page to home address    
 
         
+Tomorrow:
+    1. enable batsman selection on wicket
+    2. ask for batter and bolwer as soon as loaded
+        + if bolwer and batsman is null then select the batsman and bolwer
+    3. selct new bolwer after each over
+        + no coninuos two over by same bolwer
+    4. create a pannel for players wise data
+        + batter and bolwer details 
+        + add the score to the players data
+        + add the wickets to the players data
+    5. create slide over pannel to edit the game configuration
+
+
+Current Working: Making the Game Config Modular
+    1. Using ModalPannels
+    2. Making form using set of pannels
+    3. pannels consist of action buttons
+        + Next
+        + Back
+        + Submit
+        + Confirm
+    4. pannles will take heading actions and the body
+    5. File name for the new Game config is GameConfigPannles.jsx

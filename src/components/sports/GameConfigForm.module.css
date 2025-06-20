@@ -3,14 +3,19 @@
     position: fixed;
     z-index: 10;
     left: calc(50% - 17.5vw);
+    
     width: 35vw;
     height: 60%;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
     padding: 10px 2vw 20px 2vw;
     background-color: #ECECEC;
     border: none;
+    border-radius: 6px;
+    
     animation: scaleUp 0.5s ease-in-out;
 }
 

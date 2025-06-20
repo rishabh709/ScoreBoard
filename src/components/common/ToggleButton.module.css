@@ -1,0 +1,57 @@
+.toggleSwitch {
+  position: relative;
+  width: 200px;
+  height: 40px;
+}
+
+.toggleSwitch input {
+  display: none; /* Hide the checkbox */
+}
+
+.slider {
+  position: relative;
+  display:flex;
+  align-items: center;
+
+  width: 210px; /* Fixed size */
+  height: 40px;
+
+  background-color: #5A61DF;
+  padding: 5px;
+  border-radius: 50px;
+  box-sizing: border-box;
+  transition: background-color 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 100px;
+  background-color: white;
+  transition: transform 0.4s;
+  border-radius: 15px;
+}
+
+input:checked + .slider {
+  background-color: #5A61DF;
+}
+
+input:checked + .slider:before {
+  transform: translateX(100%);
+}
+
+.options{
+  z-index: 3;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+}
+
+.checkedOption{
+  color: #5A61DF;
+  transition: all 0.5s ease-in-out;
+}

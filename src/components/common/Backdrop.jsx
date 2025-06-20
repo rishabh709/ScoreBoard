@@ -7,7 +7,7 @@ function Backdrop(props) {
         position: "fixed",
         width: "100vw",
         height: "100vh",
-        backgroundColor: "rgba(0, 0, 0, 0.75)",
+        backgroundColor: "rgba(0, 0, 0, 0.5)",
         zIndex: "1",
         top: 0,
         left: 0,

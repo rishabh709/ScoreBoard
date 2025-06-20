@@ -136,7 +136,6 @@ function Teamup() {
           </Droppable>
           <div>
             <div className={classes.inputBox}>
-              <form action="">
                 <input
                   type="text"
                   className={classes.nameInput}
@@ -144,8 +143,8 @@ function Teamup() {
                   onChange={handleInputChange1}
                   onKeyDown={handleOnKeyDown1}
                   placeholder="Enter Player name"
+                  onSubmit={(e)=>e.preventDefault()}
                 />
-              </form>
             </div>
           </div>
         </div>

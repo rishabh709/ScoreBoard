@@ -14,8 +14,8 @@ function OverBar(props) {
     isOpenDropDown(!openDropDown);
   }
 
-  console.log(matchState.over.balls)
-  console.log(matchState.overs)
+  // console.log(matchState.over.balls)
+  // console.log(matchState.overs)
 
   return (
     <div className={classes.container}>

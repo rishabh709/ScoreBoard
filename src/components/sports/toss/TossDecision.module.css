@@ -10,13 +10,13 @@
     display: flex;
     justify-content: space-around;
 }
-.bolwing, .batting{
+.bowling, .batting{
     display: inline-flex;
     flex-direction: column;
     justify-content: flex-end;
     gap: 10px;
 }
-.bolwing{
+.bowling{
     width: 100px;
     height: 150px;
     align-items: center;
@@ -24,7 +24,7 @@
 .bat{
     width: 100px;
 }
-.bolwing > input, .batting > input{
+.bowling > input, .batting > input{
     width: 100%;
     height: 25px;
     font-weight: bold;

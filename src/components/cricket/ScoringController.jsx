@@ -84,29 +84,16 @@ function ScoringController() {
   const extrasValues = { Wide: "WD", "No-Ball": "NB" };
   const outValues = ["out", "run-out", "catch-out"];
 
-  const keyDownHandler = (event) => {
-    console.log('Not running');
-    console.log(event.code);
-  };
 
 
-//---------------------------------------->>>>>>>>>>>>>>>>>> PENDING 
-  useEffect(() => {
-    window.addEventListener('keydown', keyDownHandler);
-    
-    // Cleanup the event listener on unmount
-    return () => {
-      window.removeEventListener('keydown', keyDownHandler);
-    };
-  }, []);
   return (
-    <div className={classes.container} onKeyDown={keyDownHandler}>
+    <div className={classes.container}>
       <div className={classes.scoring}>
         <div className={classes.batters}>
-          <div className={classes.batter} onClick={() => enterBatteName(1)}>
+          <div className={classes.batter} onClick={() => enterBatterName(1)}>
             Batter-name
           </div>
-          <div className={classes.batter} onClick={() => enterBatteName(2)}>
+          <div className={classes.batter} onClick={() => enterBatterName(2)}>
             Batter-name
           </div>
         </div>

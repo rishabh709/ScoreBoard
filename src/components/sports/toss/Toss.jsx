@@ -29,10 +29,10 @@ function Toss() {
       const tossResult = Math.random() > 0.5 ? "Heads" : "Tails"; // Randomize between Heads and Tails
       setResult(tossResult); // Set the result (Heads or Tails)
       team1Picked == tossResult
-        ? matchDispatch({ type: "SET_TOSS_WINNER", payload: matchState.team1 })
+        ? matchDispatch({ type: "SET_TOSS_WINNER", payload: "team1" })
         : matchDispatch({
             type: "SET_TOSS_WINNER",
-            payload: matchState.team2,
+            payload: "team2",
           });
       setTossing(false); // Stop the tossing animation or process
     }, 2000); // Delay of 2 seconds to simulate the toss

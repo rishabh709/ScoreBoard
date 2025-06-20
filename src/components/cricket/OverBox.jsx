@@ -29,7 +29,7 @@ function OverBox(props) {
                 <div>Runs: {runs}</div>
                 <div>Extra: {extraRuns}</div>
             </div>
-            <div className={classes.bolwername}>{props.over.bolwerName}</div>
+            <div className={classes.bowlername}>{props.over.bowlerName}</div>
         </div>
     </div>
   )

@@ -10,25 +10,25 @@ function TossDecision() {
     setTossDecision("bat");
     matchDispatch({ type: "SET_BATTING_TEAM", payload: matchState.tossWinner });
 
-    matchState.tossWinner != matchState.team1
-      ? matchDispatch({ type: "SET_BOLWING_TEAM", payload: matchState.team1 })
-      : matchDispatch({ type: "SET_BOLWING_TEAM", payload: matchState.team2 });
+    matchState.tossWinner != "team1"
+      ? matchDispatch({ type: "SET_BOLWING_TEAM", payload: "team1" })
+      : matchDispatch({ type: "SET_BOLWING_TEAM", payload: "team2" });
   }
   function onBolwingDecisionHandler() {
     setTossDecision("ball");
     matchDispatch({ type: "SET_BOLWING_TEAM", payload: matchState.tossWinner });
 
-    matchState.tossWinner != matchState.team1
-      ? matchDispatch({ type: "SET_BATTING_TEAM", payload: matchState.team1 })
-      : matchDispatch({ type: "SET_BATTING_TEAM", payload: matchState.team2 });
+    matchState.tossWinner != "team1"
+      ? matchDispatch({ type: "SET_BATTING_TEAM", payload: "team1" })
+      : matchDispatch({ type: "SET_BATTING_TEAM", payload: "team2" });
   }
-  
+
   return (
     <div className={classes.conatainer}>
-      <h4>Choose Batting or Bolwing</h4>
+      <h4>{matchState[matchState.tossWinner]} choose Batting or Bolwing</h4>
       <div className={classes.options}>
-        <div className={classes.bolwing}>
-          <img src="src\assets\team-icons\toss\ball.svg" alt="" srcset="" />
+        <div className={classes.bowling}>
+          <img src="src\assets\team-icons\toss\ball.svg" alt="cricket ball" />
           <input
             type="button"
             value="Bolwing"
@@ -44,7 +44,7 @@ function TossDecision() {
           <img
             className={classes.bat}
             src="src\assets\team-icons\toss\bat.svg"
-            alt=""
+            alt="circket Bat"
           />
           <input
             type="button"
@@ -61,7 +61,7 @@ function TossDecision() {
       <div className={classes.resultBanner}>
         {tossDecision != null ? (
           <h2>
-            {matchState.tossWinner} Choose to {tossDecision}
+            {matchState[matchState.tossWinner]} Choose to {tossDecision}
           </h2>
         ) : (
           <h2></h2>

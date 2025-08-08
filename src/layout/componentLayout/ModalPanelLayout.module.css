@@ -36,13 +36,13 @@
     justify-content: space-between;
     /* background-color: var(--secondary-light-color); */
 
-    padding: 0 17px;
+    padding: 0 1vw;
 }
 
 .heading{
     /* font-size: 1.5rem; */
     
-    font-size: clamp(1rem, 1rem + 0.75vw, 4rem);
+    font-size: clamp(24px, 1rem + 0.75vw, 4rem);
     /* font-size: 1rem; */
     font-weight: 600;
     
@@ -58,6 +58,7 @@
 .body {
     display: flex;
     flex-grow: 1;
+    overflow: auto;
 }
 
 .footer{
@@ -93,6 +94,30 @@
     
 }
 
+.progressBar{
+    display: flex;
+    height: 30px;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    justify-content: center;
+    align-content: center;
+    gap: 5px;
+}
+.progressBar > *{
+    -webkit-tap-highlight-color: transparent;
+    width: 14px;
+    height: 14px;
+    background-color: var(--main-accent-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: width 0.5s ease-in-out;
+}
+.currentBar{
+    width: 40px;
+    border-radius: 30px;
+    background-color: var(--main-color);
+}
+
 .buttons:hover{
     background-color: var(--main-color);
     color: white;
@@ -101,7 +126,7 @@
 
 @media all and (orientation: portrait){
     .modalPanel{
-        width: 90dvw;
+        width: 95dvw;
     }
     .buttons{
         width: 25%;

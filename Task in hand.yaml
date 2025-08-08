@@ -73,3 +73,13 @@ Current Working: Making the Game Config Modular
         + Confirm
     4. pannles will take heading actions and the body
     5. File name for the new Game config is GameConfigPannles.jsx
+
+
+Notes:
+    1. I am using Portal to render the menu on the top of the screen
+    2. Installed Portal to render the menu on the top of the screen and to prevent menu overflow from the screen
+
+What i was doing:
+    1. I wanted the body of modal pannel to be felxible and let the component decide where it has to be placed. If it should on top or centered
+    2. also considering the Responsvieness in different screens
+    3. we need to remove the CricketCofigForm.module.css beacuse it just not requrie and comes in middle of component and the parent making hard 

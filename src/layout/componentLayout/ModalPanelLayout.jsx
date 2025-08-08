@@ -4,7 +4,7 @@ import classes from "./ModalPanelLayout.module.css";
 import SelectPlayer from "../../components/common/SelectPlayer";
 import Toss from "../../components/sports/toss/Toss";
 
-const ModalPanelLayout = (props) => {
+const ModalPanelLayout = ({children, heading, onNext, onBack, tabs, currentTab, setCurrentTab}) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const showModal = () => {
@@ -19,15 +19,28 @@ const ModalPanelLayout = (props) => {
     <div className={classes.modalContainer}>
       <div className={classes.modalBox}>
         <div className={classes.modalPanel}>
-          <h3 className={classes.heading}>{props.heading}</h3>
+          <h3 className={classes.heading}>{heading}</h3>
           <div className={classes.body}>
-            {props.children}
+            {children}
             {/* {isVisible && <Toss />} */}
             {/* {isVisible && <SelectPlayer />} */}
           </div>
           <div className={classes.footer}>
-            <button className={classes.buttons} onClick={props.onBack}>Back</button>
-            <button className={classes.buttons} onClick={props.onNext}>Next</button>
+            <button className={classes.buttons} onClick={onBack}>
+              Back
+            </button>
+            
+            <div className={classes.progressBar}>
+              {Object.keys(tabs).map((key) => { const index = Number(key);
+              const progressBarStyle = currentTab === index ? classes.currentBar : '';
+              return (
+              <div key={index} className={progressBarStyle} onClick={() => setCurrentTab(index)} />);
+              })}
+            </div>
+
+            <button className={classes.buttons} onClick={onNext}>
+              Next
+            </button>
           </div>
         </div>
       </div>

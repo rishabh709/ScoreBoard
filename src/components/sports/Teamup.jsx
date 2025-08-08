@@ -72,7 +72,7 @@ function Teamup() {
       <thead>
         <tr>
           <th>
-            <h3>Sno</h3>
+            <h3 className={classes.columnHeading}>Sno</h3>
           </th>
         </tr>
       </thead>
@@ -88,7 +88,7 @@ function Teamup() {
 
   const Sno1 = () => (
     <div className={classes.sno}>
-    <h3>Sno.</h3>
+    <h3 className={classes.columnHeading}>No.</h3>
     <div className={classes.numbers}>
       {matchState.players[maxTeam].map(({}, index) => (
         <div key={index} className={classes.tableRow}>
@@ -99,12 +99,20 @@ function Teamup() {
     </div>
   );
 
+  const inputStyle = {
+                    backgroundColor:'transparent', 
+                    borderBottom:'1px solid #00000066',
+                    paddingTop: '15px',
+                    paddingLeft: '5px'
+                  }
+
   const content = (
-    <div style={{ display: "flex" }}>
+    <div style={{display:'flex', width:'100%', height:'100%'}}>
       <Sno1 />
       <DragDropContext onDragEnd={onDragEnd}>
+        <div style={{width:'100%', height:'100%', display:'flex', flexGrow:'1', columnGap:'0.7vw', boxSizing:'border-box', overflow:'auto'}}>
         <div className={classes.table}>
-          <h3>{matchState.team1}</h3>
+          <h3 className={classes.columnHeading}>{matchState.team1}</h3>
           <Droppable droppableId={"team1"}>
             {(provided) => (
               <div
@@ -138,6 +146,7 @@ function Teamup() {
             <div className={classes.inputBox}>
                 <input
                   type="text"
+                  style={inputStyle}
                   className={classes.nameInput}
                   value={inputValue1}
                   onChange={handleInputChange1}
@@ -151,7 +160,7 @@ function Teamup() {
 
         <div className={classes.table}>
           <div>
-            <h3>{matchState.team2}</h3>
+            <h3 className={classes.columnHeading}>{matchState.team2}</h3>
           </div>
           <Droppable droppableId={"team2"}>
             {(provided) => (
@@ -186,6 +195,7 @@ function Teamup() {
             <div className={classes.inputBox}>
               <input
                 type="text"
+                style={inputStyle}
                 className={classes.nameInput}
                 value={inputValue2}
                 onChange={handleInputChange2}
@@ -194,6 +204,7 @@ function Teamup() {
               />
             </div>
           </div>
+        </div>
         </div>
       </DragDropContext>
     </div>

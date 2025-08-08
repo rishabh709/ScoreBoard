@@ -8,16 +8,13 @@
     border: 1px solid #C7C7C7;
     background-color: #F6F5F5;
     box-shadow: #1d1d1d42 0px 2px 5px;
-
-    display: flex;
-    justify-content: space-between;
-
   }
   
   .menu{
   display: flex;
   flex-direction: column;
   width: 100%;
-  font-size: 14px;
+  /* font-size: 14px; */
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
   color: #000;
 }

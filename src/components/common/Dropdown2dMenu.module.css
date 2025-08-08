@@ -1,0 +1,39 @@
+  .menu{
+  height: auto;
+  padding: 1%;
+  overflow-x: auto;
+  width: max-content;
+  border-radius: 7px;
+  border: 1px solid #C7C7C7;
+  background-color: #f7f7f7;
+  box-shadow: #1d1d1d42 0px 2px 5px;    
+  
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+
+
+
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  color: #000;
+}
+.menu > *{
+  flex: 0 0 25%;
+  border: 2px solid transparent;
+  border-radius: 7px;
+  box-sizing: border-box;
+}
+
+.menu > *:hover {
+  border: 2px solid #858AE3;
+  background-color: white;
+  scale: 110%;
+}
+
+.menu img {
+  aspect-ratio: 1 / 1 ;
+  width: clamp(20px, 1vw, 50px);
+  cursor: pointer;
+}
+

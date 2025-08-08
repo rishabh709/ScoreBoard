@@ -1,6 +1,16 @@
 .icon{
-  border-radius: 50%;
+  display: flex;
+  min-width: 10px;
+  /* width: 5vw; */
   aspect-ratio: 1 / 1;
-  background-color: red;
-  width: 3vw;
+  
+  border-radius: 50%;
+  box-sizing: border-box;
+  width: clamp(50px, 6vw, 48px);
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

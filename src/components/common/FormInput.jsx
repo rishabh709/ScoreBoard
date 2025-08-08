@@ -1,22 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { useMatchContext } from "../../context/matchReducer.jsx";
 
-function FormInput() {
-  
-    const handelInputChnage = (field, value) => {
-    matchDispatch({ type: field, payload: value });
-  };
+function FormInput(inputField) {
+  const { state: matchState } = useMatchContext();
+
+  const [inputData, setInputData] = useState('')
+
+  inputField = inputField.inputField
 
   return (
     <input
-      key={index}
       type={inputField.type}
-      value={matchState[inputField.field]}
-      onChange={(e) => handelInputChnage(inputField.field, e.target.value)}
+      value={inputField.data}
+      onChange={(e) => inputField.setData(e.target.value)}
       placeholder={inputField.place}
       required
-      className={classes.inpts}
-      onFocus={(e) => e.target.select()}
-      autoFocus={index === 0} // Auto focus on the first input field
+      // className={classes.inpts}
+      style={{
+        border:'none',
+        height:'40px',
+        width:'100%',
+        borderRadius:'7px',
+        background:'#D9D9D9',
+        boxSizing: 'border-box',
+        color: 'black',
+        padding: '0 5%',
+        fontSize: '1rem'
+      }}
     />
   );
 }

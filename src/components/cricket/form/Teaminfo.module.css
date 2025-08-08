@@ -1,0 +1,32 @@
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* background-color: red; */
+}
+
+.wrapper{
+
+    width: 50%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr auto;
+    row-gap: 20px;
+}
+
+.oversWrapper{
+    width: 50%;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .wrapper{
+        width: 100%;
+    }
+    .oversWrapper{
+        width: 100%;
+    }
+    
+}

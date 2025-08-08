@@ -17,7 +17,7 @@
   /* background-color: #f0f0f0; */
   background-color: #00000015;
   padding: 0 20px;
-  color: black;
+  color: #000000BF;
 }
 .inputBox > form{
   width: 100%;
@@ -34,6 +34,14 @@
   flex-direction: column;
   margin-bottom: 30px;
 }
+.numbers div{
+  color: var(--main-color);
+}
+
+.table{
+  width: 100%;
+  box-sizing: border-box;
+}
 .table h3{
   text-align: center;
 }
@@ -45,6 +53,7 @@
   text-overflow: normal;
   box-sizing: content-box;
   width: 100%;
+  color: #000000BF;
 }
 
 .team{
@@ -55,9 +64,13 @@
   flex-wrap: wrap;
 }
 
-.team td{
-  background-color: red;
-  display: inline-flex;
-  flex-grow: 1;
-  word-wrap: normal;
+
+.team div:nth-child(odd){
+  background-color: #858AE34D;
+}
+
+.columnHeading{
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--main-color)
 }

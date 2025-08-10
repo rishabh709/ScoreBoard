@@ -83,3 +83,6 @@ What i was doing:
     1. I wanted the body of modal pannel to be felxible and let the component decide where it has to be placed. If it should on top or centered
     2. also considering the Responsvieness in different screens
     3. we need to remove the CricketCofigForm.module.css beacuse it just not requrie and comes in middle of component and the parent making hard 
+
+Today:
+    1. Coin Flip

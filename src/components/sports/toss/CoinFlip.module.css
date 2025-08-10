@@ -1,0 +1,57 @@
+.coin_face{
+    position: absolute;
+
+    backface-visibility: hidden;
+}
+
+.coin{
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-origin: center;
+    transform-style: preserve-3d;
+    position: relative;
+
+    transform: rotateX(180deg);
+}
+
+.container{
+    height: max-content;
+    width: max-content;
+    /* width: max-content; */
+    /* height: max-content; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 15px;
+    box-sizing: border-box;
+}
+
+.container>button{
+    all:unset;
+    box-sizing: border-box;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 7px;
+    background-color: #5A61DF;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.flip{
+    animation: coinflip 3s ease-in-out;
+}
+
+@keyframes coinflip {
+    0%{
+        transform: rotateX(0deg);
+    }
+    100%{
+        transform: rotateX(3600deg);
+    }
+}

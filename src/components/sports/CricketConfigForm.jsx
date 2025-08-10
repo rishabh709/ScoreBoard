@@ -6,6 +6,8 @@ import Logo from "../common/Logo";
 import Teaminfo from "../cricket/form/Teaminfo";
 import Teamup from "./Teamup";
 import TossPick from "../cricket/form/TossPick";
+import CoinFlip from "./toss/CoinFlip";
+import { CgEnter } from "react-icons/cg";
 
 function CricketConfigForm() {
   const [currentTab, setCurrentTab] = useState(0);
@@ -46,11 +48,41 @@ function CricketConfigForm() {
     1: { component: <Teamup />, alignItems: "flex-start" },
     2: {
       component: (
-        <TossPick
-          options={["Heads", "Tails"]}
-          isToggled={isHeads}
-          onToggle={handleTossToggle}
-        />
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            boxSizing: "border-box",
+            flexDirection: "row",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
+          <div style={{
+            display:'flex',
+            flexDirection:'column',
+            gap:'40px'
+          }}>
+            <div style={{display:"flex", alignItems:'center', gap:'20px'}}>
+            <h3>Team 1</h3>
+            <TossPick
+              options={["Heads", "Tails"]}
+              isToggled={isHeads}
+              onToggle={handleTossToggle}
+              />
+            </div>
+            <div style={{display:"flex", alignItems:'center', gap:'20px'}}>
+            <h3>Team 2</h3>
+            <TossPick
+              options={["Heads", "Tails"]}
+              isToggled={isHeads}
+              onToggle={handleTossToggle}
+              />
+            </div>
+          </div>
+          <CoinFlip />
+        </div>
       ),
       alignItems: "center",
     },

@@ -5,11 +5,13 @@ import ToggleButton from "../common/ToggleButton";
 import Logo from "../common/Logo";
 import Teaminfo from "../cricket/form/Teaminfo";
 import Teamup from "./Teamup";
-import TossPick from "../cricket/form/TossPick";
 import CoinFlip from "./toss/CoinFlip";
 import { CgEnter } from "react-icons/cg";
+import { useMatchContext } from "../../context/matchReducer";
 
 function CricketConfigForm() {
+  const { state: matchState, dispatch: matchDispatch } = useMatchContext();
+
   const [currentTab, setCurrentTab] = useState(0);
   const wrapperRef = useRef();
 
@@ -21,7 +23,26 @@ function CricketConfigForm() {
   };
 
   const [isHeads, setIsHeads] = useState(true);
-  const handleTossToggle = () => setIsHeads((prev) => !prev);
+  const tossOptions = ["Heads", "Tails"];
+  const handleTossToggle = () => {
+
+    const newIsHeads = !isHeads;
+    setIsHeads(newIsHeads);
+
+    matchDispatch({
+      type: "SET_TOSS_PICKS",
+      payload: {
+        team1Pick: tossOptions[newIsHeads ? 0 : 1].toLowerCase(),
+        team2Pick: tossOptions[newIsHeads ? 1 : 0].toLowerCase(),
+      },
+    });
+    console.log("isHeads", newIsHeads);
+    console.log(
+      "MATCHREDUCER ISSUE: ",
+      tossOptions[isHeads ? 0 : 1].toLowerCase(),
+      tossOptions[isHeads ? 1 : 0].toLowerCase()
+    );
+  };
 
   const teamLogos = import.meta.glob("/src/assets/team-icons/TeamIcons/*.svg", {
     eager: true,
@@ -34,15 +55,6 @@ function CricketConfigForm() {
 
   const [overs, setOvers] = useState(null);
 
-  const tabs1 = [
-    <Teaminfo />,
-    <ToggleButton
-      options={["Heads", "Tails"]}
-      isToggled={isHeads}
-      onToggle={handleTossToggle}
-    />,
-    <Teamup />,
-  ];
   const tabs = {
     0: { component: <Teaminfo />, alignItems: "center" },
     1: { component: <Teamup />, alignItems: "flex-start" },
@@ -59,29 +71,31 @@ function CricketConfigForm() {
             alignItems: "center",
           }}
         >
-          <div style={{
-            display:'flex',
-            flexDirection:'column',
-            gap:'40px'
-          }}>
-            <div style={{display:"flex", alignItems:'center', gap:'20px'}}>
-            <h3>Team 1</h3>
-            <TossPick
-              options={["Heads", "Tails"]}
-              isToggled={isHeads}
-              onToggle={handleTossToggle}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "40px",
+            }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+              <h3>Team 1</h3>
+              <ToggleButton
+                options={tossOptions}
+                isToggled={isHeads}
+                onToggle={handleTossToggle}
               />
             </div>
-            <div style={{display:"flex", alignItems:'center', gap:'20px'}}>
-            <h3>Team 2</h3>
-            <TossPick
-              options={["Heads", "Tails"]}
-              isToggled={isHeads}
-              onToggle={handleTossToggle}
+            <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+              <h3>Team 2</h3>
+              <ToggleButton
+                options={tossOptions}
+                isToggled={!isHeads}
+                onToggle={handleTossToggle}
               />
             </div>
           </div>
-          <CoinFlip />
+          <CoinFlip TeamsTossPicks={matchState.tossPicked} />
         </div>
       ),
       alignItems: "center",

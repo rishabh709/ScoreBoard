@@ -11,7 +11,7 @@ function FormInput(inputField) {
   return (
     <input
       type={inputField.type}
-      value={inputField.data}
+      value={inputField.data==null? "":inputField.data}
       onChange={(e) => inputField.setData(e.target.value)}
       placeholder={inputField.place}
       required

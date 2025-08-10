@@ -4,7 +4,7 @@ import TailsSvg from "./../../../assets/team-icons/toss/tails.svg";
 import classes from "./CoinFlip.module.css";
 import { motion } from "framer-motion";
 
-function CoinFlip() {
+function CoinFlip({TeamsTossPicks}) {
   const [isFlipping, setIsFlipping] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [result, setResult] = useState(null);
@@ -29,11 +29,22 @@ function CoinFlip() {
   };
 
   const handleAnimationComplete = () => {
-    // Determine heads or tails based on final resting angle
+    // Determine heads or tails based on final resting angle.
+    if (!hasFlipped) return;
     const face = rotation % 360 === 0 ? "heads" : "tails";
     setResult(face);
     setIsFlipping(false);
   };
+
+  const tossWinnerAnnoucement = () =>{
+    if (TeamsTossPicks.team1==result)
+      return "Team1 has won the Toss"
+    else if (TeamsTossPicks.team2==result)
+      return "Team2 has won the Toss"
+    else{
+      return 'result awaited'
+    }
+  }
 
   return (
     <div>
@@ -55,10 +66,13 @@ function CoinFlip() {
             <img src={TailsSvg} />
           </div>
         </motion.div>
-        <button type="button" disabled={hasFlipped} onClick={() => flip()   }>
-          {" "}
+        <button type="button"  onClick={() => flip()}>
           Flip
         </button>
+        <div>
+          { tossWinnerAnnoucement()}
+          {console.log("result is :", result)}
+        </div>
       </div>
     </div>
   );

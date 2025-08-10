@@ -17,7 +17,8 @@ const initialMatchState = {
   team2: "Team B",
   maxOvers: 1,
   currentInnings: 0,
-  tossCaller:'',
+  // tossCaller:'',
+  tossPicked: {team1:'heads', team2:'tails'},
   tossWinner:null,
   battingTeam: 'team2',
   bowlingTeam: 'team1',
@@ -110,6 +111,14 @@ function matchReducer(state, action) {
       return{
         ...state,
         current_batsman: {...state.current_batsman, [state.battingTeam]: action.payload}
+      }
+    case "SET_TOSS_PICKS":
+      return{
+        ...state,
+        tossPicked: {
+          team1:action.payload.team1Pick,
+          team2:action.payload.team2Pick
+        }
       }
     case "SET_TOSS_WINNER":
       return{

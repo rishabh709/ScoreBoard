@@ -8,6 +8,7 @@ import Teamup from "./Teamup";
 import CoinFlip from "./toss/CoinFlip";
 import { CgEnter } from "react-icons/cg";
 import { useMatchContext } from "../../context/matchReducer";
+import ChoosingAfterToss from "./toss/ChoosingAfterToss";
 
 function CricketConfigForm() {
   const { state: matchState, dispatch: matchDispatch } = useMatchContext();
@@ -25,7 +26,6 @@ function CricketConfigForm() {
   const [isHeads, setIsHeads] = useState(true);
   const tossOptions = ["Heads", "Tails"];
   const handleTossToggle = () => {
-
     const newIsHeads = !isHeads;
     setIsHeads(newIsHeads);
 
@@ -66,6 +66,7 @@ function CricketConfigForm() {
             height: "100%",
             display: "flex",
             boxSizing: "border-box",
+            flexFlow: 'wrap',
             flexDirection: "row",
             justifyContent: "space-around",
             alignItems: "center",
@@ -98,6 +99,10 @@ function CricketConfigForm() {
           <CoinFlip TeamsTossPicks={matchState.tossPicked} />
         </div>
       ),
+      alignItems: "center",
+    },
+    3: {
+      component: <ChoosingAfterToss />,
       alignItems: "center",
     },
   };

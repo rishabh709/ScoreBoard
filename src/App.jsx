@@ -21,6 +21,7 @@ import CricketConfigForm from './components/sports/CricketConfigForm'
 import ToggleButton from './components/common/ToggleButton'
 import SelectProfileIcon from './components/common/SelectProfileIcon'
 import CoinFlip from './components/sports/toss/CoinFlip'
+import ChoosingAfterToss from './components/sports/toss/ChoosingAfterToss'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,6 +42,7 @@ const router = createBrowserRouter(
       <Route path='/toggle' element={<ToggleButton />} ></Route>
       <Route path='/icon' element={<SelectProfileIcon />} ></Route>
       <Route path='/coin' element={<CoinFlip />} ></Route>
+      <Route path='/pick' element={<ChoosingAfterToss />} ></Route>
 
     </Route>
   )

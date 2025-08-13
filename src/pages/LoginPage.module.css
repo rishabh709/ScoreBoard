@@ -1,15 +1,26 @@
+.container{
+  /* might change it in future
+  CHECK IT ONCE
+  */
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color:#0000001A;
+
+}
+
 .container > form{
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  height: 40vh;
+  height: 38vh;
   width: 25vw;
   margin:5% auto;
   flex-direction:column;
-  background-color: rgb(247, 247, 247);
-  box-shadow: 15px 15px 15px rgb(165, 165, 165);
+  background-color: #F6F6F6;
   color: var(--main-font-color);
   border-radius: 12px;
+  border: 1px solid #DADADA;
   box-sizing: border-box;
 }
 
@@ -19,25 +30,58 @@
 
 .inpt{
   padding: 0 5%;
+  height: 5vh;
   width: 80%;
   margin-top:10px;
   border: none;
   background-color: rgb(236, 236, 236);
-  height: 5vh;
-}
-.sbmt{
-  width: 90%;
-  padding: 0 5%;
-  height: 15%;
-  margin-top: 10%;
-  border: none;
-  border-radius:10px;
-  background-color: #613DC1;
+  color: var(--main-font-color);
+  border-radius: 7px;
 }
 
 @media all and (orientation: portrait){
  .container > form{
   width: 80dvw;
-  border: 1px solid #d3d3d3;
  } 
 }
+.title{
+  font-size: 26px;
+  color: #613DC1;
+}
+.body{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.forgetPasswd{
+  width: 80%;
+  text-align: right;
+  font-size: 12px;
+  color: #434A54;
+  text-decoration: underline;
+  /* color: #858AE3; */
+}
+
+.bottom{
+  text-align: center;
+  width: 80%;
+  height: 40px;
+}
+.signup{
+  color: #613DC1;
+  font-size: 12px;
+}
+.sbmt{
+  width: 60%;
+  height: 100%;
+  padding: 0 5%;
+  border: none;
+  border-radius:10px;
+  font-size: 20px;
+  height: 40px;
+  background-color: #613DC1;
+}
+

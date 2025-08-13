@@ -1,22 +1,37 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
-import classes from "./LoginPage.module.css"
+import classes from "./LoginPage.module.css";
 
 function LoginPage() {
   return (
     <div className={classes.container}>
       <form>
-      <h4>Login to your Account</h4>
-       <input style={{color:"var(--main-font-color)"}} type='text' placeholder='Username' className={classes.inpt}></input>
-       <input style={{color:"var(--main-font-color)"}} type='password' placeholder='Password' className={classes.inpt}></input>
-        <Link to="/signup" style={{left:0, color:"black"}}>SignUp</Link>
-       <input type='submit' className={classes.sbmt}></input>
-
+        <div className={classes.title}>
+          <h4>Log in</h4>
+        </div>
+        <div className={classes.body}>
+          <input
+            type="text"
+            placeholder="Username"
+            className={classes.inpt}
+          ></input>
+          <input
+            type="password"
+            placeholder="Password"
+            className={classes.inpt}
+          ></input>
+          <div className={classes.forgetPasswd}>forget password</div>
+        </div>
+        <Link className={classes.signup} to="/signup">
+          SignUp
+        </Link>
+        <div className={classes.bottom}>
+          <input type="submit" className={classes.sbmt} value="Log in"></input>
+        </div>
       </form>
     </div>
-
-  )
+  );
 }
 
-export default LoginPage
+export default LoginPage;

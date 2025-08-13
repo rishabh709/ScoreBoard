@@ -9,6 +9,7 @@ import CoinFlip from "./toss/CoinFlip";
 import { CgEnter } from "react-icons/cg";
 import { useMatchContext } from "../../context/matchReducer";
 import ChoosingAfterToss from "./toss/ChoosingAfterToss";
+import classes from "./CricketConfigForm.module.css"
 
 function CricketConfigForm() {
   const { state: matchState, dispatch: matchDispatch } = useMatchContext();

@@ -10,12 +10,23 @@
     display:flex;
     justify-content: center;
     align-items: center;
-
 }
+
 
 .modalBox {
     position: relative;
     z-index: 2;
+    
+    animation: scaleUp 0.5s ease-in-out;
+}
+
+@keyframes scaleUp {
+    0%{
+        scale: 70%;
+    }
+    100%{
+        scale: 100%;
+    }
 }
 
 .modalPanel {

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import classes from "./GameCard.module.css"
 import Backdrop from '../common/Backdrop';
 import GameConfigForm from './GameConfigForm';
+import CricketConfigForm from './CricketConfigForm';
 
 function GameCard(props) {
   const [FormIsOpen, setFormIsOpen] = useState(false);

@@ -3,12 +3,15 @@ import HeadsSvg from "./../../../assets/team-icons/toss/heads.svg";
 import TailsSvg from "./../../../assets/team-icons/toss/tails.svg";
 import classes from "./CoinFlip.module.css";
 import { motion } from "framer-motion";
+import { useMatchContext } from "../../../context/matchReducer";
 
 function CoinFlip({TeamsTossPicks}) {
   const [isFlipping, setIsFlipping] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [result, setResult] = useState(null);
   const [hasFlipped, setHasFlipped] = useState(false);
+  
+  const {state:matchState} = useMatchContext()
 
   const flip = () => {
     if (!isFlipping) {
@@ -38,9 +41,9 @@ function CoinFlip({TeamsTossPicks}) {
 
   const tossWinnerAnnoucement = () =>{
     if (TeamsTossPicks.team1==result)
-      return "Team1 has won the Toss"
+      return (matchState.team1+" has won the Toss")
     else if (TeamsTossPicks.team2==result)
-      return "Team2 has won the Toss"
+      return (matchState.team2+" has won the Toss")
     else{
       return 'result awaited'
     }

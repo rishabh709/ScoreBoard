@@ -37,7 +37,9 @@ function SignupPage() {
           <input type="text" name="name" onChange={hanleChange} placeholder='Name' className={classes.inpt} required />
           <input type="text" name="email" onChange={hanleChange} placeholder='Email' className={classes.inpt} required />
           <input type="password" name="passwd" onChange={hanleChange} placeholder='Password' className={classes.inpt} required />
-          <input type="submit" value="SignUp" className={classes.sbmt} /> 
+          <div className={classes.actionBar}>
+            <input type="submit" value="SignUp" className={classes.sbmt} /> 
+          </div>
         </form>
     </div>
   )

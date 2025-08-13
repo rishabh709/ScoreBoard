@@ -5,6 +5,9 @@ function FormInput(inputField) {
   const { state: matchState } = useMatchContext();
 
   const [inputData, setInputData] = useState('')
+  const handleFocus = (event) => {
+    event.target.select()
+  }
 
   inputField = inputField.inputField
 
@@ -27,6 +30,8 @@ function FormInput(inputField) {
         padding: '0 5%',
         fontSize: '1rem'
       }}
+      onFocus={handleFocus}
+
     />
   );
 }

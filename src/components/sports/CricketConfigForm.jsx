@@ -76,19 +76,20 @@ function CricketConfigForm() {
             style={{
               display: "flex",
               flexDirection: "column",
+              justifyContent:'space-between',
               gap: "40px",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-              <h3>Team 1</h3>
+            <div style={{ display: "flex", alignItems: "center", gap: "20px", width:'100%' }}>
+              <h3>{matchState.team1}</h3>
               <ToggleButton
                 options={tossOptions}
                 isToggled={isHeads}
                 onToggle={handleTossToggle}
               />
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-              <h3>Team 2</h3>
+            <div style={{ display: "flex", alignItems: "center", gap: "20px", width:'100%' }}>
+              <h3>{matchState.team2}</h3>
               <ToggleButton
                 options={tossOptions}
                 isToggled={!isHeads}

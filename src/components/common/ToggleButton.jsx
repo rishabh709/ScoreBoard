@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classes from "./ToggleButton.module.css";
+import { motion } from "framer-motion";
 
 function ToggleButton( {options, isToggled, onToggle}) {
 
@@ -14,12 +15,12 @@ function ToggleButton( {options, isToggled, onToggle}) {
   return (
     <label className={classes.toggleSwitch}>
       <input type="checkbox" checked={!isToggled} onChange={onToggle} />
-      <span className={classes.slider}>
+      <motion.span className={classes.slider}>
         <div className={classes.options}>
           <div className={isToggled ? classes.checkedOption : ""}>{options[0]}</div>
           <div className={isToggled ? "" : classes.checkedOption}>{options[1]}</div>
         </div>
-      </span>
+      </motion.span>
     </label>
   );
 }

@@ -7,6 +7,9 @@ import { motion } from "framer-motion";
 function ChoosingAfterToss() {
   const [isToggled, setIsToggled] = useState(true);
 
+  // You need to add choices like bat or ball and also need to fetch the respective icons
+  // Try including the bat and ball img into OnClick function
+
   const handleToggle = () => {
     setIsToggled((prev) => !prev);
   };

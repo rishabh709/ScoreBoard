@@ -1,16 +1,26 @@
+.container{
+  /* might change it in future
+  CHECK IT ONCE
+  */
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color:#0000001A;
+}
+
 .container > form{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  height: 40vh;
-  width: 30vw;
+  height: 38vh;
+  width: 25vw;
   margin:5% auto;
   flex-direction:column;
-  background-color: rgb(247, 247, 247);
-  border: 1px solid #d6d6d6;
-  box-shadow: 15px 15px 15px rgb(224, 224, 224);
+  background-color: #F6F6F6;
   color: var(--main-font-color);
   border-radius: 12px;
+  border: 1px solid #DADADA;
+  box-shadow: 15px 15px 15px rgb(224, 224, 224);
   box-sizing: border-box;
 
 }
@@ -24,11 +34,14 @@
 }
 
 .inpt{
-  padding: 0px 10px;
+  padding: 0 5%;
+  height: 5vh;
   width: 80%;
-  margin: 10px 0px;
+  margin-top:10px;
   border: none;
   background-color: rgb(236, 236, 236);
+  color: var(--main-font-color);
+  border-radius: 7px;
 }
 .actionBar{
   height: 20%;
@@ -37,20 +50,38 @@
   width: 100%;
 }
 
-.sbmt{
-  width: 50%;  
-  border: none;
-  border-radius:10px;
-  background-color: #613DC1;
-  color: white;
-}
 
 @media all and (orientation: portrait) {
   .container > form{
-    width: 80dvw;
-    border: 1px solid #d3d3d3;
+    width: 80dvw;  
   }
-  .inpt{
-    height: 1px;
-  }
+}
+
+
+.title{
+  font-size: 26px;
+  color: #613DC1;
+}
+.body{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.bottom{
+  text-align: center;
+  width: 80%;
+  height: 40px;
+}
+
+.sbmt{
+  width: 60%;
+  height: 100%;
+  padding: 0 5%;
+  border: none;
+  border-radius:10px;
+  font-size: 20px;
+  height: 40px;
+  background-color: #613DC1;
 }

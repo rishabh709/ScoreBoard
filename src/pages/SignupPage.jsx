@@ -4,6 +4,7 @@ import axios from "axios";
 import classes from "./SignupPage.module.css";
 import api from "../api/axiosInstance";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 function SignupPage() {
   const [newUserCred, setNewUserCred] = useState({
@@ -38,8 +39,8 @@ function SignupPage() {
   return (
     <div className={classes.container}>
       <form onSubmit={submitHandler}>
-        <div className={classes.title}>
-          <h2>Sign-up</h2>
+        <div>
+          <h2 className={classes.title}>Sign-up</h2>
         </div>
         <div className={classes.body}>
           <input
@@ -67,10 +68,13 @@ function SignupPage() {
             required
           />
         </div>
+        <Link className={classes.login} to="/login">
+          Login (already have an account)
+        </Link>
         <div className={classes.bottom}>
           <div className={classes.actionBar}>
             <motion.input
-            whileHover={{scale: 1.1,}}
+              whileHover={{ scale: 1.1 }}
               type="submit"
               value="SignUp"
               className={classes.sbmt}

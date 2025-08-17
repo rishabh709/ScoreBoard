@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import classes from "./LoginPage.module.css";
+import { motion } from "framer-motion";
 
 function LoginPage() {
   return (
     <div className={classes.container}>
       <form>
-        <div className={classes.title}>
-          <h4>Log in</h4>
+        <div>
+          <h2 className={classes.title}>Log in</h2>
         </div>
         <div className={classes.body}>
           <input
@@ -27,7 +28,12 @@ function LoginPage() {
           SignUp
         </Link>
         <div className={classes.bottom}>
-          <input type="submit" className={classes.sbmt} value="Log in"></input>
+          <motion.input
+            whileHover={{ scale: 1.1 }}
+            type="submit"
+            className={classes.sbmt}
+            value="Log in"
+          ></motion.input>
         </div>
       </form>
     </div>

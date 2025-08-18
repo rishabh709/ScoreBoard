@@ -10,12 +10,15 @@
 
 .container > form{
   display: flex;
+  flex-direction:column;
+  gap: 10px;
   justify-content: space-around;
   align-items: center;
-  height: 39vh;
+  /* height: 39vh; */
+  padding: 10vh 0;
+  height: max-content;
   width: 30vw;
   margin:5% auto;
-  flex-direction:column;
   background-color: #F6F6F6;
   color: var(--main-font-color);
   border-radius: 12px;
@@ -88,4 +91,24 @@
 .login{
   color: #613DC1;
   font-size: 12px;
+}
+
+.passwdWrapper{
+  width: 80%;
+  margin-top: 10px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.passwdWrapper > .inpt{
+  margin-top: 0px;
+  padding-right: 10%;
+}
+.eyeIcon {
+  position: absolute;
+  transform: translate(-50%, 10%);
+  cursor: pointer;
+  color: #888;
+  font-size: 18px;
 }

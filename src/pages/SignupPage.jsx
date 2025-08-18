@@ -5,6 +5,7 @@ import classes from "./SignupPage.module.css";
 import api from "../api/axiosInstance";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function SignupPage() {
   const [newUserCred, setNewUserCred] = useState({
@@ -12,6 +13,7 @@ function SignupPage() {
     email: "",
     passwd: "",
   });
+  const [isPasswdVisibile, setIsPasswdVisible] = useState(false);
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -59,14 +61,19 @@ function SignupPage() {
             className={classes.inpt}
             required
           />
-          <input
-            type="password"
-            name="passwd"
-            onChange={hanleChange}
-            placeholder="Password"
-            className={classes.inpt}
-            required
-          />
+          <div className={classes.passwdWrapper}>
+            <input
+              type="password"
+              name="passwd"
+              onChange={hanleChange}
+              placeholder="Password"
+              className={classes.inpt}
+              required
+            />
+            <span className={classes.eyeIcon}>
+              <FaEye/>
+            </span>
+          </div>
         </div>
         <Link className={classes.login} to="/login">
           Login (already have an account)

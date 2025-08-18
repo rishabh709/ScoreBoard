@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ModalPanelLayout from "../../layout/componentLayout/ModalPanelLayout";
 import FormInput from "../common/FormInput";
 import ToggleButton from "../common/ToggleButton";
@@ -10,11 +10,21 @@ import { CgEnter } from "react-icons/cg";
 import { useMatchContext } from "../../context/matchReducer";
 import ChoosingAfterToss from "./toss/ChoosingAfterToss";
 
+import { motion, AnimatePresence } from "framer-motion";
+
 function CricketConfigForm() {
   const { state: matchState, dispatch: matchDispatch } = useMatchContext();
 
   const [currentTab, setCurrentTab] = useState(0);
   const wrapperRef = useRef();
+
+  const [prevTab, setPrevTab] = useState(currentTab);
+  const tabDirection = currentTab > prevTab ? 1 : -1;
+
+  // try to avoid it...
+  useEffect(() => {
+    setPrevTab(currentTab);
+  }, [currentTab]);
 
   const onNext = () => {
     setCurrentTab(currentTab + 1);
@@ -66,7 +76,7 @@ function CricketConfigForm() {
             height: "100%",
             display: "flex",
             boxSizing: "border-box",
-            flexFlow: 'wrap',
+            flexFlow: "wrap",
             flexDirection: "row",
             justifyContent: "space-around",
             alignItems: "center",
@@ -76,11 +86,18 @@ function CricketConfigForm() {
             style={{
               display: "flex",
               flexDirection: "column",
-              justifyContent:'space-between',
+              justifyContent: "space-between",
               gap: "40px",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "20px", width:'100%' }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                width: "100%",
+              }}
+            >
               <h3>{matchState.team1}</h3>
               <ToggleButton
                 options={tossOptions}
@@ -88,7 +105,14 @@ function CricketConfigForm() {
                 onToggle={handleTossToggle}
               />
             </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "20px", width:'100%' }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "20px",
+                width: "100%",
+              }}
+            >
               <h3>{matchState.team2}</h3>
               <ToggleButton
                 options={tossOptions}
@@ -128,12 +152,30 @@ function CricketConfigForm() {
         style={{
           width: "100%",
           height: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: tabs[currentTab].alignItems,
+          position: "relative", // Enable stacking for AnimatePresence children
+          overflow: "hidden",
         }}
       >
-        {tabs[currentTab].component}
+        <motion.div
+          key={currentTab}
+          initial={{ x: 100 * tabDirection, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: -100 * tabDirection, opacity: 0 }}
+          transition={{ duration: 0.4, ease: "easeInOut" }}
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: tabs[currentTab].alignItems,
+            overflow: "hidden",
+            // position: "absolute", // Needed to overlap tabs during transition
+            top: 0,
+            left: 0,
+          }}
+        >
+          {tabs[currentTab].component}
+        </motion.div>
       </div>
     </ModalPanelLayout>
   );

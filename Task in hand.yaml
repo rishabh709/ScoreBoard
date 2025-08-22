@@ -63,7 +63,7 @@ Tomorrow:
     5. create slide over pannel to edit the game configuration
 
 
-Current Working: Making the Game Config Modular
+COMPLETED Working: Making the Game Config Modular
     1. Using ModalPannels
     2. Making form using set of pannels
     3. pannels consist of action buttons
@@ -89,9 +89,10 @@ Finished:
     2. Picking Bat or Bowling
     3. Re-designing Login Page
     4. Re-designing Sign up Page
+    1. Implimented sliding effect on CricketCofigForm tabs (Done)
 
 Today:
-    1. Animated the profileIcon popup & sliding effect on CricketCofigForm (Done)
+    1. Toss misaligned
     2. Make the signup and login page responsive
     3. Selct Player
     4. use Framer Motion for the toggle button

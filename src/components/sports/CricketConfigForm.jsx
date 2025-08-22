@@ -11,12 +11,14 @@ import { useMatchContext } from "../../context/matchReducer";
 import ChoosingAfterToss from "./toss/ChoosingAfterToss";
 
 import { motion, AnimatePresence } from "framer-motion";
-
-function CricketConfigForm() {
+import { useNavigate } from "react-router-dom";
+function CricketConfigForm({referPage}) {
   const { state: matchState, dispatch: matchDispatch } = useMatchContext();
 
   const [currentTab, setCurrentTab] = useState(0);
   const wrapperRef = useRef();
+
+  const navigateto = useNavigate();
 
   const [prevTab, setPrevTab] = useState(currentTab);
   const tabDirection = currentTab > prevTab ? 1 : -1;
@@ -27,10 +29,12 @@ function CricketConfigForm() {
   }, [currentTab]);
 
   const onNext = () => {
-    setCurrentTab(currentTab + 1);
+    currentTab == Object.keys(tabs).length - 1
+      ? navigateto(referPage)
+      : setCurrentTab(currentTab + 1);
   };
   const onBack = () => {
-    setCurrentTab(currentTab - 1);
+    currentTab == 0 ? "" : setCurrentTab(currentTab - 1);
   };
 
   const [isHeads, setIsHeads] = useState(true);
@@ -95,7 +99,9 @@ function CricketConfigForm() {
                 display: "flex",
                 alignItems: "center",
                 gap: "20px",
+                justifyContent:'space-between',
                 width: "100%",
+                flex:'1',
               }}
             >
               <h3>{matchState.team1}</h3>
@@ -110,7 +116,9 @@ function CricketConfigForm() {
                 display: "flex",
                 alignItems: "center",
                 gap: "20px",
+                justifyContent:'space-between',
                 width: "100%",
+                flex:'1',
               }}
             >
               <h3>{matchState.team2}</h3>

@@ -15,6 +15,11 @@ const ModalPanelLayout = ({children, heading, onNext, onBack, tabs, currentTab, 
     setIsVisible(false);
   };
 
+
+  if (isVisible==false){
+    return '';
+  }
+
   return (
     <div className={classes.modalContainer}>
       <div className={classes.modalBox}>
@@ -44,7 +49,7 @@ const ModalPanelLayout = ({children, heading, onNext, onBack, tabs, currentTab, 
           </div>
         </div>
       </div>
-      {isVisible && <Backdrop onClick={hideModal} />}
+      <Backdrop onClick={hideModal} />
     </div>
   );
 };

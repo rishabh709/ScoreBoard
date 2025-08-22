@@ -10,7 +10,7 @@
     box-sizing: border-box;
 }
 
-.card :nth-child(1) > img{
+.imgWrapper :nth-child(1) > img{
     width: 50%;
 }
 

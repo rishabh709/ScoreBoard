@@ -92,7 +92,19 @@ Finished:
     1. Implimented sliding effect on CricketCofigForm tabs (Done)
 
 Today:
+    0. Link the GroupIcon, Toss-Decision, batsman 
+    0. (NEW ADD) add the config/setting option on top right corner and put match cancel on the last option and other match config settings
+    0. Also provide match config logs for every edits to the public   
+
     1. Toss misaligned
     2. Make the signup and login page responsive
     3. Selct Player
     4. use Framer Motion for the toggle button
+
+Important:
+    1. I have used the reducers inside the core things like toss, teaminfo which would be there in other games too and will be required to store it in some different reducers.
+        so change it, make the CricketCofigForm pass the state reducers so that everything is organised in one place.
+    2. pass if nextBtn is pressed in tabs so to right the final answer
+
+Rules:
+    1. Dont Directly use the reducers inside the Modules (rectify if already done)

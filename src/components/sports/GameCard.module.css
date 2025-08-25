@@ -1,44 +1,64 @@
 .card{
-    width: 14vw;
     aspect-ratio: 1 / 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
+    width: 200px; 
+    height: 200px;
+
     border-radius: 5px;
     background-color: #ECECEC;
-    box-sizing: border-box;
 }
 
-.imgWrapper :nth-child(1) > img{
-    width: 50%;
-}
 
 .title{
-    font-size: 3.5vh;
+    font-size: clamp(0.7rem, 1vw + 0.2rem, 1.5rem);
+    /* height: 30px; */
+    text-align: center;
     color: black;
 }
+
+.imgWrapper{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.imgWrapper > img{
+    object-fit: fill;
+    width: max-content;
+}
+
 .btn{
+    height: 100%;
+    width: 100%;
     text-decoration: none;
     background-color: #3a3a3a;
     cursor: pointer;
     color: #ECECEC;
-    height:30%;
-    width: 100%;
-    display: flex;
+
+    /* display: flex;
     justify-content: center;
     align-items: center;
+    font-size: clamp(1rem, 1.2vw + 0.5rem, 1.5rem); */
+}
+
+.topCard{
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+}
+.bottomCard{
+    height: 20%;
 }
 
 .btn:hover{
     background-color: #3a3a3ad7;
 }
 
-@media all and (orientation: portrait){
+/* @media all and (orientation: portrait){
     .card{
-        width: 30%;
+        width: 30vw;
+        aspect-ratio: 1 / 1;
     }
     .title{
         font-size: 3vw;
     }
-}
+} */

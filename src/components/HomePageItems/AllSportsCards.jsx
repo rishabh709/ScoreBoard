@@ -7,6 +7,7 @@ function HomeCards() {
   return (
     <div style={{
       display: 'flex',
+      gap:"10px",
       padding: '1%'
     }}>
         <GameCard text="Cricket" game="cricket" link="/cricket-match" img="src\assets\icons\cricket-icon.svg"/>

@@ -61,7 +61,7 @@
     /* background-color: #E8E8E8; */
     background-color: #cecece;
     display: inline-flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
 }
 

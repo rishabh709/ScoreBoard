@@ -4,13 +4,17 @@ import BatSVG from "./../../../assets/team-icons/toss/bat.svg";
 import BallSVG from "./../../../assets/team-icons/toss/ball.svg";
 import { motion } from "framer-motion";
 
-function ChoosingAfterToss() {
+function ChoosingAfterToss({ chooser, pickedSide }) {
   const [isToggled, setIsToggled] = useState(true);
 
+  const options = ["Batting", "Fielding"];
   // You need to add choices like bat or ball and also need to fetch the respective icons
   // Try including the bat and ball img into OnClick function
 
   const handleToggle = () => {
+    isToggled == !false
+      ? pickedSide(options[0].toLowerCase())
+      : pickedSide(options[1].toLowerCase());
     setIsToggled((prev) => !prev);
   };
 
@@ -20,10 +24,11 @@ function ChoosingAfterToss() {
         width: "max-content",
         display: "flex",
         flexDirection: "column",
-        boxSizing:'border-box',
-        overflow:'visible'
+        boxSizing: "border-box",
+        overflow: "visible",
       }}
     >
+      <div style={{textAlign:'center'}}>{chooser + " Pick:"}</div>
       <div
         style={{
           display: "flex",
@@ -61,10 +66,9 @@ function ChoosingAfterToss() {
             position: "absolute",
           }}
         />
-
       </div>
       <ToggleButton
-        options={["Batting", "Fielding"]}
+        options={options}
         isToggled={isToggled}
         onToggle={handleToggle}
       />
@@ -73,4 +77,3 @@ function ChoosingAfterToss() {
 }
 
 export default ChoosingAfterToss;
-

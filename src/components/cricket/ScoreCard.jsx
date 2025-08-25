@@ -10,7 +10,7 @@ function ScoreCard() {
         <div className={classes.teamScores}>
           <div className={classes.team1}>
             <div className={classes.logoName}>
-              <img src="src\assets\team-icons\team1.png" alt="team1" />
+              <img src={matchState.team1Logo} alt="team1" />
               <h3>{matchState.team1}</h3>
             </div>
             <div className={classes.score}>
@@ -28,7 +28,7 @@ function ScoreCard() {
               {/* <div className={classes.overs}>(0)</div> */}
             </div>
             <div className={classes.logoName}>
-              <img src="src\assets\team-icons\team2.png" alt="team2" />
+              <img src={matchState.team2Logo} alt="team2" />
               <h3>{matchState.team2}</h3>
             </div>
           </div>

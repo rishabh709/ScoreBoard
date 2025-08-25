@@ -12,6 +12,7 @@ import ChoosingAfterToss from "./toss/ChoosingAfterToss";
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import SelectBatterAndBolwer from "../cricket/form/SelectBatterAndBolwer";
 function CricketConfigForm({referPage}) {
   const { state: matchState, dispatch: matchDispatch } = useMatchContext();
 
@@ -39,6 +40,9 @@ function CricketConfigForm({referPage}) {
 
   const [isHeads, setIsHeads] = useState(true);
   const tossOptions = ["Heads", "Tails"];
+
+  const [isCoinFlipped, setIsCoinFlipped] = useState(false);
+
   const handleTossToggle = () => {
     const newIsHeads = !isHeads;
     setIsHeads(newIsHeads);
@@ -57,6 +61,41 @@ function CricketConfigForm({referPage}) {
       tossOptions[isHeads ? 1 : 0].toLowerCase()
     );
   };
+
+  const winHandler = (team) => {
+    matchDispatch({type:"SET_TOSS_WINNER", payload: team})
+  }
+
+  const pickedSide = (picked) => {
+    console.log("Im inside the pickside function:: we will be seeing the futurea;;;; ", picked);
+    if(picked=='batting'){
+      if(matchState.tossWinner='team1'){
+        // HOW DO YOU KNOW THAT team2 will be always loosing
+        matchDispatch({type:"SET_BATTING_TEAM", payload:'team1'})
+        matchDispatch({type:"SET_BOLWING_TEAM", payload:'team2'})
+      } else{
+        matchDispatch({type:"SET_BATTING_TEAM", payload:'team2'})
+        matchDispatch({type:"SET_BOLWING_TEAM", payload:'team1'})
+      }
+    
+      // you have to check in which format the bolwing team name is mentioned so that the opposite one will get the bolwing or the opposite
+    } else{
+      if(matchState.tossWinner='team1'){
+        matchDispatch({type:"SET_BOLWING_TEAM", payload:'team1'})
+        matchDispatch({type:"SET_BATTING_TEAM", payload:'team2'})
+      } else{
+        matchDispatch({type:"SET_BOLWING_TEAM", payload:'team2'})
+        matchDispatch({type:"SET_BATTING_TEAM", payload:'team1'})
+      }
+    }
+
+  }
+  const setBatting = (battingTeam) => {
+    matchDispatch({type:"SET_BATTING_TEAM", payload:battingTeam})
+  }
+  const setBolwing = (bolwingTeam) => {
+    matchDispatch({type:"SET_BOLWING_TEAM", payload:bolwingTeam})
+  }
 
   const teamLogos = import.meta.glob("/src/assets/team-icons/TeamIcons/*.svg", {
     eager: true,
@@ -109,6 +148,7 @@ function CricketConfigForm({referPage}) {
                 options={tossOptions}
                 isToggled={isHeads}
                 onToggle={handleTossToggle}
+                disabled={isCoinFlipped}
               />
             </div>
             <div
@@ -126,16 +166,21 @@ function CricketConfigForm({referPage}) {
                 options={tossOptions}
                 isToggled={!isHeads}
                 onToggle={handleTossToggle}
+                disabled={isCoinFlipped}
               />
             </div>
           </div>
-          <CoinFlip TeamsTossPicks={matchState.tossPicked} />
+          <CoinFlip TeamsTossPicks={matchState.tossPicked} winHandler={winHandler} setIsCoinFlipped={setIsCoinFlipped}/>
         </div>
       ),
       alignItems: "center",
     },
     3: {
-      component: <ChoosingAfterToss />,
+      component: <ChoosingAfterToss chooser={matchState[matchState.tossWinner]} pickedSide={pickedSide}/>,
+      alignItems: "center",
+    },
+    4: {
+      component: < SelectBatterAndBolwer />,
       alignItems: "center",
     },
   };

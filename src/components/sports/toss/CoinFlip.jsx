@@ -5,11 +5,12 @@ import classes from "./CoinFlip.module.css";
 import { motion } from "framer-motion";
 import { useMatchContext } from "../../../context/matchReducer";
 
-function CoinFlip({TeamsTossPicks}) {
+function CoinFlip({TeamsTossPicks, setIsCoinFlipped, winHandler}) {
   const [isFlipping, setIsFlipping] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [result, setResult] = useState(null);
   const [hasFlipped, setHasFlipped] = useState(false);
+
   
   const {state:matchState} = useMatchContext()
 
@@ -17,6 +18,7 @@ function CoinFlip({TeamsTossPicks}) {
     if (!isFlipping) {
       setIsFlipping(true);
       setHasFlipped(true);
+      setIsCoinFlipped(true);
 
       // Add multiple full spins to simulate random spinning
       const fullSpins = 5; // number of full 360° spins
@@ -40,10 +42,14 @@ function CoinFlip({TeamsTossPicks}) {
   };
 
   const tossWinnerAnnoucement = () =>{
-    if (TeamsTossPicks.team1==result)
+    if (TeamsTossPicks.team1==result){
+      winHandler('team1');
       return (matchState.team1+" has won the Toss")
-    else if (TeamsTossPicks.team2==result)
+    }
+    else if (TeamsTossPicks.team2==result){
+      winHandler('team2');
       return (matchState.team2+" has won the Toss")
+    }
     else{
       return 'result awaited'
     }
@@ -69,7 +75,7 @@ function CoinFlip({TeamsTossPicks}) {
             <img src={TailsSvg} />
           </div>
         </motion.div>
-        <button type="button"  onClick={() => flip()}>
+        <button type="button"  onClick={() => flip()} disabled={hasFlipped}>
           Flip
         </button>
         <div>

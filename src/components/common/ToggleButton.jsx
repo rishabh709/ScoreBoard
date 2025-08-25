@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classes from "./ToggleButton.module.css";
 import { motion } from "framer-motion";
 
-function ToggleButton( {options, isToggled, onToggle}) {
+function ToggleButton( {options, isToggled, onToggle, disabled=false}) {
 
 // ___________________INFO________________________
 // create the states in parents in each toggle buttons as follow
@@ -14,7 +14,7 @@ function ToggleButton( {options, isToggled, onToggle}) {
 
   return (
     <label className={classes.toggleSwitch}>
-      <input type="checkbox" checked={!isToggled} onChange={onToggle} />
+      <input type="checkbox" checked={!isToggled} onChange={disabled==false? onToggle:''} />
       <motion.span className={classes.slider}>
         <div className={classes.options}>
           <div className={isToggled ? classes.checkedOption : ""}>{options[0]}</div>

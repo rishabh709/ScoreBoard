@@ -13,16 +13,19 @@ function GameCard(props) {
 
   return (
     <div className={classes.card}>
-      <div className={classes.imgWrapper}>
+      <div className={classes.topCard}>
+        <div className={classes.imgWrapper}>
         <img src={props.img} alt={props.text} srcset="" />
-      </div>
+        </div>
       <div className={classes.title}>{props.text}</div>
 
-      <button className={classes.btn} onClick={()=>{showForm()}}>Create</button>
+      </div>
+      <div className={classes.bottomCard}>
+        <button className={classes.btn} onClick={()=>{showForm()}}>Create</button>
+      </div>
       
       {/* {FormIsOpen && <GameConfigForm title={props.text} game={props.game} onNext={props.link} onCancle={cancelHandler}/>} */}
       {FormIsOpen && <CricketConfigForm referPage={props.link}/>}
-      {console.log("We have got the link: ", props.link)}
       
     </div>
   )

@@ -8,13 +8,13 @@
     max-height: 20vh;
     border-radius: 7px;
     background-color: #fcfcfc;
-    transform: translate(0%, 64%);
+    /* transform: translate(0%, 64%); */
     border: 1px solid #cacaca;
     box-shadow: -0px 4px 8px rgba(0, 0, 0, 0.2);
     /* transform: translateY(100%); */
 }
 
-.items{
+.container > *{
     padding: 5px 10px;
     background-color: #fcfcfc;
 

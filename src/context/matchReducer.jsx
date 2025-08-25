@@ -15,6 +15,8 @@ const initialMatchState = {
   matchId: "",
   team1: "Team A",
   team2: "Team B",
+  team1Logo: "",
+  team2Logo: "",
   maxOvers: 1,
   currentInnings: 0,
   // tossCaller:'',
@@ -59,6 +61,19 @@ function matchReducer(state, action) {
         ...state,
         team2: action.payload,
       };
+
+      // Logo
+      case "team1Logo":
+        return {
+          ...state,
+          team1Logo: action.payload
+        };
+      case "team2Logo":
+        return {
+          ...state,
+          team2Logo: action.payload
+        };
+        
     case "CHANGE_INNING":
       return changeInnings(state);
 

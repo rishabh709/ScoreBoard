@@ -33,9 +33,11 @@ function Teaminfo() {
 
   const team1LogoSelect = (logoPath) => {
     setTeam1Logo(logoPath);
+    matchDispatch({type:'team1Logo', payload:logoPath})
   };
   const team2LogoSelect = (logoPath) => {
     setTeam2Logo(logoPath);
+    matchDispatch({type:'team2Logo', payload:logoPath})
   };
 
   return (

@@ -83,15 +83,8 @@ function Teamup() {
   };
 
 
-  const inputStyle = {
-                    backgroundColor:'transparent', 
-                    borderBottom:'1px solid #00000066',
-                    paddingTop: '15px',
-                    paddingLeft: '5px'
-                  }
-
   const content = (
-    <div style={{display:'flex', width:'100%', height:'100%'}}>
+    <div className={classes.contentBox}>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className={classes.sno}>
 
@@ -108,7 +101,7 @@ function Teamup() {
           ))}
         </div>
         </div>
-        <div style={{width:'100%', height:'100%', display:'flex', flexGrow:'1', columnGap:'0.7vw', boxSizing:'border-box', overflow:'auto'}}>
+        <div className={classes.tableWrapper}>
         <div className={classes.table}>
           <h3 className={classes.columnHeading} ref={tableHeadRef2}>{matchState.team1}</h3>
           <Droppable droppableId={"team1"}>
@@ -144,7 +137,7 @@ function Teamup() {
             <div className={classes.inputBox}>
                 <input
                   type="text"
-                  style={inputStyle}
+
                   className={classes.nameInput}
                   value={inputValue1}
                   onChange={handleInputChange1}
@@ -193,7 +186,6 @@ function Teamup() {
             <div className={classes.inputBox}>
               <input
                 type="text"
-                style={inputStyle}
                 className={classes.nameInput}
                 value={inputValue2}
                 onChange={handleInputChange2}

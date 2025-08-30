@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import classes from "./Teamup.module.css";
 import { useMatchContext } from "../../context/matchReducer";
 import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
@@ -12,6 +12,21 @@ function Teamup() {
 
   const [inputValue1, setInputValue1] = useState("");
   const [inputValue2, setInputValue2] = useState("");
+
+  const tableHeadRef1 = useRef(null);
+  const tableHeadRef2 = useRef(null);
+  const tableHeadRef3 = useRef(null);
+
+  useEffect(()=>{
+    const divs = [tableHeadRef1, tableHeadRef2, tableHeadRef3];
+    const heights = divs.map(ref => ref.current?.offsetHeight || 0);
+    const maxHeight = Math.max(...heights);
+
+    divs.forEach(ref => {
+      console.log(ref.current)
+      ref.current.style.height = `${maxHeight}px`;
+    });
+  }, [matchState.players.team1.length, matchState.players.team2.length])
 
   const handleInputChange1 = (e) => {
     setInputValue1(e.target.value);
@@ -67,37 +82,6 @@ function Teamup() {
     });
   };
 
-  const Sno = () => (
-    <table style={{ borderRight: "none" }}>
-      <thead>
-        <tr>
-          <th>
-            <h3 className={classes.columnHeading}>Sno</h3>
-          </th>
-        </tr>
-      </thead>
-      <tbody className={classes.team}>
-        {matchState.players[maxTeam].map(({}, index) => (
-          <tr key={index} className={classes.tableRow}>
-            <td>{index + 1}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-
-  const Sno1 = () => (
-    <div className={classes.sno}>
-    <h3 className={classes.columnHeading}>No.</h3>
-    <div className={classes.numbers}>
-      {matchState.players[maxTeam].map(({}, index) => (
-        <div key={index} className={classes.tableRow}>
-          {index + 1}
-        </div>
-      ))}
-    </div>
-    </div>
-  );
 
   const inputStyle = {
                     backgroundColor:'transparent', 
@@ -108,11 +92,25 @@ function Teamup() {
 
   const content = (
     <div style={{display:'flex', width:'100%', height:'100%'}}>
-      <Sno1 />
       <DragDropContext onDragEnd={onDragEnd}>
+        <div className={classes.sno}>
+
+
+            <div className={classes.table}>
+              <h3 className={classes.columnHeading} ref={tableHeadRef1} >No.</h3>
+              </div>
+
+        <div className={classes.numbers}>
+          {matchState.players[maxTeam].map(({}, index) => (
+            <div key={index} className={classes.tableRow}>
+              {index + 1}
+            </div>
+          ))}
+        </div>
+        </div>
         <div style={{width:'100%', height:'100%', display:'flex', flexGrow:'1', columnGap:'0.7vw', boxSizing:'border-box', overflow:'auto'}}>
         <div className={classes.table}>
-          <h3 className={classes.columnHeading}>{matchState.team1}</h3>
+          <h3 className={classes.columnHeading} ref={tableHeadRef2}>{matchState.team1}</h3>
           <Droppable droppableId={"team1"}>
             {(provided) => (
               <div
@@ -160,7 +158,7 @@ function Teamup() {
 
         <div className={classes.table}>
           <div>
-            <h3 className={classes.columnHeading}>{matchState.team2}</h3>
+            <h3 className={classes.columnHeading} ref={tableHeadRef3}>{matchState.team2}</h3>
           </div>
           <Droppable droppableId={"team2"}>
             {(provided) => (

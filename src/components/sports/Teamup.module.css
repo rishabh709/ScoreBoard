@@ -42,7 +42,7 @@
   width: 100%;
   box-sizing: border-box;
 }
-.table h3{
+.table > h3{
   text-align: center;
 }
 
@@ -72,5 +72,9 @@
 .columnHeading{
   font-size: 20px;
   font-weight: 400;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: var(--main-color)
 }

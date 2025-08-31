@@ -87,21 +87,55 @@ function Teamup() {
     <div className={classes.contentBox}>
       <DragDropContext onDragEnd={onDragEnd}>
         <div className={classes.sno}>
-
-
-            <div className={classes.table}>
-              <h3 className={classes.columnHeading} ref={tableHeadRef1} >No.</h3>
+          <div className={classes.table}>
+            <h3 className={classes.columnHeading} ref={tableHeadRef1} >No.</h3>
+          </div>
+          <div className={classes.numbers}>
+            {matchState.players[maxTeam].map(({}, index) => (
+              <div key={index} className={classes.tableRow}>
+                {index + 1}
               </div>
+            ))}
+          </div>
+        </div>
 
-        <div className={classes.numbers}>
-          {matchState.players[maxTeam].map(({}, index) => (
-            <div key={index} className={classes.tableRow}>
-              {index + 1}
+        {/* This is for the background of the table rows */}
+        <div className={classes.dummyBgContentBox}>
+          <div className={classes.sno}>
+            <div className={classes.table}>
+              <h3 className={classes.columnHeading} ref={tableHeadRef1} style={{visibility:'hidden'}}>No.</h3>
             </div>
-          ))}
+            <div className={classes.numbers}>
+              {matchState.players[maxTeam].map(({}, index) => (
+                <div key={index} className={classes.tableRow} style={{visibility:'hidden'}}>
+                  {index + 1}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={classes.tableWrapper}>
+            <div className={classes.table}>
+              <h3 className={classes.columnHeading} ref={tableHeadRef2}>{`\u00A0`}</h3>
+              <div className={classes.teamBg}>
+                {matchState.players["team1"].map((playerName, id) => (
+                  <div className={classes.tableRow}>{`\u00A0`}</div>
+                ))}
+              </div>
+            </div>
+            <div className={classes.table}>
+              <h3 className={classes.columnHeading} ref={tableHeadRef2}>{`\u00A0`}</h3>
+              <div className={classes.teamBg}>
+                {matchState.players["team2"].map((playerName, id) => (
+                  <div className={classes.tableRow}>{`\u00A0`}</div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-        </div>
-        <div className={classes.tableWrapper}>
+
+
+        
+        <div className={`${classes.tableWrapper} ${classes.tableWrapperMainContent}`}>
         <div className={classes.table}>
           <h3 className={classes.columnHeading} ref={tableHeadRef2}>{matchState.team1}</h3>
           <Droppable droppableId={"team1"}>
@@ -317,4 +351,4 @@ function Teamup() {
   );
 }
 
-export default Teamup;
+export default Teamup;  

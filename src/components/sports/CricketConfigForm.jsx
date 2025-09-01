@@ -210,6 +210,8 @@ function CricketConfigForm({referPage}) {
           height: "100%",
           position: "relative", // Enable stacking for AnimatePresence children
           overflow: "hidden",
+          display:'flex',
+          flexDirection: 'column'
         }}
       >
         {
@@ -227,7 +229,7 @@ function CricketConfigForm({referPage}) {
           exit={{ x: -100 * tabDirection, opacity: 0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
           style={{
-            width: "100%",
+            flexGrow: '1',
             height: "100%",
             display: "flex",
             justifyContent: "center",

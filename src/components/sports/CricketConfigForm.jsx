@@ -109,8 +109,8 @@ function CricketConfigForm({referPage}) {
   const [overs, setOvers] = useState(null);
 
   const tabs = {
-    0: { component: <Teaminfo />, alignItems: "center" },
-    1: { component: <Teamup />, alignItems: "flex-start" },
+    0: { component: <Teaminfo />, alignItems: "center", title:"Enter Team Name & Over"},
+    1: { component: <Teamup />, alignItems: "flex-start", title:"Enter Players"},
     2: {
       component: (
         <div
@@ -174,14 +174,17 @@ function CricketConfigForm({referPage}) {
         </div>
       ),
       alignItems: "center",
+      title:"Toss"
     },
     3: {
       component: <ChoosingAfterToss chooser={matchState[matchState.tossWinner]} pickedSide={pickedSide}/>,
       alignItems: "center",
+      title:"Choose Batting or Fielding"
     },
     4: {
       component: < SelectBatterAndBolwer />,
       alignItems: "center",
+      title: "Select Openers and Bolwer"
     },
   };
 
@@ -209,6 +212,14 @@ function CricketConfigForm({referPage}) {
           overflow: "hidden",
         }}
       >
+        {
+          (tabs[currentTab].title=="")? 
+          ""
+          :
+          <div style={{ textAlign:'center', color:'var(--secordary-dark-color)', fontWeight:'bold'}}>
+            {tabs[currentTab].title}
+          </div>
+        }
         <motion.div
           key={currentTab}
           initial={{ x: 100 * tabDirection, opacity: 0 }}
@@ -223,8 +234,6 @@ function CricketConfigForm({referPage}) {
             alignItems: tabs[currentTab].alignItems,
             overflow: "hidden",
             // position: "absolute", // Needed to overlap tabs during transition
-            top: 0,
-            left: 0,
           }}
         >
           {tabs[currentTab].component}

@@ -234,7 +234,6 @@ function CricketConfigForm({referPage}) {
             display: "flex",
             justifyContent: "center",
             alignItems: tabs[currentTab].alignItems,
-            overflow: "hidden",
             // position: "absolute", // Needed to overlap tabs during transition
           }}
         >

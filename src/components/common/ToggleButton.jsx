@@ -12,8 +12,10 @@ function ToggleButton( {options, isToggled, onToggle, disabled=false}) {
   //   setIsToggled((prev) => !prev);
   // };
 
+  const disabledStyle = disabled==true?{opacity:'70%'}:{};
+
   return (
-    <label className={classes.toggleSwitch}>
+    <label className={classes.toggleSwitch} style={disabledStyle}>
       <input type="checkbox" checked={!isToggled} onChange={disabled==false? onToggle:''} />
       <motion.span className={classes.slider}>
         <div className={classes.options}>

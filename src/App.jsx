@@ -23,6 +23,7 @@ import SelectProfileIcon from './components/common/SelectProfileIcon'
 import CoinFlip from './components/sports/toss/CoinFlip'
 import ChoosingAfterToss from './components/sports/toss/ChoosingAfterToss'
 import SelectBatterAndBolwer from './components/cricket/form/SelectBatterAndBolwer'
+import Dnd from './components/sports/toss/Dnd'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -45,6 +46,7 @@ const router = createBrowserRouter(
       <Route path='/icon' element={<SelectProfileIcon />} ></Route>
       <Route path='/coin' element={<CoinFlip />} ></Route>
       <Route path='/pick' element={<ChoosingAfterToss />} ></Route>
+      <Route path='/dnd' element={<Dnd />} ></Route>
 
     </Route>
   )

@@ -9,18 +9,19 @@ function DropdownMenu({
   setSelectedOption,
   options,
 }) {
-  const [isDropDownOpen1, setIsDropDownOpen1] = useState(false);
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const dropdownParentRef = useRef(null);
 
   // Close dropdown if clicked outside
   useEffect(() => {
     function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropDownOpen1(false);
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target) && !dropdownParentRef.current.contains(event.target)) {
+        setIsDropDownOpen(false);
       }
     }
 
-    if (isDropDownOpen1) {
+    if (isDropDownOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -30,7 +31,7 @@ function DropdownMenu({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isDropDownOpen1]);
+  }, [isDropDownOpen]);
 
   // yet to implement the setting the selected option
 
@@ -48,14 +49,15 @@ function DropdownMenu({
     <div style={{ width: "max-content" }}>
       <div
         className={classes.container}
-        onClick={() => setIsDropDownOpen1((prev) => !prev)}
+        onClick={() => setIsDropDownOpen((prev) => !prev)}
+        ref={dropdownParentRef}
       >
         <div className={classes.nameTag}>
           {defaultValue}
-          {isDropDownOpen1 ? <FaChevronDown /> : <FaChevronUp />}
+          {isDropDownOpen ? <FaChevronDown /> : <FaChevronUp />}
         </div>
       </div>
-      {isDropDownOpen1 && ddMenu}
+      {isDropDownOpen && ddMenu}
     </div>
   );
 }

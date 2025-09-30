@@ -30,9 +30,13 @@ function CricketConfigForm({referPage}) {
   }, [currentTab]);
 
   const onNext = () => {
-    currentTab == Object.keys(tabs).length - 1
-      ? navigateto(referPage)
-      : setCurrentTab(currentTab + 1);
+    const currentTabValidate = tabs[currentTab].validate();
+    console.log("Carrent valid: ", currentTabValidate);
+    if(currentTabValidate==true){
+      currentTab == Object.keys(tabs).length - 1
+        ? navigateto(referPage)
+        : setCurrentTab(currentTab + 1);
+    } 
   };
   const onBack = () => {
     currentTab == 0 ? "" : setCurrentTab(currentTab - 1);
@@ -109,8 +113,15 @@ function CricketConfigForm({referPage}) {
   const [overs, setOvers] = useState(null);
 
   const tabs = {
-    0: { component: <Teaminfo />, alignItems: "center", title:"Enter Team Name & Over"},
-    1: { component: <Teamup />, alignItems: "flex-start", title:"Enter Players"},
+    0: { component: <Teaminfo />, alignItems: "center", title:"Enter Team Name & Over", validate: ()=>{
+      if(matchState.team1=='' || matchState.team2=='') return false;
+      if(matchState.maxOvers==undefined || matchState.maxOvers<=0) return false;
+      return true;
+    }},
+    1: { component: <Teamup />, alignItems: "flex-start", title:"Enter Players", validate:()=>{
+      if(matchState.players.team1.length==0 || matchState.players.team2.length==0) return false;
+      return true;
+    }},
     2: {
       component: (
         <div
@@ -174,17 +185,29 @@ function CricketConfigForm({referPage}) {
         </div>
       ),
       alignItems: "center",
-      title:"Toss"
+      title:"Toss",
+      validate:()=>{
+        if(matchState.tossWinner=='' || matchState.tossWinner==undefined) return false;
+        return true;
+      },
     },
     3: {
       component: <ChoosingAfterToss chooser={matchState[matchState.tossWinner]} pickedSide={pickedSide}/>,
       alignItems: "center",
-      title:"Choose Batting or Fielding"
+      title:"Choose Batting or Fielding",
+      validate:()=>{
+        if(matchState.battingTeam=='' || matchState.bolwingTeam=='') return false;
+        return true;
+      },
     },
     4: {
       component: < SelectBatterAndBolwer />,
       alignItems: "center",
-      title: "Select Openers and Bolwer"
+      title: "Select Openers and Bolwer",
+      validate:()=>{if(matchState.current_batter.onStrike=='' || matchState.current_batter.nonStrik == '') return false
+        if(matchState.over.bowlerName == '') return false;
+        return true;
+      },
     },
   };
 

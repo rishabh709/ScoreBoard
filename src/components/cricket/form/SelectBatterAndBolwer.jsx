@@ -22,6 +22,15 @@ function SelectBatterAndBolwer() {
     </div>
   );
 
+  const setOnStrikeBatter = (batterName) => {
+    matchDispatch({type:'SET_BATTER_ON_STRIKE', payload:batterName})
+  }
+  const setOnNonStrikeBatter = (batterName) => {
+    matchDispatch({type:'SET_BATTER_ON_NONSTRIKE', payload:batterName})
+  }
+  const setBolwerName = (bolwerName) => {
+    matchDispatch({type:'SET_BOLWER_NAME', payload:bolwerName})
+  }
   return (
     <div
       style={{
@@ -35,7 +44,8 @@ function SelectBatterAndBolwer() {
       <div className={classes.bar}>
         <div>Batter on Strike</div>
         <DropdownMenu
-          defaultValue={"check"}
+          defaultValue={matchState.current_batter.onStrike}
+          setSelectedOption={setOnStrikeBatter}
           options={matchState.players[matchState.battingTeam]}
         ></DropdownMenu>
       </div>
@@ -43,7 +53,8 @@ function SelectBatterAndBolwer() {
       <div className={classes.bar}>
         <div>Batter on Non Strike</div>
         <DropdownMenu
-          defaultValue={"check"}
+          defaultValue={matchState.current_batter.nonStrike}
+          setSelectedOption={setOnNonStrikeBatter}
           options={matchState.players[matchState.battingTeam]}
         ></DropdownMenu>
       </div>
@@ -51,7 +62,8 @@ function SelectBatterAndBolwer() {
       <div className={classes.bar}>
         <div>Bolwer</div>
         <DropdownMenu
-          defaultValue={"check"}
+          defaultValue={matchState.over.bowlerName}
+          setSelectedOption={setBolwerName}
           options={matchState.players[matchState.bowlingTeam]}
         ></DropdownMenu>
       </div>

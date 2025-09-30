@@ -40,7 +40,7 @@ function DropdownMenu({
       <div className={classes.menu}>
         {children != null
           ? children
-          : options.map((items, i) => <div key={i}>{items}</div>)}
+          : options.map((items, i) => <div key={i} onClick={()=>{setSelectedOption(items); setIsDropDownOpen(false);}}>{items}</div>)}
       </div>
     </div>
   );
@@ -53,7 +53,7 @@ function DropdownMenu({
         ref={dropdownParentRef}
       >
         <div className={classes.nameTag}>
-          {defaultValue}
+          {defaultValue==''?"Select": defaultValue}
           {isDropDownOpen ? <FaChevronDown /> : <FaChevronUp />}
         </div>
       </div>

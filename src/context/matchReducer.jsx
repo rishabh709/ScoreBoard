@@ -25,7 +25,7 @@ const initialMatchState = {
   battingTeam: 'team2',
   bowlingTeam: 'team1',
   runs: {team1: 0, team2: 0},
-  current_batsman: {team1: [], team2: []},
+  current_batter: {onStrike: '', nonStrike: ''},
   wickets: {team1: 0, team2: 0},
   ball: {
     overId: "",
@@ -125,8 +125,20 @@ function matchReducer(state, action) {
     case "SET_BATSMAN_NAME":
       return{
         ...state,
-        current_batsman: {...state.current_batsman, [state.battingTeam]: action.payload}
+        current_batter: {...state.current_batter, [state.battingTeam]: action.payload}
       }
+    case "SET_BATTER_ON_STRIKE":{
+      return{
+        ...state,
+        current_batter:{...state.current_batter, onStrike:action.payload}
+      }
+    }
+    case "SET_BATTER_ON_NONSTRIKE":{
+      return{
+        ...state,
+        current_batter:{...state.current_batter, nonStrike:action.payload}
+      }
+    }
     case "SET_TOSS_PICKS":
       return{
         ...state,

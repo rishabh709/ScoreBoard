@@ -91,10 +91,10 @@ function ScoringController() {
       <div className={classes.scoring}>
         <div className={classes.batters}>
           <div className={classes.batter} onClick={() => enterBatterName(1)}>
-            Batter-name
+            {matchState.current_batter.onStrike}
           </div>
           <div className={classes.batter} onClick={() => enterBatterName(2)}>
-            Batter-name
+            {matchState.current_batter.nonStrike}
           </div>
         </div>
         <div className={classes.byesOrbat}>

@@ -1,0 +1,101 @@
+select {
+  text-align: center;
+  padding: 7px 12px;
+  width: 100%;
+
+  background-color: #d9d9d9;
+  color: var(--main-color);
+  border-radius: 30px;
+  border: none;
+}
+
+
+/* Reset box sizing */
+/* Opt in to the customizable select styling */
+select, ::picker(select) {
+  appearance: base-select;
+}
+
+/* Style the select “button” (the closed state) */
+select {
+  border-radius: 30px;
+  /* background: #f5f5f5; */
+  padding: 8px 12px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+select:hover, select:focus {
+  background: #eaeaea;
+}
+
+/* Style the drop‑down picker container */
+::picker(select) {
+  border: none;
+  /* optionally add some shadow */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+    /* Style each option in the dropdown */
+option {
+  display: flex; /* default in custom select */
+  justify-content: flex-start;
+  gap: 8px;
+  /* border: 2px solid #888; */
+  background: white;
+  padding: 8px 12px;
+  /* border-radius: 30px; */
+  transition: background-color 0.3s;
+}
+
+/* Round corners: top of first, bottom of last */
+option:first-of-type {
+  border-radius: 8px 8px 0 0;
+}
+option:last-of-type {
+  border-radius: 0 0 8px 8px;
+}
+option:not(option:last-of-type) {
+  border-bottom: none;
+}
+
+/* Hover/focus highlight for options */
+option:hover{
+  /* background: #d0e0f0; */
+  background: #f0f0f0;
+}
+
+/* Bold the selected one in the dropdown list */
+option:checked {
+  font-weight: bold;
+}
+option::checkmark {
+  display: none;
+}
+::picker(select) {
+  border: none;
+  color: black;
+  background: #fcfcfc;
+  /* border-radius: 8px; */
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); */
+  overflow: hidden;
+}
+
+
+select,
+::picker(select) {
+  appearance: base-select;
+}
+
+/* Style the dropdown container */
+::picker(select) {
+  background: white;
+  border: none;
+  border-radius: 12px; /* Curve the dropdown container */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* optional shadow */
+  overflow: auto;
+
+  scrollbar-color: #d9d9d9 #b3b3b300; /* thumb color, track color */
+  scrollbar-width: thin; 
+  scrollbar-arrow-color: transparent;
+}

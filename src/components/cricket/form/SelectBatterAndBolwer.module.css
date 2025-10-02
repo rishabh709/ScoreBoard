@@ -2,4 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+}
+.label {
+  width: 40%;
+}
+.optionsTag{
+  width: 60%;
 }

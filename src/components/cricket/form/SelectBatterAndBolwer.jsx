@@ -47,7 +47,7 @@ function SelectBatterAndBolwer() {
         <div className={classes.lable}>Batter on Strike</div>
         <div className={classes.optionsTag}>
           <DropdownMenuV2
-            setSelectedOption={setOnStrikeBatter}
+            setSelected={setOnStrikeBatter}
             options={matchState.players[matchState.battingTeam]}
           />
         </div>
@@ -58,7 +58,7 @@ function SelectBatterAndBolwer() {
         <div className={classes.optionsTag}>
           <DropdownMenuV2
             // defaultValue={matchState.current_batter.nonStrike}
-            setSelectedOption={setOnNonStrikeBatter}
+            setSelected={setOnNonStrikeBatter}
             options={matchState.players[matchState.battingTeam]}
           ></DropdownMenuV2>
         </div>

@@ -41,7 +41,6 @@ function ChoosingAfterToss({ chooser, pickedSide }) {
         <motion.img
           src={BatSVG}
           alt="bat"
-          srcset=""
           initial={false}
           animate={{
             x: isToggled ? 0 : -150,
@@ -55,7 +54,6 @@ function ChoosingAfterToss({ chooser, pickedSide }) {
         <motion.img
           src={BallSVG}
           alt="ball"
-          srcset=""
           initial={false}
           animate={{
             x: isToggled ? 150 : 0,

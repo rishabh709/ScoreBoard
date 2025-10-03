@@ -10,19 +10,16 @@ function HeroSection() {
           className={classes.logoImg}
           src="src\assets\volleyball.svg"
           alt="volleyball"
-          srcset=""
         />
         <img
           className={classes.logoImg}
           src="src\assets\baseball.svg"
           alt="baseball"
-          srcset=""
         />
         <img
           className={classes.logoImg}
           src="src\assets\football.svg"
           alt="football"
-          srcset=""
         />
       </div>
       <div className={classes.midBanner}>
@@ -52,19 +49,16 @@ function HeroSection() {
           className={classes.logoImg}
           src="src\assets\cricket.svg"
           alt="cricket"
-          srcset=""
         />
         <img
           className={classes.logoImg}
           src="src\assets\tennis.svg"
           alt="tennis"
-          srcset=""
         />
         <img
           className={classes.logoImg}
           src="src\assets\basketball.svg"
           alt="basketball"
-          srcset=""
         />
       </div>
     </div>

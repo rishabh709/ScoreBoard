@@ -8,7 +8,7 @@ function PlayerProfile() {
         <div className={classes.profileContainer}>
             <div className={classes.leftBox}>
                 <div className={classes.profileImg}>
-                    <img src="src\assets\images\playerImage.png" alt="PlayerProfileImg" srcset="" />
+                    <img src="src\assets\images\playerImage.png" alt="PlayerProfileImg" />
                 </div>
             </div>
             <div className={classes.rightBox}>

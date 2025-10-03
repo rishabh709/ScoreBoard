@@ -15,7 +15,7 @@ function GameCard(props) {
     <div className={classes.card}>
       <div className={classes.topCard}>
         <div className={classes.imgWrapper}>
-        <img src={props.img} alt={props.text} srcset="" />
+        <img src={props.img} alt={props.text} />
         </div>
       <div className={classes.title}>{props.text}</div>
 

@@ -73,7 +73,7 @@ function CricketConfigForm({referPage}) {
   const pickedSide = (picked) => {
     console.log("Im inside the pickside function:: we will be seeing the futurea;;;; ", picked);
     if(picked=='batting'){
-      if(matchState.tossWinner='team1'){
+      if(matchState.tossWinner==='team1'){
         // HOW DO YOU KNOW THAT team2 will be always loosing
         matchDispatch({type:"SET_BATTING_TEAM", payload:'team1'})
         matchDispatch({type:"SET_BOLWING_TEAM", payload:'team2'})
@@ -84,7 +84,7 @@ function CricketConfigForm({referPage}) {
     
       // you have to check in which format the bolwing team name is mentioned so that the opposite one will get the bolwing or the opposite
     } else{
-      if(matchState.tossWinner='team1'){
+      if(matchState.tossWinner==='team1'){
         matchDispatch({type:"SET_BOLWING_TEAM", payload:'team1'})
         matchDispatch({type:"SET_BATTING_TEAM", payload:'team2'})
       } else{

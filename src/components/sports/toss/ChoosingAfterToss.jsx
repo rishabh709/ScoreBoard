@@ -12,9 +12,9 @@ function ChoosingAfterToss({ chooser, pickedSide }) {
   // Try including the bat and ball img into OnClick function
 
   const handleToggle = () => {
-    isToggled == !false
-      ? pickedSide(options[0].toLowerCase())
-      : pickedSide(options[1].toLowerCase());
+    isToggled
+      ? pickedSide(options[1].toLowerCase())
+      : pickedSide(options[0].toLowerCase());
     setIsToggled((prev) => !prev);
   };
 

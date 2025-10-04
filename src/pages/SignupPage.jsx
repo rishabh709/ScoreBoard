@@ -14,6 +14,9 @@ function SignupPage() {
     passwd: "",
   });
   const [isPasswdVisibile, setIsPasswdVisible] = useState(false);
+  const togglePassword = () => {
+    setIsPasswdVisible(prev => !prev)
+  }
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -63,15 +66,18 @@ function SignupPage() {
           />
           <div className={classes.passwdWrapper}>
             <input
-              type="password"
+              type={isPasswdVisibile? "text":"password"}
               name="passwd"
               onChange={hanleChange}
               placeholder="Password"
               className={classes.inpt}
               required
             />
-            <span className={classes.eyeIcon}>
-              <FaEye/>
+            <span className={classes.eyeIcon} onClick={togglePassword}>
+              {
+              isPasswdVisibile?
+              <FaEyeSlash/>:<FaEye/>
+              }
             </span>
           </div>
         </div>

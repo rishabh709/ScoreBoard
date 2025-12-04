@@ -3,8 +3,10 @@ import ScoreCard from '../components/cricket/ScoreCard'
 import OverBar from '../components/cricket/OverBar'
 import ScoringController from '../components/cricket/ScoringController'
 import OversSummary from '../components/cricket/OversSummary'
+import SidebarLayout from '../layout/componentLayout/SidebarLayout'
 function CricketPage() {
   return (
+    <>
     <div style={{
       height:'90dvh',
       display: 'flex',
@@ -17,8 +19,10 @@ function CricketPage() {
       <ScoringController/>
       {/* <div className={classes.overs}>
         <OversSummary />
-      </div> */}
+        </div> */}
     </div>
+    <SidebarLayout></SidebarLayout>
+    </>
   )
 }
 

@@ -1,0 +1,110 @@
+.sidebarContainer{
+    /* position: absolute; */
+    position: relative;
+    z-index: 10;
+    width: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: red;
+    background-color: #F2F2F2;
+    /* transition: width 1s ; */
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-radius: 20px;
+}
+.wrapper{
+  position: absolute;
+  top: 10vh;
+  left: 73vw;
+  width: 27vw;;
+  display: flex;
+  flex-direction: row-reverse;
+  overflow-x: hidden;
+  height: -webkit-fill-available;
+}
+.sidebarTitle{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    /* padding: 0 10px; */
+    align-items: center;
+    overflow: hidden;
+    /* background-color: blue; */
+}
+.sidebar{
+    position: relative;
+}
+.sidebarTitle > h2{
+    /* background-color: red; */
+    /* width: 100%; */
+    padding: 15px 0px;
+    white-space: nowrap;
+    color: #613DC1;
+    text-align: center;
+    transition: all 1s;
+    overflow: hidden;
+}
+@keyframes slideRight {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg); /* 2 full rotations */
+  }
+}
+
+@keyframes slideLeft {
+    from {
+        transform: rotate(360deg); /* 2 full rotations */
+    }
+    to {
+        transform: rotate(0deg);
+  }
+}
+.slideRight{
+    animation: slideRight 1s ;
+    position: relative;
+}
+.slideLeft{
+    animation: slideLeft 1s ;
+    position: relative;
+}
+.toggleButton {
+  position: fixed;
+  top: 11vh;
+  left: 95vw;
+  z-index: 1000; /* Make sure it's above the sidebar */
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebarContent{
+  text-align: center;
+  display: flex;
+  flex-grow: 1;
+  /* height: 90%; */
+  flex-direction: column;
+  justify-content: space-between;
+}
+.cancel{
+  color: white;
+  background-color: #FF4B4F;
+  padding: 20px 0;
+  border-bottom-left-radius: 20px;
+  cursor: pointer;
+}
+
+@media (width<720) {
+  .sidebarContainer{
+    width: 50vw;
+    background-color: red;
+  }
+}

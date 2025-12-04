@@ -23,6 +23,7 @@ import SelectProfileIcon from './components/common/SelectProfileIcon'
 import CoinFlip from './components/sports/toss/CoinFlip'
 import ChoosingAfterToss from './components/sports/toss/ChoosingAfterToss'
 import SelectBatterAndBolwer from './components/cricket/form/SelectBatterAndBolwer'
+import SidebarLayout from './layout/componentLayout/SidebarLayout'
 
 
 const router = createBrowserRouter(
@@ -46,6 +47,7 @@ const router = createBrowserRouter(
       <Route path='/icon' element={<SelectProfileIcon />} ></Route>
       <Route path='/coin' element={<CoinFlip />} ></Route>
       <Route path='/pick' element={<ChoosingAfterToss />} ></Route>
+      <Route path='/bar' element={<SidebarLayout />} ></Route>
 
     </Route>
   )

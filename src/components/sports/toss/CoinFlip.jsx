@@ -10,6 +10,7 @@ function CoinFlip({TeamsTossPicks, setIsCoinFlipped, winHandler}) {
   const [rotation, setRotation] = useState(0);
   const [result, setResult] = useState(null);
   const [hasFlipped, setHasFlipped] = useState(false);
+  const [tossWinner, SetTossWinner] = useState("");
 
   
   const {state:matchState} = useMatchContext()
@@ -39,15 +40,18 @@ function CoinFlip({TeamsTossPicks, setIsCoinFlipped, winHandler}) {
     const face = rotation % 360 === 0 ? "heads" : "tails";
     setResult(face);
     setIsFlipping(false);
+    tossWinnerAnnoucement()
   };
 
   const tossWinnerAnnoucement = () =>{
     if (TeamsTossPicks.team1==result){
       winHandler('team1');
+      SetTossWinner('team1')
       return (matchState.team1+" has won the Toss")
     }
     else if (TeamsTossPicks.team2==result){
       winHandler('team2');
+      SetTossWinner('team2')
       return (matchState.team2+" has won the Toss")
     }
     else{
@@ -72,15 +76,14 @@ function CoinFlip({TeamsTossPicks, setIsCoinFlipped, winHandler}) {
             className={classes.coin_face}
             style={{ transform: "rotateX(180deg)" }}
           >
-            <img src={TailsSvg} />
+            <img src={TailsSvg} />  
           </div>
         </motion.div>
         <button type="button"  onClick={() => flip()} disabled={hasFlipped}>
           Flip
         </button>
-        <div>
-          { tossWinnerAnnoucement()}
-          {console.log("result is :", result)}
+        <div>_
+          {!isFlipping && hasFlipped && (matchState[tossWinner]) + " has won the Toss"}
         </div>
       </div>
     </div>

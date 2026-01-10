@@ -9,6 +9,14 @@ function SidebarLayout() {
     setSideBarIsVisible((prev) => !prev);
   };
 
+  var ScreenSizeForSmallScreen = "30vw";
+  if(window.innerWidth<=768){
+     ScreenSizeForSmallScreen = "80vw";
+  } else{
+  }
+
+
+
   return (
     <div className={classes.wrapper}>
       <div className={classes.toggleButton} onClick={toggleSidebarVisibility}>
@@ -23,7 +31,7 @@ function SidebarLayout() {
         className={classes.sidebarContainer}
         animate={{
           x: sideBarIsVisible ? "0" : '0',
-          width: sideBarIsVisible ? "30vw" : "0",
+          width: sideBarIsVisible ? ScreenSizeForSmallScreen : "0",
         }}
         initial={{ width: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -36,7 +44,7 @@ function SidebarLayout() {
         {sideBarIsVisible && (
           <div className={classes.sidebarContent}>
             <div className={classes.sidebarList}>
-              <div className={classes.list}>One</div>
+              <div className={classes.list}>One and one</div>
               <div className={classes.list}>Two</div>
             </div>
             <div className={classes.cancel} onClick={toggleSidebarVisibility}>Close</div>

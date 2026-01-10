@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    background-color: red;
+    /* background-color: red; */
     background-color: #F2F2F2;
     /* transition: width 1s ; */
     border-top-right-radius: 20px;
@@ -16,8 +16,12 @@
 .wrapper{
   position: absolute;
   top: 10vh;
-  left: 73vw;
-  width: 27vw;;
+  /* left: 73vw; */
+  /* top: 0; */
+  right: 0;     /* anchor to the right */
+  width: 200px; /* can change dynamically */
+  height: 100%;
+  width: -webkit-fill-available;
   display: flex;
   flex-direction: row-reverse;
   overflow-x: hidden;
@@ -102,9 +106,8 @@
   cursor: pointer;
 }
 
-@media (width<720) {
-  .sidebarContainer{
-    width: 50vw;
-    background-color: red;
+@media (width <= 768px) {
+  .wrapper {
+    width: 80vw;
   }
 }

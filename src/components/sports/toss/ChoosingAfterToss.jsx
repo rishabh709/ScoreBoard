@@ -70,6 +70,7 @@ function ChoosingAfterToss({ chooser, pickedSide }) {
         isToggled={isToggled}
         onToggle={handleToggle}
       />
+      {console.log("WHwat.. ..")}
     </div>
   );
 }

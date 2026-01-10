@@ -68,6 +68,7 @@ function CricketConfigForm({referPage}) {
 
   const winHandler = (team) => {
     matchDispatch({type:"SET_TOSS_WINNER", payload: team})
+    console.log("confirmed win");
   }
 
   const pickedSide = (picked) => {

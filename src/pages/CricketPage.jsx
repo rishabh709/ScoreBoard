@@ -4,6 +4,7 @@ import OverBar from '../components/cricket/OverBar'
 import ScoringController from '../components/cricket/ScoringController'
 import OversSummary from '../components/cricket/OversSummary'
 import SidebarLayout from '../layout/componentLayout/SidebarLayout'
+import CricketSidebar from '../components/cricket/CricketSidebar'
 function CricketPage() {
   return (
     <>
@@ -21,7 +22,8 @@ function CricketPage() {
         <OversSummary />
         </div> */}
     </div>
-    <SidebarLayout></SidebarLayout>
+    {/* <SidebarLayout></SidebarLayout> */}
+    <CricketSidebar></CricketSidebar>
     </>
   )
 }

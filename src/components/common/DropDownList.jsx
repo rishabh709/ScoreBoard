@@ -12,9 +12,9 @@ function DropDownList({children}) {
 
 
   return(
-    <div className={classes.container}>
+    <select id="fruits" name="fruits">
       {children}
-    </div>
+    </select>
   )
 
 

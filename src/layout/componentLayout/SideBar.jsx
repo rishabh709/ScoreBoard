@@ -1,24 +1,17 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 import { motion } from "framer-motion";
-import classes from "./SidebarLayout.module.css";
+import classes from './SideBar.module.css'
 
-function SidebarLayout({children}) {
+function SideBar() {
   const [sideBarIsVisible, setSideBarIsVisible] = useState(false);
 
   const toggleSidebarVisibility = () => {
     setSideBarIsVisible((prev) => !prev);
   };
 
-  var ScreenSizeForSmallScreen = "30vw";
-  if(window.innerWidth<=768){
-     ScreenSizeForSmallScreen = "80vw";
-  } else{
-  }
-
-
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.sideBar}>
       <div className={classes.toggleButton} onClick={toggleSidebarVisibility}>
         <img
           src="src/assets/icons/settings-icon.svg"
@@ -30,30 +23,29 @@ function SidebarLayout({children}) {
       <motion.div
         className={classes.sidebarContainer}
         animate={{
-          x: sideBarIsVisible ? "0" : '0',
-          width: sideBarIsVisible ? ScreenSizeForSmallScreen : "0",
+          x: sideBarIsVisible ? "-100%" : 0,
+          width: sideBarIsVisible ? "30vw" : "0",
         }}
         initial={{ width: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
       >
         <div className={classes.sidebarTitle}>
-          <h2 style={{ width: sideBarIsVisible ? "100%" : "0%" }}>
+          <h2 style={{ width: sideBarIsVisible ? "100%" : "0px" }}>
             Match Configuration
           </h2>
         </div>
         {sideBarIsVisible && (
           <div className={classes.sidebarContent}>
             <div className={classes.sidebarList}>
-              <div className={classes.list}>One and one</div>
+              <div className={classes.list}>One</div>
               <div className={classes.list}>Two</div>
-              {children}
             </div>
             <div className={classes.cancel} onClick={toggleSidebarVisibility}>Close</div>
           </div>
         )}
       </motion.div>
     </div>
-  );
+  )
 }
 
-export default SidebarLayout;
+export default SideBar

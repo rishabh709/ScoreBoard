@@ -6,7 +6,7 @@ import DropDownList from "../common/DropDownList";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 function OverBar(props) {
-  const { state: matchState, dispatch:matchDispatch} = useMatchContext();
+  const { state: matchState, dispatch: matchDispatch } = useMatchContext();
 
   const [openDropDown, isOpenDropDown] = useState(false);
 
@@ -60,25 +60,16 @@ function OverBar(props) {
                 return <div key={k}>{ball.run}</div>;
               })}
         </div>
-        <div className={classes.bowlerName} onClick={handleBolwerSelection}>
+        <select id="bolwername" className={classes.bowlerName} onClick={handleBolwerSelection}>
           {matchState.over.bowlerName}
-          <div>
-            {openDropDown ? <FaChevronDown /> : <FaChevronUp />}
-          </div>
-          {openDropDown && (
-            <div style={{backgroundColor:'red', position:'absolute',}}>
-            <DropDownList>
-              {matchState.players["team" + (matchState.currentInnings + 1)].map(
-                (names, i) => (
-                  <div key={i} onClick={() => setBolwer(names)}>
-                    {names}
-                  </div>
-                )
-              )}
-            </DropDownList>
-            </div>
+          {matchState.players["team" + (matchState.currentInnings + 1)].map(
+            (names, i) => (
+              <option key={i} onClick={() => setBolwer(names)} value={names}>
+                {names}
+              </option>
+            ),
           )}
-        </div>
+        </select>
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ import ChoosingAfterToss from "./toss/ChoosingAfterToss";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import SelectBatterAndBolwer from "../cricket/form/SelectBatterAndBolwer";
-function CricketConfigForm({referPage}) {
+function CricketConfigForm({referPage, onExit}) {
   const { state: matchState, dispatch: matchDispatch } = useMatchContext();
 
   const [currentTab, setCurrentTab] = useState(0);
@@ -170,7 +170,7 @@ function CricketConfigForm({referPage}) {
               />
             </div>
           </div>
-          <CoinFlip TeamsTossPicks={matchState.tossPicked} winHandler={winHandler} setIsCoinFlipped={setIsCoinFlipped}/>
+          <CoinFlip TeamsTossPicks={matchState.tossPicked} winHandler={winHandler} setIsCoinFlipped={setIsCoinFlipped} tossWinnerState={matchState.tossWinner} teamNames={{team1:matchState['team1'], team2:matchState['team2']}} />
         </div>
       ),
       alignItems: "center",
@@ -215,6 +215,7 @@ function CricketConfigForm({referPage}) {
       onBack={onBack}
       currentTab={currentTab}
       setCurrentTab={setCurrentTab}
+      onExit={onExit}
     >
       <div
         style={{

@@ -5,7 +5,7 @@ import classes from "./CoinFlip.module.css";
 import { motion } from "framer-motion";
 import { useMatchContext } from "../../../context/matchReducer";
 
-function CoinFlip({TeamsTossPicks, setIsCoinFlipped, winHandler}) {
+function CoinFlip({TeamsTossPicks, setIsCoinFlipped, winHandler, tossWinnerState, teamNames}) {
   const [isFlipping, setIsFlipping] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [result, setResult] = useState(null);
@@ -61,7 +61,7 @@ function CoinFlip({TeamsTossPicks, setIsCoinFlipped, winHandler}) {
 
   return (
     <div>
-      <div className={classes.container}>
+      <div className={classes.container} >
         <motion.div
           key={rotation}
           animate={{ rotateX: rotation, scale: isFlipping? [1, 1.3, 1]:1 }}
@@ -79,11 +79,11 @@ function CoinFlip({TeamsTossPicks, setIsCoinFlipped, winHandler}) {
             <img src={TailsSvg} />  
           </div>
         </motion.div>
-        <button type="button"  onClick={() => flip()} disabled={hasFlipped}>
+        <button type="button"  onClick={() => flip()} disabled={hasFlipped || tossWinnerState!=null}>
           Flip
         </button>
-        <div>_
-          {!isFlipping && hasFlipped && (matchState[tossWinner]) + " has won the Toss"}
+        <div>
+          {((!isFlipping && hasFlipped) || tossWinnerState!=null) && (teamNames[tossWinnerState]) + " has won the Toss"}
         </div>
       </div>
     </div>

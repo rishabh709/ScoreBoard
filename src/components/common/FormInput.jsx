@@ -9,7 +9,10 @@ function FormInput(inputField) {
     event.target.select()
   }
 
+  
   inputField = inputField.inputField
+  
+  const inputStyle = inputField.style ?? {};
 
   return (
     <input
@@ -17,7 +20,7 @@ function FormInput(inputField) {
       value={inputField.data==null? "":inputField.data}
       onChange={(e) => inputField.setData(e.target.value)}
       placeholder={inputField.place}
-      required
+      requireds
       // className={classes.inpts}
       style={{
         border:'none',
@@ -28,7 +31,8 @@ function FormInput(inputField) {
         boxSizing: 'border-box',
         color: 'black',
         padding: '0 5%',
-        fontSize: '1rem'
+        fontSize: '1rem',
+        ...inputStyle,
       }}
       onFocus={handleFocus}
 

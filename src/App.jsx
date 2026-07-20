@@ -24,6 +24,7 @@ import CoinFlip from './components/sports/toss/CoinFlip'
 import ChoosingAfterToss from './components/sports/toss/ChoosingAfterToss'
 import SelectBatterAndBolwer from './components/cricket/form/SelectBatterAndBolwer'
 import SidebarLayout from './layout/componentLayout/SidebarLayout'
+import SelectCricketPlayers from './components/cricket/SelectCricketPlayers'
 
 
 const router = createBrowserRouter(
@@ -37,8 +38,8 @@ const router = createBrowserRouter(
       {/* <Route path='/teamup' element={<Teamup />}></Route>
       <Route path='/toss' element={<Toss />} ></Route>
       <Route path='/pick' element={<TossDecision />} ></Route>
-      <Route path='/select' element={<SelectPlayer />} ></Route>
       <Route path='/form' element={<CricketGameConfigForm />} ></Route> */}
+      <Route path='/select' element={<SelectPlayer />} ></Route>
       <Route path='/player' element={<PickPlayer />} ></Route>
       <Route path='/sel' element={<SelectBatterAndBolwer />} ></Route>
       <Route path='/pan' element={<ModalPanelLayout />} ></Route>
@@ -48,6 +49,7 @@ const router = createBrowserRouter(
       <Route path='/coin' element={<CoinFlip />} ></Route>
       <Route path='/pick' element={<ChoosingAfterToss />} ></Route>
       <Route path='/bar' element={<SidebarLayout />} ></Route>
+      <Route path='/scb' element={<SelectCricketPlayers/>} ></Route>
 
     </Route>
   )

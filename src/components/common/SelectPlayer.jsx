@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useMatchContext } from "../../context/matchReducer";
 import classes from "./SelectPlayer.module.css";
 
-function SelectPlayer({ limit = 3, selectionRole }) {
+function SelectPlayer({ playerList, limit = 1, onConfirm }) {
   const { state: matchState, dispatch: matchDispatch } = useMatchContext();
   const [selectedPlayer, setSelectedPlayer] = useState([]);
 
@@ -32,28 +32,10 @@ function SelectPlayer({ limit = 3, selectionRole }) {
     } else addPlayer(name);
   };
 
-  const onConfirm = () => {
-    if (selectionRole === "batsman") {
-      matchDispatch({
-        type: "SET_BATSMAN_NAME",
-        payload: selectedPlayer,
-      });
-    } else if (selectionRole === "bowler") {
-      matchDispatch({
-        type: "SET_BOLWER_NAME",
-        payload: selectedPlayer,
-      });
-    }
-  };
-
   return (
     <div className={classes.containerBox}>
-      <div className={classes.wrapper}>
-        <div className={classes.titleBar}>
-          <h2>Select Player</h2>
-        </div>
         <div className={classes.playerList}>
-          {matchState.players.team1.map((playerName, index) => (
+          {playerList.map((playerName, index) => (
             <button
               key={index}
               className={
@@ -68,10 +50,9 @@ function SelectPlayer({ limit = 3, selectionRole }) {
             </button>
           ))}
         </div>
-      </div>
-      <div className={classes.controls}>
+      {/* <div className={classes.controls}>
         <input type="button" value="Confirm" onClick={onConfirm} />
-      </div>
+      </div> */}
     </div>
   );
 }

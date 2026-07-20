@@ -108,3 +108,7 @@ Important:
 
 Rules:
     1. Dont Directly use the reducers inside the Modules (rectify if already done)
+
+
+Next task:
+    1. able to select batter when getting out;

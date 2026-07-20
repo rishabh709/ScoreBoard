@@ -32,12 +32,16 @@ function Teaminfo() {
   });
 
   const team1LogoSelect = (logoPath) => {
-    setTeam1Logo(logoPath);
-    matchDispatch({type:'team1Logo', payload:logoPath})
+    if(team2Logo!=logoPath){
+      setTeam1Logo(logoPath);
+      matchDispatch({type:'team1Logo', payload:logoPath})
+    }
   };
   const team2LogoSelect = (logoPath) => {
-    setTeam2Logo(logoPath);
-    matchDispatch({type:'team2Logo', payload:logoPath})
+    if(team1Logo!=logoPath){
+      setTeam2Logo(logoPath);
+      matchDispatch({type:'team2Logo', payload:logoPath})
+    }
   };
 
   return (
@@ -55,7 +59,7 @@ function Teaminfo() {
         ></FormInput>
         <Logo
           logos={teamLogos}
-          profileImage={team1Logo}
+          profileImage={matchState.team1Logo}
           logoSelectionHandler={team1LogoSelect}
         />
         <FormInput
@@ -71,7 +75,7 @@ function Teaminfo() {
         ></FormInput>
         <Logo
           logos={teamLogos}
-          profileImage={team2Logo}
+          profileImage={matchState.team2Logo}
           logoSelectionHandler={team2LogoSelect}
         />
       </div>

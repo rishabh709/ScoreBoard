@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import classes from "./SidebarLayout.module.css";
+import Backdrop from "../../components/common/Backdrop";
 
 function SidebarLayout({children}) {
   const [sideBarIsVisible, setSideBarIsVisible] = useState(false);
@@ -18,6 +19,7 @@ function SidebarLayout({children}) {
 
 
   return (
+    
     <div className={classes.wrapper}>
       <div className={classes.toggleButton} onClick={toggleSidebarVisibility}>
         <img
@@ -26,6 +28,7 @@ function SidebarLayout({children}) {
           className={sideBarIsVisible ? classes.slideRight : classes.slideLeft}
         />
       </div>
+      {sideBarIsVisible && <Backdrop onClick={toggleSidebarVisibility}/>}
 
       <motion.div
         className={classes.sidebarContainer}
@@ -44,8 +47,6 @@ function SidebarLayout({children}) {
         {sideBarIsVisible && (
           <div className={classes.sidebarContent}>
             <div className={classes.sidebarList}>
-              <div className={classes.list}>One and one</div>
-              <div className={classes.list}>Two</div>
               {children}
             </div>
             <div className={classes.cancel} onClick={toggleSidebarVisibility}>Close</div>

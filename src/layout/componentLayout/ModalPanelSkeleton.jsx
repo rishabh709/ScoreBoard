@@ -4,22 +4,17 @@ import classes from "./ModalPanelLayout.module.css";
 import SelectPlayer from "../../components/common/SelectPlayer";
 import Toss from "../../components/sports/toss/Toss";
 
-const ModalPanelLayout = ({children, heading, onNext, onBack, tabs, currentTab, setCurrentTab, onExit}) => {
+const ModalPanelSkeleton = ({children, heading, onBack, onNext, hideModal}) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const showModal = () => {
     setIsVisible(true);
   };
 
-  const hideModal = () => {
-    setIsVisible(false);
-    onExit();
-  };
-
-
-  if (isVisible==false){
-    return '';
-  }
+//   const hideModal = () => {
+//     setIsVisible(false);
+//     // onExit();
+//   };
 
   return (
     <div className={classes.modalContainer}>
@@ -28,22 +23,12 @@ const ModalPanelLayout = ({children, heading, onNext, onBack, tabs, currentTab, 
           <h3 className={classes.heading}>{heading}</h3>
           <div className={classes.body}>
             {children}
-            {/* {isVisible && <Toss />} */}
-            {/* {isVisible && <SelectPlayer />} */}
           </div>
+
           <div className={classes.footer}>
             <button className={classes.buttons} onClick={onBack}>
               Back
             </button>
-            
-            <div className={classes.progressBar}>
-              {Object.keys(tabs).map((key) => { const index = Number(key);
-              const progressBarStyle = currentTab === index ? classes.currentBar : '';
-              return (
-              <div key={index} className={progressBarStyle} onClick={() => setCurrentTab(index)} />);
-              })}
-            </div>
-
             <button className={classes.buttons} onClick={onNext}>
               Next
             </button>
@@ -55,4 +40,4 @@ const ModalPanelLayout = ({children, heading, onNext, onBack, tabs, currentTab, 
   );
 };
 
-export default ModalPanelLayout;
+export default ModalPanelSkeleton;

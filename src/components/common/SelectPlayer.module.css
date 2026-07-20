@@ -41,6 +41,8 @@
 .playerList {
     display: flex;
     flex-direction: column;
+    row-gap: 4px;
+    padding-top: 10px;
     .selected {
         background-color: var(--main-accent-color);
     }

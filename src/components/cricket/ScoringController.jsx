@@ -6,6 +6,9 @@ import { FaLeftLong, FaRightLong } from "react-icons/fa6";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { HiArrowLongLeft } from "react-icons/hi2";
 import { useState } from "react";
+import AlertBox from "../common/AlertBox.jsx";
+import SelectPlayer from "../common/SelectPlayer.jsx";
+import SelectCricketPlayers from "./SelectCricketPlayers.jsx";
 
 function ScoringController() {
   const { state: matchState, dispatch: matchDispatch } = useMatchContext();
@@ -14,8 +17,33 @@ function ScoringController() {
   const [selectedRun, setSelectedRun] = useState(null);
   const [selectedExtra, setSelectedExtra] = useState(null);
   const [selectedWicket, setSelectedWicket] = useState(null);
+  const [selectOutBatter, setSelectedOutBatter] = useState(null);
 
+  const [selectBatter, setSelectBatter] = useState(2);
+  
+  const [alertBoxConfig, setAlertBoxConfig] = useState(null);
 
+  const triggerAlertBox = (message, onOkayAction) => {
+    setAlertBoxConfig({
+      message: message,
+      onOkay: () => {
+        onOkayAction();
+        setAlertBoxConfig(null);
+      },
+    });
+  };
+
+  const selectOutBatterAlertBox = () => {
+    triggerAlertBox("Error: Select Batter who is out.", ()=>{});
+  };
+
+  const enterBatterName = (i) => {
+    if (selectBatter == i) {
+      setSelectBatter(2);
+    } else {
+      setSelectBatter(i);
+    }
+  };
 
   const byes = (type) => {
     if (selectedByes == type) {
@@ -52,6 +80,10 @@ function ScoringController() {
   };
 
   const nextBallHandler = () => {
+    if (selectedWicket !== null && selectOutBatter == null) {
+      selectOutBatterAlertBox();
+      return;
+    }
     selectedByes !== null ? matchDispatch({ type: selectedByes }) : "";
     if (selectedRun !== null && selectedExtra == null) {
       matchDispatch({ type: "ADD_RUNS", payload: selectedRun });
@@ -63,20 +95,24 @@ function ScoringController() {
     }
     if (selectedWicket !== null) {
       console.log("set selcted wicket", selectedWicket);
-      if(selectedExtra == null){
+      if (selectedExtra == null) {
         matchDispatch({ type: "BALL_TYPE", payload: "legal" });
       }
       matchDispatch({ type: "ADD_WICKET", payload: selectedWicket });
     }
-    console.log("BEFORE PUSH:::: ", matchState.ball)
-    if(selectedExtra !==null || selectedRun !==null || selectedWicket !==null){
+    console.log("BEFORE PUSH:::: ", matchState.ball);
+    if (
+      selectedExtra !== null ||
+      selectedRun !== null ||
+      selectedWicket !== null
+    ) {
       matchDispatch({ type: "ADD_IN_OVER" });
     }
-    console.log("THE FLUSHED BEFORE: ", selectedWicket)
+    console.log("THE FLUSHED BEFORE: ", selectedWicket);
     setSelectedRun(null);
     setSelectedExtra(null);
     setSelectedWicket(null);
-    console.log("THE FLUSHED WICKETS: ", selectedWicket)
+    console.log("THE FLUSHED WICKETS: ", selectedWicket);
   };
 
   const byesValues = ["Bat", "Byes"];
@@ -84,16 +120,24 @@ function ScoringController() {
   const extrasValues = { Wide: "WD", "No-Ball": "NB" };
   const outValues = ["out", "run-out", "catch-out"];
 
-
-
   return (
     <div className={classes.container}>
+      {alertBoxConfig && (
+        <AlertBox
+          message={alertBoxConfig.message}
+          onOkay={alertBoxConfig.onOkay}
+        ></AlertBox>
+      )}
+      {selectBatter == true && <SelectCricketPlayers setSelectedPlayerIndex = {(idx) => setSelectBatter(idx) } ></SelectCricketPlayers>}
       <div className={classes.scoring}>
         <div className={classes.batters}>
-          <div className={classes.batter} onClick={() => enterBatterName(1)}>
+          <div className={classes.batter} onClick={() => setSelectBatter(true)}>
             {matchState.current_batter.onStrike}
           </div>
-          <div className={classes.batter} onClick={() => enterBatterName(2)}>
+          <div
+            className={classes.batter}
+            onClick={() => setSelectBatter(false)}
+          >
             {matchState.current_batter.nonStrike}
           </div>
         </div>
@@ -166,10 +210,7 @@ function ScoringController() {
                 <GoArrowLeft />
               </div>
               <div>Current</div>
-              <div
-                className={classes.rightArrow}
-                onClick={nextBallHandler}
-              >
+              <div className={classes.rightArrow} onClick={nextBallHandler}>
                 <GoArrowRight />
               </div>
             </div>

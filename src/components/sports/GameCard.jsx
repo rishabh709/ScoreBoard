@@ -8,8 +8,11 @@ import CricketGameConfigForm from '../cricket/CricketGameConfigForm';
 function GameCard(props) {
   const [FormIsOpen, setFormIsOpen] = useState(false);
 
-  const cancelHandler = () => setFormIsOpen(false)
-  const showForm = () => setFormIsOpen((prev) => !prev);
+  const closeForm = () => setFormIsOpen(false)
+  const showForm = () =>{
+    setFormIsOpen((prev) => !prev);
+    console.log("Cicked...", FormIsOpen);
+  }
 
   return (
     <div className={classes.card}>
@@ -25,7 +28,7 @@ function GameCard(props) {
       </div>
       
       {/* {FormIsOpen && <GameConfigForm title={props.text} game={props.game} onNext={props.link} onCancle={cancelHandler}/>} */}
-      {FormIsOpen && <CricketConfigForm referPage={props.link}/>}
+      {FormIsOpen && <CricketConfigForm referPage={props.link} onExit={()=>closeForm()}/>}
       
     </div>
   )
